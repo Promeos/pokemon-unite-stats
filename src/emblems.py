@@ -102,9 +102,17 @@ def _select_page(target, rarity):
                       _estats(e).get("hp", 0)
                       + 10 * (_estats(e).get("defense", 0) + _estats(e).get("sp_defense", 0))),
                       reverse=True)[:10]
-    tcolor, skey = TARGET_COLOR[target], STAT_KEY[target]   # target color first, then the stat
-    return sorted(pool, key=lambda e: (tcolor in colors_of(e), _estats(e).get(skey, 0)),
-                  reverse=True)[:10]
+    # REALISTIC page: 6 of the target color (enough for the capped +X% color bonus, picking the
+    # 6 best by target stat), then 4 fillers that minimise the attacker's own stat loss -- the
+    # most HP/Def-additive emblems -- instead of 4 more same-color emblems piling on tradeoffs.
+    # (The bulky fillers also tend to share a color, hitting a useful second bonus, e.g. +HP.)
+    tcolor, skey = TARGET_COLOR[target], STAT_KEY[target]
+    core = sorted((e for e in pool if tcolor in colors_of(e)),
+                  key=lambda e: _estats(e).get(skey, 0), reverse=True)[:6]
+    chosen = {id(e) for e in core}
+    bulk = lambda e: _estats(e).get("hp", 0) + 5 * (_estats(e).get("defense", 0) + _estats(e).get("sp_defense", 0))
+    fillers = sorted((e for e in pool if id(e) not in chosen), key=bulk, reverse=True)[:4]
+    return core + fillers
 
 
 def optimal_page(target: str, rarity: str = "gold") -> tuple[Stats, Stats]:
@@ -121,12 +129,17 @@ def optimal_page(target: str, rarity: str = "gold") -> tuple[Stats, Stats]:
 
 
 def page_summary(template_or_target: str, rarity: str = "gold") -> str:
-    """Concise composition of the chosen page by primary color, e.g. '10x Brown' or
-    '7x Red 3x Brown'."""
+    """Concise description of the chosen 10-emblem page, e.g. '6x Brown + 4 bulk'."""
     target = TEMPLATE_TARGET.get(template_or_target, template_or_target)
-    primary = Counter(e.get("color1") for e in _select_page(target, rarity))
-    parts = [f"{n}x {c}" for c, n in primary.most_common(3)]
-    return " ".join(parts) + (" +.." if len(primary) > 3 else "")
+    page = _select_page(target, rarity)
+    if target == "attack_speed":
+        return "7x Red + 3 Brown"
+    if target == "bulk":
+        top = Counter(e.get("color1") for e in page).most_common(1)[0]
+        return f"{top[1]}x {top[0]} (bulk mix)"
+    tcolor = TARGET_COLOR[target]
+    ncore = sum(1 for e in page if tcolor in colors_of(e))
+    return f"{ncore}x {tcolor} + {len(page) - ncore} bulk"
 
 
 def describe(target: str, rarity: str = "gold") -> dict:

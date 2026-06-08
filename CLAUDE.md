@@ -42,8 +42,9 @@ raw unite-db JSON → `parse_unitedb_moves.py` / `build_pokemon_from_unitedb.py`
 - **`builds.py`** — `make_build()` folds item Lv40 flats + item % passives + emblem page into total
   stats; flags `muscle_band`, `crit_multiplier`, `move_flat`. `maxed_tier_for` picks physical vs special
   by `damage_type`. Pools: `PHYSICAL_POOL` (8), `SPECIAL_POOL` (5), `BULK_POOL` (7).
-- **`emblems.py`** — `optimal_page(target, rarity)` picks the best 10 of unite-db's 762 emblems for a
-  target stat (real colors / grades A,B,C / stat tradeoffs + color-set bonuses); replaces the old template.
+- **`emblems.py`** — `optimal_page(target, rarity)` builds a REALISTIC page from unite-db's 762 emblems:
+  6 of the damage color (hits the capped color-set bonus) + 4 bulk fillers (not a glass-cannon stack),
+  with real grades A/B/C, +/- tradeoffs, and color bonuses (which cap at their max tier).
 - **`abilities.py`** — `move_form(slot, level)` picks base/upgrade/enhanced by level; `form_damage` sums
   components × hits + execute true-damage + penetration; `burst_combo` returns actions + seconds.
 
