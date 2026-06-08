@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "source": "game8.co Pokemon UNITE individual held-item pages (Lv40 column)",
+    "patch": "v1.21.1.8 (2026-05-14)",
+    "notes": [
+      "stats_lv40 are the flat bonuses at the Lv40 cap. 'attack_speed' and 'crit' are percent points.",
+      "Muscle Band passive %HP bonus IS reduced by target Defense (Game8); modelled in damage.basic_hit_damage.",
+      "Scope Lens gives NO flat attack (pure crit). Float Stone gives the most flat attack (+28)."
+    ]
+  },
+  "muscle_band": {
+    "display_name": "Muscle Band", "game8_archive": "337850", "category": "physical",
+    "stats_lv40": {"attack": 17.5, "attack_speed": 8.7},
+    "passive": {"type": "pct_remaining_hp", "pct": 0.03, "cap": 360, "defense_reduced": true, "on": "basic"}
+  },
+  "scope_lens": {
+    "display_name": "Scope Lens", "game8_archive": "337852", "category": "physical",
+    "stats_lv40": {"crit": 7.0},
+    "passive": {"type": "crit_damage", "crit_damage_pct": 14}
+  },
+  "attack_weight": {
+    "display_name": "Attack Weight", "game8_archive": "337862", "category": "physical",
+    "stats_lv40": {"attack": 21},
+    "passive": {"type": "attack_on_goal", "per_goal": 12, "max_stacks": 6, "situational": true}
+  },
+  "razor_claw": {
+    "display_name": "Razor Claw", "game8_archive": "342989", "category": "physical",
+    "stats_lv40": {"attack": 17.5, "crit": 2.3},
+    "passive": {"type": "after_move_basic", "min_bonus": 20, "situational": true}
+  },
+  "float_stone": {
+    "display_name": "Float Stone", "game8_archive": "337858", "category": "physical",
+    "stats_lv40": {"attack": 28, "move_speed": 175},
+    "passive": {"type": "ooc_move_speed", "pct": 20}
+  },
+  "wise_glasses": {
+    "display_name": "Wise Glasses", "game8_archive": "337855", "category": "special",
+    "stats_lv40": {"sp_atk": 44},
+    "passive": {"type": "pct_stat", "stat": "sp_atk", "pct": 7}
+  },
+  "choice_specs": {
+    "display_name": "Choice Specs", "game8_archive": "342988", "category": "special",
+    "stats_lv40": {"sp_atk": 44},
+    "passive": {"type": "move_flat", "amount": 60, "cooldown_s": 8}
+  },
+  "sp_atk_specs": {
+    "display_name": "Sp. Atk. Specs", "game8_archive": "337863", "category": "special",
+    "stats_lv40": {"sp_atk": 28},
+    "passive": {"type": "sp_atk_on_goal", "per_goal": 16, "max_stacks": 6, "situational": true}
+  }
+}

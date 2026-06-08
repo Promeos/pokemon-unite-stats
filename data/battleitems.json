@@ -1,0 +1,25 @@
+{
+  "_meta": {
+    "source": "game8.co Pokemon UNITE Battle Items page (archive 336487)",
+    "patch": "v1.21.1.8 (2026-05-14)",
+    "notes": [
+      "Battle items occupy a 4th slot (1 per loadout). X Attack is the burst-relevant one.",
+      "X Attack MULTIPLIES output damage during its window (not a flat stat boost)."
+    ]
+  },
+  "x_attack": {
+    "display_name": "X Attack", "category": "combat",
+    "basic_damage_mult": 1.2,
+    "move_damage_mult_range": [1.05, 1.15],
+    "duration_s": 8,
+    "attack_speed_boost": true,
+    "notes": "1.2x basic-attack damage + ~1.05-1.15x move damage + attack speed for 8s."
+  },
+  "x_speed":      {"display_name": "X Speed", "category": "mobility", "duration_s": 5, "effect": "movement speed up, cannot be slowed"},
+  "eject_button": {"display_name": "Eject Button", "category": "mobility", "effect": "dash in a direction"},
+  "potion":       {"display_name": "Potion", "category": "sustain", "heal_pct_max_hp": 0.20},
+  "full_heal":    {"display_name": "Full Heal", "category": "sustain", "effect": "cleanse + CC immunity"},
+  "slow_smoke":   {"display_name": "Slow Smoke", "category": "control", "effect": "AoE slow + attack-speed down on enemies"},
+  "fluffy_tail":  {"display_name": "Fluffy Tail", "category": "jungle", "wild_damage_mult": 1.5, "effect": "stun wild + 1.5x damage to them"},
+  "goal_getter":  {"display_name": "Goal-Getter", "category": "utility", "effect": "+2 goal scoring speed"}
+}

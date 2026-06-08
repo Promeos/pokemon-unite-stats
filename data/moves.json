@@ -1,0 +1,6263 @@
+{
+ "_meta": {
+  "source": "unite-db.com/pokemon.json (Mathcord-sourced; the data its site uses)",
+  "validated": "Pikachu Thunder Shock 0.75*SpAtk + 21*(Lv-1) + 390 matches reference engine exactly",
+  "formula": "component damage = base + slider*(level-1) + ratio*stat[dmg_type], then *600/(600+def)",
+  "coverage": "passive + basic + 2 base moves + Unite move per mon (the pre-evo kit); not Lv5/7 upgrades"
+ },
+ "absol": {
+  "display_name": "Absol",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "feint": {
+    "display_name": "Feint",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.66,
+      "base": 130.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "slash": {
+    "display_name": "Slash",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.89,
+      "base": 200.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "midnight_slash": {
+    "display_name": "Midnight Slash",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.83,
+      "base": 184.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Full (6 Hits)"
+     }
+    ]
+   }
+  }
+ },
+ "aegislash": {
+  "display_name": "Aegislash",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "shadow_sneak": {
+    "display_name": "Shadow Sneak",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.02,
+      "base": 165.0,
+      "slider": 9.0,
+      "dmg_type": "Atk",
+      "label": "Damage - 2 Hits"
+     }
+    ]
+   },
+   "coup_de_grace": {
+    "display_name": "Coup de Grace",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.82,
+      "base": 640.0,
+      "slider": 13.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "alcremie": {
+  "display_name": "Alcremie",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.45
+  },
+  "moves": {
+   "helping_hand": {
+    "display_name": "Helping Hand",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.5,
+      "base": 525.0,
+      "slider": 26.0,
+      "dmg_type": "SpAtk",
+      "label": "Shield"
+     }
+    ]
+   },
+   "charm": {
+    "display_name": "Charm",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 400.0,
+      "slider": 25.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "fluffy_cream_supreme": {
+    "display_name": "Fluffy Cream Supreme",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.19,
+      "base": 45.0,
+      "slider": 3.0,
+      "dmg_type": "SpAtk",
+      "label": "Healing - per Cream (48 max)"
+     }
+    ]
+   }
+  }
+ },
+ "armarouge": {
+  "display_name": "Armarouge",
+  "role": null,
+  "damage_type": "Special",
+  "basic": null,
+  "moves": {
+   "flash_fire": {
+    "display_name": "Flash Fire",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.6,
+      "base": 120.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "attack_charcadet": {
+    "display_name": "Attack - Charcadet",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.3,
+      "base": 150.0,
+      "slider": 5.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Basic"
+     }
+    ]
+   },
+   "incinerate": {
+    "display_name": "Incinerate",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.05,
+      "base": 180.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.35,
+      "base": 60.0,
+      "slider": 2.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - DoT (x5)"
+     }
+    ]
+   },
+   "will_o_wisp": {
+    "display_name": "Will-o-Wisp",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.6,
+      "base": 200.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.1,
+      "base": 50.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Burn (x3)"
+     }
+    ]
+   },
+   "psykaboom": {
+    "display_name": "Psykaboom",
+    "level": "",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.5,
+      "base": 600.0,
+      "slider": 16.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "articuno": {
+  "display_name": "Articuno",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.5
+  },
+  "moves": {
+   "icy_wind": {
+    "display_name": "Icy Wind",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.9,
+      "base": 350.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "ice_shard": {
+    "display_name": "Ice Shard",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.48,
+      "base": 240.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.72,
+      "base": 360.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Frozen Target"
+     }
+    ]
+   },
+   "ice_wing_whiteout": {
+    "display_name": "Ice Wing Whiteout",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.68,
+      "base": 340.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - per Wave"
+     }
+    ]
+   }
+  }
+ },
+ "azumarill": {
+  "display_name": "Azumarill",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "tackle": {
+    "display_name": "Tackle",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.86,
+      "base": 100.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "bubble": {
+    "display_name": "Bubble",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.74,
+      "base": 80.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Initial Hit"
+     }
+    ]
+   },
+   "belly_bash": {
+    "display_name": "Belly Bash",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.08,
+      "base": 260.0,
+      "slider": 9.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.0,
+      "base": 72.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Attack - Increase"
+     }
+    ]
+   }
+  }
+ },
+ "blastoise": {
+  "display_name": "Blastoise",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "water_gun": {
+    "display_name": "Water Gun",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.82,
+      "base": 475.0,
+      "slider": 15.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "skull_bash": {
+    "display_name": "Skull Bash",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.61,
+      "base": 350.0,
+      "slider": 11.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "hydro_typhoon": {
+    "display_name": "Hydro Typhoon",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.64,
+      "base": 1040.0,
+      "slider": 22.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 3.6,
+      "base": 180.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Shield"
+     }
+    ]
+   }
+  }
+ },
+ "blaziken": {
+  "display_name": "Blaziken",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.1
+  },
+  "moves": {
+   "blaze": {
+    "display_name": "Blaze",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.2,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "aerial_ace": {
+    "display_name": "Aerial Ace",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.83,
+      "base": 190.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "ember": {
+    "display_name": "Ember",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.26,
+      "base": 290.0,
+      "slider": 9.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "spinning_flame_fist": {
+    "display_name": "Spinning Flame Fist",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.5,
+      "base": 100.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage (2x)"
+     }
+    ]
+   },
+   "spinning_flame_kick": {
+    "display_name": "Spinning Flame Kick",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 200.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "blissey": {
+  "display_name": "Blissey",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.1
+  },
+  "moves": {
+   "pound": {
+    "display_name": "Pound",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.47,
+      "base": 520.0,
+      "slider": 28.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "heal_pulse": {
+    "display_name": "Heal Pulse",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.4,
+      "base": 60.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Healing (4x)"
+     }
+    ]
+   },
+   "bliss_assistance": {
+    "display_name": "Bliss Assistance",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.9440000000000001,
+      "base": 1190.0,
+      "slider": 25.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 2.4,
+      "base": 1200.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Shield"
+     }
+    ]
+   }
+  }
+ },
+ "buzzwole": {
+  "display_name": "Buzzwole",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "mega_punch": {
+    "display_name": "Mega Punch",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.08,
+      "base": 180.0,
+      "slider": 9.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "fell_stinger": {
+    "display_name": "Fell Stinger",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.67,
+      "base": 310.0,
+      "slider": 10.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "ultra_swole_slam": {
+    "display_name": "Ultra Swole Slam",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.13,
+      "base": 210.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Sweep"
+     },
+     {
+      "ratio": 2.13,
+      "base": 210.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Seek"
+     }
+    ]
+   }
+  }
+ },
+ "ceruledge": {
+  "display_name": "Ceruledge",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": null,
+  "moves": {
+   "flame_body": {
+    "display_name": "Flame Body",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Flame Body"
+     }
+    ]
+   },
+   "attack_charcadet": {
+    "display_name": "Attack - Charcadet",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Basic"
+     }
+    ]
+   },
+   "lava_plume": {
+    "display_name": "Lava Plume",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.4,
+      "base": 300.0,
+      "slider": 15.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "take_down": {
+    "display_name": "Take Down",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.4,
+      "base": 200.0,
+      "slider": 15.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "revenant_rend": {
+    "display_name": "Revenant Rend",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.11,
+      "base": 460.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage (x3)"
+     }
+    ]
+   }
+  }
+ },
+ "chandelure": {
+  "display_name": "Chandelure",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "ember": {
+    "display_name": "Ember",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.44,
+      "base": 290.0,
+      "slider": 13.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.06,
+      "base": 20.0,
+      "slider": 2.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Burn (5 Ticks)"
+     }
+    ]
+   },
+   "night_shade": {
+    "display_name": "Night Shade",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.18,
+      "base": 120.0,
+      "slider": 15.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "ignite_midnight": {
+    "display_name": "Ignite Midnight",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.56,
+      "base": 270.0,
+      "slider": 29.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage (6x)"
+     },
+     {
+      "ratio": 0.84,
+      "base": 405.0,
+      "slider": 29.0,
+      "dmg_type": "SpAtk",
+      "label": "Final Blast Damage"
+     }
+    ]
+   }
+  }
+ },
+ "charizard": {
+  "display_name": "Charizard",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 0.308
+  },
+  "moves": {
+   "flame_burst": {
+    "display_name": "Flame Burst",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.05,
+      "base": 70.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.2,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Burn (5 Ticks)"
+     }
+    ]
+   },
+   "fire_spin": {
+    "display_name": "Fire Spin",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 150.0,
+      "slider": 5.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.2,
+      "base": 30.0,
+      "slider": 1.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Area  (10 Ticks)"
+     }
+    ]
+   },
+   "seismic_slam": {
+    "display_name": "Seismic Slam",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.2,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Burning (2x)"
+     },
+     {
+      "ratio": 3.07,
+      "base": 380.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Slam"
+     }
+    ]
+   }
+  }
+ },
+ "mega_charizard_x": {
+  "display_name": "Mega-Charizard-X",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 0.308
+  },
+  "moves": {
+   "solar_power": {
+    "display_name": "Solar Power",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.85,
+      "base": 96.0,
+      "slider": 3.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Added to Move"
+     }
+    ]
+   },
+   "flame_burst": {
+    "display_name": "Flame Burst",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.05,
+      "base": 70.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.2,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Burn (5 Ticks)"
+     }
+    ]
+   },
+   "fire_spin": {
+    "display_name": "Fire Spin",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 150.0,
+      "slider": 5.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.2,
+      "base": 30.0,
+      "slider": 1.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Area  (10 Ticks)"
+     }
+    ]
+   },
+   "seismic_slam": {
+    "display_name": "Seismic Slam",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 3.07,
+      "base": 380.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Slam"
+     }
+    ]
+   }
+  }
+ },
+ "mega_charizard_y": {
+  "display_name": "Mega-Charizard-Y",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 0.308
+  },
+  "moves": {
+   "flame_burst": {
+    "display_name": "Flame Burst",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.05,
+      "base": 70.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.2,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Burn (5 Ticks)"
+     }
+    ]
+   },
+   "fire_spin": {
+    "display_name": "Fire Spin",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 150.0,
+      "slider": 5.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.2,
+      "base": 30.0,
+      "slider": 1.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Area  (10 Ticks)"
+     }
+    ]
+   },
+   "seismic_slam": {
+    "display_name": "Seismic Slam",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.2,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Burning (2x)"
+     },
+     {
+      "ratio": 3.07,
+      "base": 380.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Slam"
+     }
+    ]
+   }
+  }
+ },
+ "cinderace": {
+  "display_name": "Cinderace",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "ember": {
+    "display_name": "Ember",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.15,
+      "base": 155.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.2,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Burn (3x)"
+     }
+    ]
+   },
+   "low_sweep": {
+    "display_name": "Low Sweep",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.36,
+      "base": 100.0,
+      "slider": 3.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "blazing_bicycle_kick": {
+    "display_name": "Blazing Bicycle Kick",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.47,
+      "base": 670.0,
+      "slider": 14.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "clefable": {
+  "display_name": "Clefable",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "heal_pulse": {
+    "display_name": "Heal Pulse",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.03,
+      "base": 345.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Heal"
+     }
+    ]
+   },
+   "disarming_voice": {
+    "display_name": "Disarming Voice",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.13,
+      "base": 590.0,
+      "slider": 19.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "comfey": {
+  "display_name": "Comfey",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "synthesis": {
+    "display_name": "Synthesis",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 140.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Healing"
+     },
+     {
+      "ratio": 0.1,
+      "base": 40.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Healing - Additional Per Flower"
+     }
+    ]
+   },
+   "vine_whip": {
+    "display_name": "Vine Whip",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.86,
+      "base": 450.0,
+      "slider": 14.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "flowery_fields_forever": {
+    "display_name": "Flowery Fields Forever",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.225,
+      "base": 120.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Heal - per tick"
+     },
+     {
+      "ratio": 1.261,
+      "base": 390.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Empowered Floral Healing Healing"
+     },
+     {
+      "ratio": 0.195,
+      "base": 59.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Empowered Floral Healing Healing - Additional Per Flower"
+     },
+     {
+      "ratio": 0.6305,
+      "base": 195.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Empowered Floral Healing Overheal Shield"
+     },
+     {
+      "ratio": 0.0975,
+      "base": 30.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Empowered Floral Healing Overheal Shield - Additional Per Flower"
+     }
+    ]
+   }
+  }
+ },
+ "cramorant": {
+  "display_name": "Cramorant",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "whirlpool": {
+    "display_name": "Whirlpool",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.24,
+      "base": 100.0,
+      "slider": 5.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Initial (2 Ticks)"
+     },
+     {
+      "ratio": 0.27,
+      "base": 110.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Middle (2 Ticks)"
+     },
+     {
+      "ratio": 0.3,
+      "base": 120.0,
+      "slider": 7.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - End (6 Ticks)"
+     }
+    ]
+   },
+   "gatling_gulp_missile": {
+    "display_name": "Gatling Gulp Missile",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.95,
+      "base": 370.0,
+      "slider": 9.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage (10x)"
+     }
+    ]
+   }
+  }
+ },
+ "crustle": {
+  "display_name": "Crustle",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "sturdy": {
+    "display_name": "Sturdy",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.0,
+      "base": 6.0,
+      "slider": 2.0,
+      "dmg_type": "Atk",
+      "label": "Def & Sp. Def - Increase (Stacks 10x)"
+     }
+    ]
+   },
+   "rock_slide": {
+    "display_name": "Rock Slide",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.63,
+      "base": 160.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "fury_cutter": {
+    "display_name": "Fury Cutter",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.17,
+      "base": 290.0,
+      "slider": 15.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "rubble_rouser": {
+    "display_name": "Rubble Rouser",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.6,
+      "base": 360.0,
+      "slider": 12.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Revenge"
+     },
+     {
+      "ratio": 0.4,
+      "base": 90.0,
+      "slider": 3.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Aura"
+     }
+    ]
+   }
+  }
+ },
+ "darkrai": {
+  "display_name": "Darkrai",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "bad_dreams": {
+    "display_name": "Bad Dreams",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.5,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "hypnosis": {
+    "display_name": "Hypnosis",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.8,
+      "base": 300.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "decidueye": {
+  "display_name": "Decidueye",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "leafage": {
+    "display_name": "Leafage",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.24,
+      "base": 230.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "astonish": {
+    "display_name": "Astonish",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.43,
+      "base": 80.0,
+      "slider": 2.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "nock_nock": {
+    "display_name": "Nock Nock",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.7,
+      "base": 100.0,
+      "slider": 2.0,
+      "dmg_type": "Atk",
+      "label": "Damage - per Quill (30 Quills)"
+     },
+     {
+      "ratio": 2.8,
+      "base": 400.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Large Arrow"
+     }
+    ]
+   }
+  }
+ },
+ "delphox": {
+  "display_name": "Delphox",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "blaze": {
+    "display_name": "Blaze",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.81,
+      "base": 325.0,
+      "slider": 18.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Fireball"
+     }
+    ]
+   },
+   "ember": {
+    "display_name": "Ember",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.93,
+      "base": 540.0,
+      "slider": 29.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "will_o_wisp": {
+    "display_name": "Will-o-Wisp",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.52,
+      "base": 300.0,
+      "slider": 16.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Flames"
+     },
+     {
+      "ratio": 0.26,
+      "base": 150.0,
+      "slider": 8.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Explosion"
+     }
+    ]
+   },
+   "fanciful_fireworks": {
+    "display_name": "Fanciful Fireworks",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.25,
+      "base": 150.0,
+      "slider": 3.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - per Tick"
+     }
+    ]
+   }
+  }
+ },
+ "dhelmise": {
+  "display_name": "Dhelmise",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "steelworker": {
+    "display_name": "Steelworker",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.19,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Additional (Basic)"
+     },
+     {
+      "ratio": 2.4,
+      "base": 360.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Shield"
+     }
+    ]
+   },
+   "payback": {
+    "display_name": "Payback",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.6,
+      "base": 240.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.8,
+      "base": 120.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Additional (Revenge)"
+     }
+    ]
+   },
+   "bulldoze": {
+    "display_name": "Bulldoze",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.34,
+      "base": 200.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "seaweed_snare": {
+    "display_name": "Seaweed Snare",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.14,
+      "base": 172.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage - First Hit"
+     },
+     {
+      "ratio": 1.14,
+      "base": 172.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Second Hit"
+     },
+     {
+      "ratio": 0.22,
+      "base": 34.0,
+      "slider": 1.0,
+      "dmg_type": "Atk",
+      "label": "Damage - DoT (9 Ticks)"
+     }
+    ]
+   }
+  }
+ },
+ "dodrio": {
+  "display_name": "Dodrio",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "peck": {
+    "display_name": "Peck",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.1159999999999999,
+      "base": 216.0,
+      "slider": 11.0,
+      "dmg_type": "Atk",
+      "label": "Damage (No Gauge)"
+     },
+     {
+      "ratio": 1.86,
+      "base": 360.0,
+      "slider": 19.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Full Gauge)"
+     }
+    ]
+   },
+   "quick_attack": {
+    "display_name": "Quick Attack",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.83,
+      "base": 190.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "triple_trample": {
+    "display_name": "Triple Trample",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.73,
+      "base": 390.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "dragapult": {
+  "display_name": "Dragapult",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "astonish": {
+    "display_name": "Astonish",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.22,
+      "base": 290.0,
+      "slider": 16.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "dreep_and_destroy": {
+    "display_name": "Dreep and Destroy",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.01,
+      "base": 178.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "dragonite": {
+  "display_name": "Dragonite",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": null,
+  "moves": {
+   "attack_dratini": {
+    "display_name": "Attack - Dratini",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Basic"
+     }
+    ]
+   },
+   "twister": {
+    "display_name": "Twister",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.93,
+      "base": 210.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "dragon_breath": {
+    "display_name": "Dragon Breath",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.54,
+      "base": 350.0,
+      "slider": 11.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "draco_impact": {
+    "display_name": "Draco Impact",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.03,
+      "base": 860.0,
+      "slider": 18.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "duraludon": {
+  "display_name": "Duraludon",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "laser_focus": {
+    "display_name": "Laser Focus",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.27,
+      "base": 60.0,
+      "slider": 3.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Bonus"
+     }
+    ]
+   },
+   "metal_claw": {
+    "display_name": "Metal Claw",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.94,
+      "base": 260.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "revolving_ruin": {
+    "display_name": "Revolving Ruin",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.63,
+      "base": 350.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage - per Hit"
+     },
+     {
+      "ratio": 0.35,
+      "base": 63.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Burning Ring (per Tick)"
+     },
+     {
+      "ratio": 0.68,
+      "base": 68.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Shield - per Enemy"
+     }
+    ]
+   }
+  }
+ },
+ "eldegoss": {
+  "display_name": "Eldegoss",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "cotton_down": {
+    "display_name": "Cotton Down",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.35,
+      "base": 150.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Revenge"
+     },
+     {
+      "ratio": 0.65,
+      "base": 165.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Healing - Revenge"
+     }
+    ]
+   },
+   "leafage": {
+    "display_name": "Leafage",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.29,
+      "base": 210.0,
+      "slider": 11.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "synthesis": {
+    "display_name": "Synthesis",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 350.0,
+      "slider": 5.0,
+      "dmg_type": "SpAtk",
+      "label": "Healing"
+     }
+    ]
+   },
+   "cotton_cloud_crash": {
+    "display_name": "Cotton Cloud Crash",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.0,
+      "base": 530.0,
+      "slider": 8.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 3.06,
+      "base": 636.0,
+      "slider": 13.0,
+      "dmg_type": "SpAtk",
+      "label": "Healing"
+     }
+    ]
+   }
+  }
+ },
+ "empoleon": {
+  "display_name": "Empoleon",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.6
+  },
+  "moves": {
+   "water_gun": {
+    "display_name": "Water Gun",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.43,
+      "base": 358.0,
+      "slider": 13.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 2.14,
+      "base": 536.0,
+      "slider": 20.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage (Torrent)"
+     }
+    ]
+   },
+   "peck": {
+    "display_name": "Peck",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.3,
+      "base": 325.0,
+      "slider": 12.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "sovereign_slide": {
+    "display_name": "Sovereign Slide",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 3.52,
+      "base": 528.0,
+      "slider": 19.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "espeon": {
+  "display_name": "Espeon",
+  "role": null,
+  "damage_type": "Special",
+  "basic": null,
+  "moves": {
+   "anticipation": {
+    "display_name": "Anticipation",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.34,
+      "base": 140.0,
+      "slider": 8.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Counter"
+     }
+    ]
+   },
+   "attack_eevee": {
+    "display_name": "Attack - Eevee",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Basic"
+     }
+    ]
+   },
+   "swift": {
+    "display_name": "Swift",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.7,
+      "base": 360.0,
+      "slider": 19.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - First Hit"
+     },
+     {
+      "ratio": 0.21,
+      "base": 108.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Subsequent Hits"
+     }
+    ]
+   },
+   "growl": {
+    "display_name": "Growl",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.55,
+      "base": 290.0,
+      "slider": 15.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "psychic_solare": {
+    "display_name": "Psychic Solare",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.91,
+      "base": 546.0,
+      "slider": 12.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "falinks": {
+  "display_name": "Falinks",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "tackle": {
+    "display_name": "Tackle",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 2.0,
+      "base": 300.0,
+      "slider": 15.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "dust_devil_formation": {
+    "display_name": "Dust Devil Formation",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.9,
+      "base": 110.0,
+      "slider": 10.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Per Hit)"
+     }
+    ]
+   }
+  }
+ },
+ "feraligatr": {
+  "display_name": "Feraligatr",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "bite": {
+    "display_name": "Bite",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.4,
+      "base": 420.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Bonus"
+     }
+    ]
+   },
+   "scratch": {
+    "display_name": "Scratch",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.05,
+      "base": 315.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "big_jaw_bite": {
+    "display_name": "Big Jaw Bite",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 3.0,
+      "base": 900.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - 0 Fang Marks"
+     },
+     {
+      "ratio": 3.9,
+      "base": 1170.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - 1 Fang Mark"
+     },
+     {
+      "ratio": 4.8,
+      "base": 1440.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - 2 Fang Marks"
+     },
+     {
+      "ratio": 5.7,
+      "base": 1709.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - 3 Fang Marks"
+     }
+    ]
+   }
+  }
+ },
+ "garchomp": {
+  "display_name": "Garchomp",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "bulldoze": {
+    "display_name": "Bulldoze",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.45,
+      "base": 200.0,
+      "slider": 13.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "livid_outrage": {
+    "display_name": "Livid Outrage",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.45,
+      "base": 356.0,
+      "slider": 11.0,
+      "dmg_type": "Atk",
+      "label": "Damage - First Hit"
+     },
+     {
+      "ratio": 2.88,
+      "base": 486.0,
+      "slider": 12.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Second Hit"
+     },
+     {
+      "ratio": 3.32,
+      "base": 615.0,
+      "slider": 13.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Third Hit"
+     },
+     {
+      "ratio": 3.32,
+      "base": 994.0,
+      "slider": 14.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Fourth Hit"
+     },
+     {
+      "ratio": 3.32,
+      "base": 1372.0,
+      "slider": 15.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Fifth Hit"
+     }
+    ]
+   }
+  }
+ },
+ "gardevoir": {
+  "display_name": "Gardevoir",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "synchronize": {
+    "display_name": "Synchronize",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.15,
+      "base": 15.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - DoT Applied (4x)"
+     }
+    ]
+   },
+   "confusion": {
+    "display_name": "Confusion",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.95,
+      "base": 402.0,
+      "slider": 22.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "fairy_singularity": {
+    "display_name": "Fairy Singularity",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.66,
+      "base": 400.0,
+      "slider": 8.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Final Tick"
+     },
+     {
+      "ratio": 0.33,
+      "base": 200.0,
+      "slider": 4.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - 4 Ticks"
+     }
+    ]
+   }
+  }
+ },
+ "gengar": {
+  "display_name": "Gengar",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.4
+  },
+  "moves": {
+   "will_o_wisp": {
+    "display_name": "Will-o-Wisp",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.84,
+      "base": 100.0,
+      "slider": 5.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - First Flame"
+     },
+     {
+      "ratio": 0.28,
+      "base": 40.0,
+      "slider": 2.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Burn (3 Ticks)"
+     }
+    ]
+   },
+   "lick": {
+    "display_name": "Lick",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.13,
+      "base": 140.0,
+      "slider": 7.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "phantom_ambush": {
+    "display_name": "Phantom Ambush",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.63,
+      "base": 560.0,
+      "slider": 12.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "glaceon": {
+  "display_name": "Glaceon",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.39
+  },
+  "moves": {
+   "swift": {
+    "display_name": "Swift",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.16,
+      "base": 110.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - per Star"
+     }
+    ]
+   },
+   "tail_whip": {
+    "display_name": "Tail Whip",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.61,
+      "base": 190.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "glacial_stage": {
+    "display_name": "Glacial Stage",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.21,
+      "base": 384.0,
+      "slider": 8.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "goodra": {
+  "display_name": "Goodra",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "gooey": {
+    "display_name": "Gooey",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.6,
+      "base": 120.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage (Slime)"
+     },
+     {
+      "ratio": 0.0,
+      "base": 50.0,
+      "slider": 3.0,
+      "dmg_type": "SpAtk",
+      "label": "Healing (Per Tick)"
+     }
+    ]
+   },
+   "bubble": {
+    "display_name": "Bubble",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.28,
+      "base": 380.0,
+      "slider": 20.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "tackle": {
+    "display_name": "Tackle",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.8,
+      "base": 270.0,
+      "slider": 8.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "greedent": {
+  "display_name": "Greedent",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "tackle": {
+    "display_name": "Tackle",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.01,
+      "base": 310.0,
+      "slider": 16.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "berry_belly_flop": {
+    "display_name": "Berry Belly Flop",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.41,
+      "base": 1050.0,
+      "slider": 22.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "greninja": {
+  "display_name": "Greninja",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "bubble": {
+    "display_name": "Bubble",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.13,
+      "base": 208.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage - per Hit (2 Hits)"
+     }
+    ]
+   },
+   "waterburst_shuriken": {
+    "display_name": "Waterburst Shuriken",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.2,
+      "base": 420.0,
+      "slider": 11.0,
+      "dmg_type": "Atk",
+      "label": "Damage (2x)"
+     }
+    ]
+   }
+  }
+ },
+ "gyarados": {
+  "display_name": "Gyarados",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": null,
+  "moves": {
+   "attack_magikarp": {
+    "display_name": "Attack - Magikarp",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Basic"
+     }
+    ]
+   },
+   "flail": {
+    "display_name": "Flail",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.78,
+      "base": 310.0,
+      "slider": 23.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Above 66% HP"
+     },
+     {
+      "ratio": 2.22,
+      "base": 385.0,
+      "slider": 29.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Between 66% and 33% HP"
+     },
+     {
+      "ratio": 3.57,
+      "base": 616.0,
+      "slider": 45.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Below 33% HP"
+     }
+    ]
+   },
+   "dragon_current": {
+    "display_name": "Dragon Current",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.62,
+      "base": 325.0,
+      "slider": 12.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 2.43,
+      "base": 488.0,
+      "slider": 17.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Whirlpool level"
+     },
+     {
+      "ratio": 0.162,
+      "base": 33.0,
+      "slider": 1.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Whirlpool (5 Ticks)"
+     },
+     {
+      "ratio": 3.24,
+      "base": 650.0,
+      "slider": 23.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Water Spout level"
+     }
+    ]
+   }
+  }
+ },
+ "mega_gyarados": {
+  "display_name": "Mega-Gyarados",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "flail": {
+    "display_name": "Flail",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.78,
+      "base": 310.0,
+      "slider": 23.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Above 66% HP"
+     },
+     {
+      "ratio": 2.22,
+      "base": 385.0,
+      "slider": 29.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Between 66% and 33% HP"
+     },
+     {
+      "ratio": 3.57,
+      "base": 616.0,
+      "slider": 45.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Below 33% HP"
+     }
+    ]
+   },
+   "dragon_current": {
+    "display_name": "Dragon Current",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.62,
+      "base": 325.0,
+      "slider": 12.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 2.43,
+      "base": 488.0,
+      "slider": 17.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Whirlpool level"
+     },
+     {
+      "ratio": 0.162,
+      "base": 488.0,
+      "slider": 17.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Whirlpool (5 Ticks)"
+     },
+     {
+      "ratio": 3.24,
+      "base": 650.0,
+      "slider": 23.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Water Spout level"
+     }
+    ]
+   }
+  }
+ },
+ "ho_oh": {
+  "display_name": "Ho-Oh",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "tailwind": {
+    "display_name": "Tailwind",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.93,
+      "base": 340.0,
+      "slider": 3.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "hoopa": {
+  "display_name": "Hoopa",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "astonish": {
+    "display_name": "Astonish",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.16,
+      "base": 340.0,
+      "slider": 18.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "confusion": {
+    "display_name": "Confusion",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.56,
+      "base": 190.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Initial"
+     },
+     {
+      "ratio": 1.12,
+      "base": 380.0,
+      "slider": 12.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Explosion"
+     }
+    ]
+   }
+  }
+ },
+ "inteleon": {
+  "display_name": "Inteleon",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.48200000000000004
+  },
+  "moves": {
+   "water_gun": {
+    "display_name": "Water Gun",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.27,
+      "base": 94.0,
+      "slider": 3.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage (x3)"
+     }
+    ]
+   }
+  }
+ },
+ "lapras": {
+  "display_name": "Lapras",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "whirlpool": {
+    "display_name": "Whirlpool",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.24,
+      "base": 70.0,
+      "slider": 4.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "ice_shard": {
+    "display_name": "Ice Shard",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.19,
+      "base": 70.0,
+      "slider": 2.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - per Chunk"
+     }
+    ]
+   },
+   "lapras_express": {
+    "display_name": "Lapras Express",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.72,
+      "base": 580.0,
+      "slider": 12.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "latias": {
+  "display_name": "Latias",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.25
+  },
+  "moves": {
+   "confusion": {
+    "display_name": "Confusion",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.75,
+      "base": 200.0,
+      "slider": 12.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "swift": {
+    "display_name": "Swift",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 350.0,
+      "slider": 22.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "mist_blast": {
+    "display_name": "Mist Blast",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.5,
+      "base": 460.0,
+      "slider": 15.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 1.25,
+      "base": 230.0,
+      "slider": 7.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Area (If Mist Blast hit last)"
+     }
+    ]
+   }
+  }
+ },
+ "latios": {
+  "display_name": "Latios",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.25
+  },
+  "moves": {
+   "confusion": {
+    "display_name": "Confusion",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.75,
+      "base": 200.0,
+      "slider": 12.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "swift": {
+    "display_name": "Swift",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 350.0,
+      "slider": 22.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "eon_blast": {
+    "display_name": "Eon Blast",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.5,
+      "base": 460.0,
+      "slider": 15.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 1.25,
+      "base": 230.0,
+      "slider": 7.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Area (If Eon Blast hit last)"
+     }
+    ]
+   }
+  }
+ },
+ "leafeon": {
+  "display_name": "Leafeon",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": null,
+  "moves": {
+   "attack_eevee": {
+    "display_name": "Attack - Eevee",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Basic"
+     }
+    ]
+   },
+   "swift": {
+    "display_name": "Swift",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.92,
+      "base": 270.0,
+      "slider": 14.0,
+      "dmg_type": "Atk",
+      "label": "Damage - First Star"
+     }
+    ]
+   },
+   "quick_attack": {
+    "display_name": "Quick Attack",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.65,
+      "base": 220.0,
+      "slider": 5.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "emerald_two_step": {
+    "display_name": "Emerald Two-Step",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.26,
+      "base": 300.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Initial leap)"
+     },
+     {
+      "ratio": 2.52,
+      "base": 600.0,
+      "slider": 14.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Second Leap - Closest)"
+     },
+     {
+      "ratio": 1.92,
+      "base": 420.0,
+      "slider": 11.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Second Leap - Mid range)"
+     },
+     {
+      "ratio": 1.26,
+      "base": 300.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Second Leap - Furthest range)"
+     }
+    ]
+   }
+  }
+ },
+ "lucario": {
+  "display_name": "Lucario",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "steadfast": {
+    "display_name": "Steadfast",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 2.5,
+      "base": 50.0,
+      "slider": 50.0,
+      "dmg_type": "Atk",
+      "label": "Shield"
+     }
+    ]
+   },
+   "quick_attack": {
+    "display_name": "Quick Attack",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 2.21,
+      "base": 240.0,
+      "slider": 11.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "meteor_mash": {
+    "display_name": "Meteor Mash",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.67,
+      "base": 180.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "aura_cannon": {
+    "display_name": "Aura Cannon",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.74,
+      "base": 210.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage - per Tick"
+     }
+    ]
+   }
+  }
+ },
+ "mega_lucario": {
+  "display_name": "Mega-Lucario",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "quick_attack": {
+    "display_name": "Quick Attack",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 2.21,
+      "base": 240.0,
+      "slider": 11.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "meteor_mash": {
+    "display_name": "Meteor Mash",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.67,
+      "base": 180.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "aura_cannon": {
+    "display_name": "Aura Cannon",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.74,
+      "base": 210.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage - per Tick"
+     }
+    ]
+   }
+  }
+ },
+ "machamp": {
+  "display_name": "Machamp",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "karate_chop": {
+    "display_name": "Karate Chop",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 2.17,
+      "base": 320.0,
+      "slider": 17.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "barrage_blow": {
+    "display_name": "Barrage Blow",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 100.0,
+      "slider": 2.0,
+      "dmg_type": "Atk",
+      "label": "Damage (6x)"
+     },
+     {
+      "ratio": 2.0,
+      "base": 200.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Final Hit"
+     }
+    ]
+   }
+  }
+ },
+ "mamoswine": {
+  "display_name": "Mamoswine",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "thick_fat": {
+    "display_name": "Thick Fat",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.0,
+      "base": 20.0,
+      "slider": 10.0,
+      "dmg_type": "Atk",
+      "label": "Defense & Sp. Defense"
+     }
+    ]
+   },
+   "ice_shard": {
+    "display_name": "Ice Shard",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.62,
+      "base": 140.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage - per Shard (3 shards)"
+     }
+    ]
+   },
+   "tackle": {
+    "display_name": "Tackle",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.01,
+      "base": 230.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "mammoth_mash": {
+    "display_name": "Mammoth Mash",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.53,
+      "base": 420.0,
+      "slider": 9.0,
+      "dmg_type": "Atk",
+      "label": "Damage - First Stomp"
+     },
+     {
+      "ratio": 1.02,
+      "base": 280.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Mini Stomps (2 stomps)"
+     },
+     {
+      "ratio": 2.04,
+      "base": 560.0,
+      "slider": 12.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Final Stomp"
+     }
+    ]
+   }
+  }
+ },
+ "meganium": {
+  "display_name": "Meganium",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.45
+  },
+  "moves": {
+   "magical_leaf": {
+    "display_name": "Magical Leaf",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.4,
+      "base": 560.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "synthesis": {
+    "display_name": "Synthesis",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.8,
+      "base": 50.0,
+      "slider": 60.0,
+      "dmg_type": "SpAtk",
+      "label": "Healing"
+     }
+    ]
+   },
+   "full_bloom_aroma": {
+    "display_name": "Full Bloom Aroma",
+    "level": "7",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.2,
+      "base": 106.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - per tick (x10)"
+     }
+    ]
+   }
+  }
+ },
+ "meowscarada": {
+  "display_name": "Meowscarada",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "leafage": {
+    "display_name": "Leafage",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.9,
+      "base": 160.0,
+      "slider": 5.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "hone_claws": {
+    "display_name": "Hone Claws",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.25,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Additional"
+     }
+    ]
+   },
+   "floral_flourish": {
+    "display_name": "Floral Flourish",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.7,
+      "base": 187.0,
+      "slider": 3.0,
+      "dmg_type": "Atk",
+      "label": "Damage - per tick"
+     }
+    ]
+   }
+  }
+ },
+ "meowth": {
+  "display_name": "Meowth",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "scratch": {
+    "display_name": "Scratch",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.8,
+      "base": 450.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "feint": {
+    "display_name": "Feint",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.62,
+      "base": 405.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "gold_coin_barrage": {
+    "display_name": "Gold Coin Barrage",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.82,
+      "base": 123.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Per Coin (10x)"
+     }
+    ]
+   }
+  }
+ },
+ "metagross": {
+  "display_name": "Metagross",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "iron_defense": {
+    "display_name": "Iron Defense",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 2.0,
+      "base": 400.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Shield"
+     },
+     {
+      "ratio": 2.0,
+      "base": 175.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Additional Damage"
+     }
+    ]
+   },
+   "tackle": {
+    "display_name": "Tackle",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.5,
+      "base": 200.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "compute_and_crush": {
+    "display_name": "Compute and Crush",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.34,
+      "base": 400.0,
+      "slider": 2.0,
+      "dmg_type": "Atk",
+      "label": "Damage (2 punches)"
+     },
+     {
+      "ratio": 2.28,
+      "base": 460.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Wall Creation"
+     },
+     {
+      "ratio": 0.6,
+      "base": 150.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Shield - Per Enemy"
+     }
+    ]
+   }
+  }
+ },
+ "mew": {
+  "display_name": "Mew",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.38
+  },
+  "moves": {
+   "electro_ball": {
+    "display_name": "Electro Ball",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.14,
+      "base": 260.0,
+      "slider": 12.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage (No Light Screen Boost)"
+     },
+     {
+      "ratio": 1.49,
+      "base": 340.0,
+      "slider": 15.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage (Light Screen Boost)"
+     }
+    ]
+   },
+   "coaching": {
+    "display_name": "Coaching",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 300.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Shield"
+     }
+    ]
+   },
+   "mystical_mirage": {
+    "display_name": "Mystical Mirage",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.2,
+      "base": 340.0,
+      "slider": 10.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "mewtwox": {
+  "display_name": "MewtwoX",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.15
+  },
+  "moves": {
+   "confusion": {
+    "display_name": "Confusion",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.32,
+      "base": 260.0,
+      "slider": 14.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "barrier": {
+    "display_name": "Barrier",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 300.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Shield"
+     }
+    ]
+   },
+   "infinite_psyburn": {
+    "display_name": "Infinite Psyburn",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.9,
+      "base": 500.0,
+      "slider": 11.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "mewtwoy": {
+  "display_name": "MewtwoY",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.43
+  },
+  "moves": {
+   "confusion": {
+    "display_name": "Confusion",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.95,
+      "base": 270.0,
+      "slider": 14.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "barrier": {
+    "display_name": "Barrier",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.75,
+      "base": 300.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Shield"
+     }
+    ]
+   },
+   "infinite_psyburn": {
+    "display_name": "Infinite Psyburn",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.4,
+      "base": 470.0,
+      "slider": 12.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "mimikyu": {
+  "display_name": "Mimikyu",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "astonish": {
+    "display_name": "Astonish",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.35,
+      "base": 240.0,
+      "slider": 18.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "scratch": {
+    "display_name": "Scratch",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.43,
+      "base": 90.0,
+      "slider": 5.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Dash"
+     },
+     {
+      "ratio": 0.43,
+      "base": 90.0,
+      "slider": 5.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Claw"
+     }
+    ]
+   },
+   "play_with_me": {
+    "display_name": "Play With Me...",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.76,
+      "base": 154.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage - per hit"
+     },
+     {
+      "ratio": 1.5,
+      "base": 400.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Shield"
+     }
+    ]
+   }
+  }
+ },
+ "miraidon": {
+  "display_name": "Miraidon",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.25
+  },
+  "moves": {
+   "thunder_shock": {
+    "display_name": "Thunder Shock",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.2,
+      "base": 350.0,
+      "slider": 20.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "thunder_wave": {
+    "display_name": "Thunder Wave",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.9,
+      "base": 300.0,
+      "slider": 15.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "bright_future_meteor_storm": {
+    "display_name": "Bright Future Meteor Storm",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.7,
+      "base": 400.0,
+      "slider": 5.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Base per meteorite"
+     }
+    ]
+   }
+  }
+ },
+ "moltres": {
+  "display_name": "Moltres",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "flame_body": {
+    "display_name": "Flame Body",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.18,
+      "base": 18.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Burn (8x)"
+     }
+    ]
+   },
+   "wing_attack": {
+    "display_name": "Wing Attack",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.5,
+      "base": 400.0,
+      "slider": 5.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "incinerate": {
+    "display_name": "Incinerate",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.42,
+      "base": 350.0,
+      "slider": 5.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "firebird_inferno": {
+    "display_name": "Firebird Inferno",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.4,
+      "base": 700.0,
+      "slider": 10.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "mr_mime": {
+  "display_name": "Mr.Mime",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "fake_out": {
+    "display_name": "Fake Out",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.94,
+      "base": 470.0,
+      "slider": 25.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "showtime": {
+    "display_name": "Showtime",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.79,
+      "base": 220.0,
+      "slider": 5.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - First 3 Hits"
+     },
+     {
+      "ratio": 1.58,
+      "base": 440.0,
+      "slider": 10.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Final Hit"
+     }
+    ]
+   }
+  }
+ },
+ "ninetales": {
+  "display_name": "Ninetales",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "snow_warning": {
+    "display_name": "Snow Warning",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.6,
+      "base": 100.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "powder_snow": {
+    "display_name": "Powder Snow",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.78,
+      "base": 240.0,
+      "slider": 13.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "icy_wind": {
+    "display_name": "Icy Wind",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.61,
+      "base": 240.0,
+      "slider": 7.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage (x2)"
+     }
+    ]
+   },
+   "snow_globe": {
+    "display_name": "Snow Globe",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.42,
+      "base": 1640.0,
+      "slider": 35.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Frozen Enemies"
+     },
+     {
+      "ratio": 1.59,
+      "base": 1150.0,
+      "slider": 32.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Unfrozen Enemies"
+     }
+    ]
+   }
+  }
+ },
+ "pawmot": {
+  "display_name": "Pawmot",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "iron_fist": {
+    "display_name": "Iron Fist",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.6,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Enhanced Auto"
+     },
+     {
+      "ratio": 1.3,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Enhanced Auto (Fighter Mode)"
+     },
+     {
+      "ratio": 0.76,
+      "base": 88.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Heal"
+     }
+    ]
+   },
+   "nuzzle": {
+    "display_name": "Nuzzle",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.2,
+      "base": 160.0,
+      "slider": 12.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "scratch": {
+    "display_name": "Scratch",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.8,
+      "base": 250.0,
+      "slider": 18.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "zip_zap_full_charge_spark": {
+    "display_name": "Zip Zap Full-Charge Spark",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 3.02,
+      "base": 504.0,
+      "slider": 36.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "pikachu": {
+  "display_name": "Pikachu",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "thunder_shock": {
+    "display_name": "Thunder Shock",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.75,
+      "base": 390.0,
+      "slider": 21.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "electroweb": {
+    "display_name": "Electroweb",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.36,
+      "base": 350.0,
+      "slider": 11.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "thunderstorm": {
+    "display_name": "Thunderstorm",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.49,
+      "base": 486.0,
+      "slider": 10.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - per Bolt"
+     }
+    ]
+   }
+  }
+ },
+ "psyduck": {
+  "display_name": "Psyduck",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "confusion": {
+    "display_name": "Confusion",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.7,
+      "base": 380.0,
+      "slider": 3.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.84,
+      "base": 456.0,
+      "slider": 3.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Mysterious Power"
+     }
+    ]
+   },
+   "tail_whip": {
+    "display_name": "Tail Whip",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.6,
+      "base": 320.0,
+      "slider": 2.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "full_power_psy_ay_ay": {
+    "display_name": "Full-Power Psy-ay-ay!",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.6,
+      "base": 300.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage (x3)"
+     }
+    ]
+   }
+  }
+ },
+ "raichu": {
+  "display_name": "Raichu",
+  "role": null,
+  "damage_type": "Special",
+  "basic": null,
+  "moves": {
+   "attack_pikachu": {
+    "display_name": "Attack - Pikachu",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.72,
+      "base": 80.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Basic"
+     }
+    ]
+   },
+   "thunder_shock": {
+    "display_name": "Thunder Shock",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.9,
+      "base": 240.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "thunder_wave": {
+    "display_name": "Thunder Wave",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.08,
+      "base": 300.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "thunderstorm_aerial": {
+    "display_name": "Thunderstorm Aerial",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.68,
+      "base": 400.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.336,
+      "base": 80.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - DoT (5 Ticks)"
+     }
+    ]
+   }
+  }
+ },
+ "rapidash": {
+  "display_name": "Rapidash",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.675
+  },
+  "moves": {
+   "pastel_veil": {
+    "display_name": "Pastel Veil",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.12,
+      "base": 280.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Shield"
+     }
+    ]
+   },
+   "confusion": {
+    "display_name": "Confusion",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.9,
+      "base": 315.0,
+      "slider": 7.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "tackle": {
+    "display_name": "Tackle",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 250.0,
+      "slider": 8.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "triad_blitz": {
+    "display_name": "Triad Blitz",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 200.0,
+      "slider": 8.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage (per Hit)"
+     }
+    ]
+   }
+  }
+ },
+ "sableye": {
+  "display_name": "Sableye",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "thief": {
+    "display_name": "Thief",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.45,
+      "base": 190.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "astonish": {
+    "display_name": "Astonish",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.81,
+      "base": 350.0,
+      "slider": 11.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Front)"
+     },
+     {
+      "ratio": 1.053,
+      "base": 455.0,
+      "slider": 14.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Behind)"
+     }
+    ]
+   },
+   "chaos_glower": {
+    "display_name": "Chaos Glower",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.84,
+      "base": 790.0,
+      "slider": 16.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "scizor": {
+  "display_name": "Scizor",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "technician": {
+    "display_name": "Technician",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.5,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Second Hit"
+     }
+    ]
+   },
+   "fury_cutter": {
+    "display_name": "Fury Cutter",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.69,
+      "base": 200.0,
+      "slider": 11.0,
+      "dmg_type": "Atk",
+      "label": "Damage - First Hit"
+     },
+     {
+      "ratio": 0.828,
+      "base": 240.0,
+      "slider": 13.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Second Hit"
+     }
+    ]
+   },
+   "quick_attack": {
+    "display_name": "Quick Attack",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.58,
+      "base": 190.0,
+      "slider": 5.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "red_illusion_dive": {
+    "display_name": "Red Illusion Dive",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.29,
+      "base": 290.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Initial Punch, Ground Punch, & Copy Contact"
+     },
+     {
+      "ratio": 0.387,
+      "base": 87.0,
+      "slider": 2.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Main Target (Copy Dash x5), Grab"
+     }
+    ]
+   }
+  }
+ },
+ "scyther": {
+  "display_name": "Scyther",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "technician": {
+    "display_name": "Technician",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.5,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Second Hit (Basic)"
+     },
+     {
+      "ratio": 1.0,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Second Hit (Boosted)"
+     }
+    ]
+   },
+   "fury_cutter": {
+    "display_name": "Fury Cutter",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.69,
+      "base": 200.0,
+      "slider": 11.0,
+      "dmg_type": "Atk",
+      "label": "Damage - First Hit"
+     },
+     {
+      "ratio": 0.828,
+      "base": 240.0,
+      "slider": 13.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Second Hit"
+     }
+    ]
+   },
+   "quick_attack": {
+    "display_name": "Quick Attack",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.58,
+      "base": 190.0,
+      "slider": 5.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "green_illusion_dive": {
+    "display_name": "Green Illusion Dive",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.83,
+      "base": 230.0,
+      "slider": 5.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Initial, Dash, & Copy Dash"
+     },
+     {
+      "ratio": 0.465,
+      "base": 130.0,
+      "slider": 3.0,
+      "dmg_type": "Atk",
+      "label": "Heal - per Copy"
+     }
+    ]
+   }
+  }
+ },
+ "sirfetchd": {
+  "display_name": "Sirfetchd",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "dual_wingbeat": {
+    "display_name": "Dual Wingbeat",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.84,
+      "base": 360.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Slash"
+     },
+     {
+      "ratio": 1.26,
+      "base": 540.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Slam"
+     }
+    ]
+   },
+   "quick_attack": {
+    "display_name": "Quick Attack",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.7,
+      "base": 350.0,
+      "slider": 9.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.5,
+      "base": 500.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Shield"
+     }
+    ]
+   },
+   "lunging_leek_nova_blast": {
+    "display_name": "Lunging Leek Nova Blast",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 200.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Charge (5x)"
+     },
+     {
+      "ratio": 2.0,
+      "base": 400.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Explosion"
+     }
+    ]
+   }
+  }
+ },
+ "skeledirge": {
+  "display_name": "Skeledirge",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.3
+  },
+  "moves": {
+   "disarming_voice": {
+    "display_name": "Disarming Voice",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.7,
+      "base": 425.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 1.78,
+      "base": 446.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Reverberation"
+     }
+    ]
+   },
+   "roar": {
+    "display_name": "Roar",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.12,
+      "base": 280.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "rousing_symphony": {
+    "display_name": "Rousing Symphony",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 3.6,
+      "base": 900.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "slowbro": {
+  "display_name": "Slowbro",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "water_gun": {
+    "display_name": "Water Gun",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.47,
+      "base": 240.0,
+      "slider": 13.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Uncharged"
+     },
+     {
+      "ratio": 1.96,
+      "base": 320.0,
+      "slider": 17.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Low Charge"
+     },
+     {
+      "ratio": 2.45,
+      "base": 400.0,
+      "slider": 22.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Mid Charge"
+     },
+     {
+      "ratio": 2.94,
+      "base": 480.0,
+      "slider": 26.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - High Charge"
+     }
+    ]
+   },
+   "slowbeam": {
+    "display_name": "Slowbeam",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.8,
+      "base": 170.0,
+      "slider": 3.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage (x6)"
+     }
+    ]
+   }
+  }
+ },
+ "snorlax": {
+  "display_name": "Snorlax",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "tackle": {
+    "display_name": "Tackle",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.89,
+      "base": 380.0,
+      "slider": 21.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "power_nap": {
+    "display_name": "Power Nap",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.32,
+      "base": 360.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.66,
+      "base": 180.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage - DoT (3 Ticks)"
+     }
+    ]
+   }
+  }
+ },
+ "suicune": {
+  "display_name": "Suicune",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "pressure": {
+    "display_name": "Pressure",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.45,
+      "base": 180.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Shield"
+     },
+     {
+      "ratio": 0.23,
+      "base": 92.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Freezing"
+     }
+    ]
+   },
+   "water_pulse": {
+    "display_name": "Water Pulse",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.4,
+      "base": 320.0,
+      "slider": 4.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "avalanche": {
+    "display_name": "Avalanche",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.16,
+      "base": 102.0,
+      "slider": 2.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Falling Snow"
+     },
+     {
+      "ratio": 0.24,
+      "base": 153.0,
+      "slider": 3.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Clump of Snow"
+     }
+    ]
+   },
+   "endless_ice_spikes": {
+    "display_name": "Endless Ice Spikes",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.92,
+      "base": 460.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Spike Creation"
+     },
+     {
+      "ratio": 1.0,
+      "base": 500.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Spike detonation"
+     }
+    ]
+   }
+  }
+ },
+ "sylveon": {
+  "display_name": "Sylveon",
+  "role": null,
+  "damage_type": "Special",
+  "basic": null,
+  "moves": {
+   "attack_eevee": {
+    "display_name": "Attack - Eevee",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Basic"
+     }
+    ]
+   },
+   "swift": {
+    "display_name": "Swift",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.32,
+      "base": 190.0,
+      "slider": 6.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - per Star"
+     }
+    ]
+   },
+   "baby_doll_eyes": {
+    "display_name": "Baby-Doll Eyes",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.63,
+      "base": 330.0,
+      "slider": 18.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "fairy_frolic": {
+    "display_name": "Fairy Frolic",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.3,
+      "base": 750.0,
+      "slider": 13.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "talonflame": {
+  "display_name": "Talonflame",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "peck": {
+    "display_name": "Peck",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.38,
+      "base": 70.0,
+      "slider": 2.0,
+      "dmg_type": "Atk",
+      "label": "Damage (3x)"
+     }
+    ]
+   },
+   "acrobatics": {
+    "display_name": "Acrobatics",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.75,
+      "base": 200.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage (3x)"
+     }
+    ]
+   },
+   "flame_sweep": {
+    "display_name": "Flame Sweep",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.24,
+      "base": 510.0,
+      "slider": 11.0,
+      "dmg_type": "Atk",
+      "label": "Damage (2x)"
+     }
+    ]
+   }
+  }
+ },
+ "tinkaton": {
+  "display_name": "Tinkaton",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "rock_smash": {
+    "display_name": "Rock Smash",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.6,
+      "base": 350.0,
+      "slider": 10.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "fairy_wind": {
+    "display_name": "Fairy Wind",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 200.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "kiss_bliss_kaboom": {
+    "display_name": "Kiss Bliss Kaboom",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.54,
+      "base": 108.0,
+      "slider": 3.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Kiss Bliss"
+     },
+     {
+      "ratio": 2.7,
+      "base": 756.0,
+      "slider": 24.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Kaboom"
+     }
+    ]
+   }
+  }
+ },
+ "trevenant": {
+  "display_name": "Trevenant",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "will_o_wisp": {
+    "display_name": "Will-o-Wisp",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.58,
+      "base": 190.0,
+      "slider": 10.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.145,
+      "base": 48.0,
+      "slider": 3.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Burn (3 Ticks)"
+     }
+    ]
+   },
+   "branch_poke": {
+    "display_name": "Branch Poke",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.75,
+      "base": 280.0,
+      "slider": 9.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "phantom_forest": {
+    "display_name": "Phantom Forest",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.6,
+      "base": 700.0,
+      "slider": 15.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.8,
+      "base": 500.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Shield - per Enemy Hit"
+     },
+     {
+      "ratio": 0.0,
+      "base": 190.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Marked Bonus"
+     }
+    ]
+   }
+  }
+ },
+ "tsareena": {
+  "display_name": "Tsareena",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "razor_leaf": {
+    "display_name": "Razor Leaf",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.62,
+      "base": 120.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage (3x)"
+     }
+    ]
+   },
+   "rapid_spin": {
+    "display_name": "Rapid Spin",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.13,
+      "base": 260.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "queen_ascendant": {
+    "display_name": "Queen Ascendant",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.45,
+      "base": 64.0,
+      "slider": 1.0,
+      "dmg_type": "Atk",
+      "label": "Damage (9x)"
+     },
+     {
+      "ratio": 1.8,
+      "base": 256.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Final Hit"
+     },
+     {
+      "ratio": 0.7,
+      "base": 350.0,
+      "slider": 5.0,
+      "dmg_type": "Atk",
+      "label": "Heal - Landing"
+     }
+    ]
+   }
+  }
+ },
+ "typhlosion": {
+  "display_name": "Typhlosion",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.3
+  },
+  "moves": {
+   "ember": {
+    "display_name": "Ember",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.3,
+      "base": 450.0,
+      "slider": 2.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.1,
+      "base": 60.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Burn"
+     }
+    ]
+   },
+   "tackle": {
+    "display_name": "Tackle",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.3,
+      "base": 500.0,
+      "slider": 5.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.6,
+      "base": 400.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Shield"
+     }
+    ]
+   },
+   "explosive_heat_haze": {
+    "display_name": "Explosive Heat Haze",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.2,
+      "base": 200.0,
+      "slider": 1.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - up to 14x"
+     }
+    ]
+   }
+  }
+ },
+ "tyranitar": {
+  "display_name": "Tyranitar",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "guts": {
+    "display_name": "Guts",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.2,
+      "base": 30.0,
+      "slider": 2.0,
+      "dmg_type": "Atk",
+      "label": "Damage - per Tick (7 Ticks)"
+     }
+    ]
+   },
+   "bite": {
+    "display_name": "Bite",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.46,
+      "base": 360.0,
+      "slider": 19.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "rock_polish": {
+    "display_name": "Rock Polish",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.16,
+      "base": 320.0,
+      "slider": 10.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "tyrannical_rampage": {
+    "display_name": "Tyrannical Rampage",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.3,
+      "base": 240.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Basic"
+     }
+    ]
+   }
+  }
+ },
+ "umbreon": {
+  "display_name": "Umbreon",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "swift": {
+    "display_name": "Swift",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.4,
+      "base": 100.0,
+      "slider": 10.0,
+      "dmg_type": "Atk",
+      "label": "Damage (First Star)"
+     },
+     {
+      "ratio": 0.12,
+      "base": 30.0,
+      "slider": 2.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Subsequent Stars)"
+     }
+    ]
+   },
+   "fake_tears": {
+    "display_name": "Fake Tears",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.86,
+      "base": 240.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "moonlight_prance": {
+    "display_name": "Moonlight Prance",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 2.24,
+      "base": 630.0,
+      "slider": 13.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   }
+  }
+ },
+ "urshifu": {
+  "display_name": "Urshifu",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": null,
+  "moves": {
+   "attack_kubfu": {
+    "display_name": "Attack - Kubfu",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.0,
+      "base": 0.0,
+      "slider": 0.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Basic"
+     }
+    ]
+   },
+   "rock_smash": {
+    "display_name": "Rock Smash",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.99,
+      "base": 160.0,
+      "slider": 9.0,
+      "dmg_type": "Atk",
+      "label": "Damage (1st Level Charge)"
+     },
+     {
+      "ratio": 1.1384999999999998,
+      "base": 184.0,
+      "slider": 10.0,
+      "dmg_type": "Atk",
+      "label": "Damage (2nd Level Charge)"
+     },
+     {
+      "ratio": 1.287,
+      "base": 208.0,
+      "slider": 12.0,
+      "dmg_type": "Atk",
+      "label": "Damage (3rd Level Charge)"
+     },
+     {
+      "ratio": 1.4355000000000002,
+      "base": 232.0,
+      "slider": 13.0,
+      "dmg_type": "Atk",
+      "label": "Damage (4th Level Charge)"
+     },
+     {
+      "ratio": 1.584,
+      "base": 256.0,
+      "slider": 14.0,
+      "dmg_type": "Atk",
+      "label": "Damage (5th Level Charge)"
+     }
+    ]
+   },
+   "headbutt": {
+    "display_name": "Headbutt",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.99,
+      "base": 180.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "ebon_fist": {
+    "display_name": "Ebon Fist",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 3.3,
+      "base": 615.0,
+      "slider": 12.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 4.4,
+      "base": 820.0,
+      "slider": 17.0,
+      "dmg_type": "Atk",
+      "label": "Damage with Directive Input"
+     },
+     {
+      "ratio": 3.3,
+      "base": 615.0,
+      "slider": 12.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Collision"
+     }
+    ]
+   },
+   "flowing_fists": {
+    "display_name": "Flowing Fists",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.37,
+      "base": 70.0,
+      "slider": 2.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Initial Hit)"
+     },
+     {
+      "ratio": 0.74,
+      "base": 140.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Hits during follow-up attack)"
+     },
+     {
+      "ratio": 0.74,
+      "base": 140.0,
+      "slider": 4.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Final Hit and shove)"
+     }
+    ]
+   }
+  }
+ },
+ "vaporeon": {
+  "display_name": "Vaporeon",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.3
+  },
+  "moves": {
+   "run_away": {
+    "display_name": "Run Away",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 2.4,
+      "base": 180.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Healing"
+     }
+    ]
+   },
+   "swift": {
+    "display_name": "Swift",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.42,
+      "base": 120.0,
+      "slider": 3.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - per Star"
+     }
+    ]
+   },
+   "tackle": {
+    "display_name": "Tackle",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.08,
+      "base": 320.0,
+      "slider": 8.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "aquamarine_splash": {
+    "display_name": "Aquamarine Splash",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.44,
+      "base": 288.0,
+      "slider": 10.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - per Hit"
+     }
+    ]
+   }
+  }
+ },
+ "venusaur": {
+  "display_name": "Venusaur",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "seed_bomb": {
+    "display_name": "Seed Bomb",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.55,
+      "base": 190.0,
+      "slider": 10.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "razor_leaf": {
+    "display_name": "Razor Leaf",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.17,
+      "base": 70.0,
+      "slider": 2.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage (10x)"
+     }
+    ]
+   },
+   "verdant_anger": {
+    "display_name": "Verdant Anger",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.31,
+      "base": 1080.0,
+      "slider": 23.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Initial"
+     },
+     {
+      "ratio": 0.655,
+      "base": 540.0,
+      "slider": 12.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Secondary"
+     }
+    ]
+   }
+  }
+ },
+ "wigglytuff": {
+  "display_name": "Wigglytuff",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "pound": {
+    "display_name": "Pound",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.35,
+      "base": 390.0,
+      "slider": 21.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - per Slap"
+     }
+    ]
+   },
+   "starlight_recital": {
+    "display_name": "Starlight Recital",
+    "level": "8",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.5190000000000001,
+      "base": 810.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Shield"
+     }
+    ]
+   }
+  }
+ },
+ "zacian": {
+  "display_name": "Zacian",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "slash": {
+    "display_name": "Slash",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 1.6,
+      "base": 262.0,
+      "slider": 14.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.8,
+      "base": 131.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Area of Effect"
+     },
+     {
+      "ratio": 2.08,
+      "base": 342.0,
+      "slider": 18.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Boosted)"
+     },
+     {
+      "ratio": 1.04,
+      "base": 171.0,
+      "slider": 9.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Boosted) - Area of Effect"
+     }
+    ]
+   },
+   "quick_attack": {
+    "display_name": "Quick Attack",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.79,
+      "base": 130.0,
+      "slider": 7.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     },
+     {
+      "ratio": 0.9085,
+      "base": 150.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Boosted)"
+     }
+    ]
+   },
+   "sovereign_sword": {
+    "display_name": "Sovereign Sword",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 3.96,
+      "base": 650.0,
+      "slider": 23.0,
+      "dmg_type": "Atk",
+      "label": "Damage (<=9 Energy Charged)"
+     },
+     {
+      "ratio": 4.752,
+      "base": 780.0,
+      "slider": 29.0,
+      "dmg_type": "Atk",
+      "label": "Damage (10-19 Energy Charged)"
+     },
+     {
+      "ratio": 5.544,
+      "base": 910.0,
+      "slider": 32.0,
+      "dmg_type": "Atk",
+      "label": "Damage (20-29 Energy Charged)"
+     },
+     {
+      "ratio": 7.127999999999999,
+      "base": 1170.0,
+      "slider": 41.0,
+      "dmg_type": "Atk",
+      "label": "Damage (30 Energy Charged - Boosted)"
+     },
+     {
+      "ratio": 1.98,
+      "base": 325.0,
+      "slider": 12.0,
+      "dmg_type": "Atk",
+      "label": "Damage (Additional - Boosted) versus Unite Buffed Pok\u00e9mon"
+     }
+    ]
+   }
+  }
+ },
+ "zapdos": {
+  "display_name": "Zapdos",
+  "role": null,
+  "damage_type": "Special",
+  "basic": {
+   "dmg_type": "SpAtk",
+   "ratio": 0.4
+  },
+  "moves": {
+   "static": {
+    "display_name": "Static",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.12,
+      "base": 18.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - Field (5x)"
+     }
+    ]
+   },
+   "thunder_shock": {
+    "display_name": "Thunder Shock",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 2.0,
+      "base": 300.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "discharge": {
+    "display_name": "Discharge",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.92,
+      "base": 138.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage - First Hit"
+     }
+    ]
+   },
+   "high_voltage_siege": {
+    "display_name": "High-Voltage Siege",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.7,
+      "base": 106.0,
+      "slider": 0.0,
+      "dmg_type": "SpAtk",
+      "label": "Damage (7x)"
+     }
+    ]
+   }
+  }
+ },
+ "zeraora": {
+  "display_name": "Zeraora",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "slash": {
+    "display_name": "Slash",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.7,
+      "base": 190.0,
+      "slider": 5.0,
+      "dmg_type": "Atk",
+      "label": "Damage - per Hit (3 Hits)"
+     }
+    ]
+   },
+   "plasma_gale": {
+    "display_name": "Plasma Gale",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 0.99,
+      "base": 270.0,
+      "slider": 6.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Trail"
+     },
+     {
+      "ratio": 1.98,
+      "base": 540.0,
+      "slider": 11.0,
+      "dmg_type": "Atk",
+      "label": "Damage - Area"
+     }
+    ]
+   }
+  }
+ },
+ "zoroark": {
+  "display_name": "Zoroark",
+  "role": null,
+  "damage_type": "Physical",
+  "basic": {
+   "dmg_type": "Atk",
+   "ratio": 1.0
+  },
+  "moves": {
+   "slash": {
+    "display_name": "Slash",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.78,
+      "base": 230.0,
+      "slider": 12.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "fury_swipes": {
+    "display_name": "Fury Swipes",
+    "level": "",
+    "cooldown": "",
+    "is_unite": false,
+    "components": [
+     {
+      "ratio": 0.94,
+      "base": 310.0,
+      "slider": 8.0,
+      "dmg_type": "Atk",
+      "label": "Damage"
+     }
+    ]
+   },
+   "nightfall_daze": {
+    "display_name": "Nightfall Daze",
+    "level": "9",
+    "cooldown": "",
+    "is_unite": true,
+    "components": [
+     {
+      "ratio": 1.58,
+      "base": 430.0,
+      "slider": 9.0,
+      "dmg_type": "Atk",
+      "label": "Damage - per Shockwave"
+     }
+    ]
+   }
+  }
+ }
+}

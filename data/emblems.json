@@ -1,0 +1,29 @@
+{
+  "_meta": {
+    "source": "game8.co Boost Emblem list (rarity flats) + Boost Emblem guide (color set bonuses)",
+    "patch": "v1.21.1.8 (2026-05-14)",
+    "notes": [
+      "Color set bonuses: stat is the field they boost; tiers map (#emblems of that color)->percent.",
+      "attack_pct/hp_pct/etc are multiplicative on the core stat; 'attack_speed' (red) is additive percent-points.",
+      "Each gold Brown (Attack) emblem = +1.6 Attack with a tradeoff (-2.4 Sp.Atk / -4 Def / -4 Sp.Def / -40 HP / -28 move speed). Pick the irrelevant tradeoff per build.",
+      "Conversion: 1 Atk = 1.5 Sp.Atk = 30 HP = 3 Def = 3 Sp.Def = 21 move speed = 0.6% crit."
+    ]
+  },
+  "color_set_bonuses": {
+    "brown":  {"stat": "attack",       "kind": "pct", "tiers": {"2": 1, "4": 2, "6": 4}},
+    "green":  {"stat": "sp_atk",       "kind": "pct", "tiers": {"2": 1, "4": 2, "6": 4}},
+    "white":  {"stat": "hp",           "kind": "pct", "tiers": {"2": 1, "4": 2, "6": 4}},
+    "blue":   {"stat": "defense",      "kind": "pct", "tiers": {"2": 2, "4": 4, "6": 8}},
+    "purple": {"stat": "sp_def",       "kind": "pct", "tiers": {"2": 2, "4": 4, "6": 8}},
+    "red":    {"stat": "attack_speed", "kind": "flat","tiers": {"3": 2, "5": 4, "7": 8}},
+    "yellow": {"stat": "move_speed",   "kind": "flat","tiers": {"3": 4, "5": 6, "7": 12}},
+    "black":  {"stat": "cdr",          "kind": "flat","tiers": {"3": 1, "5": 2, "7": 4}},
+    "navy":   {"stat": "unite_charge", "kind": "flat","tiers": {"3": -1, "5": -2, "7": -4}},
+    "gray":   {"stat": "damage_taken", "kind": "flat","tiers": {"3": -3, "5": -6, "7": -12}},
+    "pink":   {"stat": "hindrance",    "kind": "flat","tiers": {"3": -4, "5": -8, "7": -16}}
+  },
+  "rarity_flats": {
+    "brown_attack": {"bronze": 1.2, "silver": 1.4, "gold": 1.6, "stat": "attack"},
+    "green_sp_atk": {"bronze": 1.8, "silver": 2.4, "gold": 3.0, "stat": "sp_atk"}
+  }
+}
