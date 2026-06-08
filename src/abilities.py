@@ -104,14 +104,20 @@ def damaging_slots(pmoves, include_unite=False) -> dict:
     return out
 
 
+MOVE_CAST_S = 0.8   # nominal animation/cast time per move (approx)
+
+
 def burst_combo(attacker, defender, pmoves, level, x_attack=True, include_unite=False, max_autos=60):
-    """Cast each kit move once (best form for the level), then auto until the target dies."""
+    """Cast each kit move once (best form for the level), then auto until the target dies.
+    Returns actions, autos, and an approximate seconds-to-kill (move casts + auto intervals)."""
     hp = defender.total.hp
     log = []
+    moves_cast = 0
     for slot in damaging_slots(pmoves, include_unite).values():
         form = move_form(slot, level)
         d = form_damage(attacker, defender, form, level, x_attack, current_hp=hp)
         hp -= d
+        moves_cast += 1
         log.append((form["name"], round(d)))
         if hp <= 0:
             break
@@ -121,7 +127,8 @@ def burst_combo(attacker, defender, pmoves, level, x_attack=True, include_unite=
         d = auto_damage(attacker, defender, pmoves, hp, x_attack)
         hp -= d
         log.append(("auto", round(d)))
-    return dict(actions=len(log), autos=autos, killed=hp <= 0, log=log)
+    seconds = moves_cast * MOVE_CAST_S + autos * damage.attack_interval_seconds(attacker.total.attack_speed)
+    return dict(actions=len(log), autos=autos, killed=hp <= 0, seconds=round(seconds, 1), log=log)
 
 
 def maxed_tier_for(data, key):

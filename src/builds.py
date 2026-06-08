@@ -33,25 +33,28 @@ def load_data() -> dict:
 # A maxed page = 6 gold emblems of the target color (color bonus) + their flats;
 # the irrelevant tradeoff stat is chosen so it doesn't touch what we measure.
 # --------------------------------------------------------------------------- #
-BROWN_GOLD_ATTACK = 1.6     # gold Brown emblem: +1.6 Attack
-GREEN_GOLD_SPATK = 3.0      # gold Green emblem: +3.0 Sp.Atk
-RED_AS_BONUS = 8.0          # 7 red emblems: +8% attack speed (color bonus)
+# Per-emblem flat stat by rarity (Game8): the color-set % bonus is the SAME across rarity;
+# only the flat stat scales. A full page is 10 slots (the color bonus caps at 6).
+ATTACK_FLAT = {"bronze": 1.2, "silver": 1.4, "gold": 1.6}
+SPATK_FLAT = {"bronze": 1.8, "silver": 2.4, "gold": 3.0}
+RED_AS_BONUS = 8.0          # 7 red emblems: +8% attack speed (color bonus, rarity-independent)
 
 
-def emblem_page(template: str | None) -> tuple[Stats, Stats]:
-    """Return (flat contribution, core-percent contribution) for a named page."""
+def emblem_page(template: str | None, rarity: str = "gold") -> tuple[Stats, Stats]:
+    """Return (flat contribution, core-percent contribution) for a named 10-slot page."""
     if template in (None, "none"):
         return Stats(), Stats()
+    af, sf = ATTACK_FLAT[rarity], SPATK_FLAT[rarity]
     if template == "max_attack":
-        # 6 gold Brown: +9.6 flat Attack and +4% Attack color bonus.
-        return Stats(attack=6 * BROWN_GOLD_ATTACK), Stats(attack=4.0)
+        # 10 Brown: 10x flat Attack, +4% Attack color bonus (capped at 6 emblems).
+        return Stats(attack=10 * af), Stats(attack=4.0)
     if template == "max_attack_speed":
-        # 7 red (+8% AS) + 3 brown filler (+4.8 Attack); attack color bonus not reached.
-        return Stats(attack=3 * BROWN_GOLD_ATTACK, attack_speed=RED_AS_BONUS), Stats()
+        # 7 red (+8% AS color bonus) + 3 brown flat Attack.
+        return Stats(attack=3 * af, attack_speed=RED_AS_BONUS), Stats()
     if template == "max_sp_atk":
-        return Stats(sp_atk=6 * GREEN_GOLD_SPATK), Stats(sp_atk=4.0)
+        return Stats(sp_atk=10 * sf), Stats(sp_atk=4.0)
     if template == "max_bulk":
-        # 6 blue (+8% Def) for tanks; flats from defensive emblems are small/varied.
+        # blue/white/purple page: +8% Def, +4% HP color bonuses.
         return Stats(), Stats(defense=8.0, hp=4.0)
     raise ValueError(f"unknown emblem template: {template!r}")
 
@@ -90,7 +93,8 @@ class Build:
 
 
 def make_build(data: dict, pokemon: str, level: int,
-               items: list[str] | None = None, emblems: str = "none") -> Build:
+               items: list[str] | None = None, emblems: str = "none",
+               rarity: str = "gold") -> Build:
     items = items or []
     pdata = data["pokemon"][pokemon]
     flat = base_stats(pdata, level)
@@ -113,7 +117,7 @@ def make_build(data: dict, pokemon: str, level: int,
         elif ptype == "move_flat":  # e.g. Choice Specs +60 per move hit
             move_flat += passive.get("amount", 0)
 
-    emb_flat, emb_pct = emblem_page(emblems)
+    emb_flat, emb_pct = emblem_page(emblems, rarity)
     flat = flat + emb_flat
     total = flat.apply_core_pct(emb_pct + item_pct)
     return Build(pokemon, level, list(items), emblems, total, muscle_band, crit_multiplier, move_flat)

@@ -2,28 +2,27 @@
 
 **Does maxing your account — Lv 40 held items, gold emblems, X Attack — let you delete people
 *before they evolve*, regardless of which Pokémon you play?** Enemy builds are unobservable
-in-game (no inspect, no scoreboard), so this answers it with a **model**: a damage /
-time-to-kill engine built from *current, validated* stats and the game's verified damage
-formula, then run across the entire 94-Pokémon roster.
-
-**Short answer: yes — maxed investment roughly *halves* how fast you're deleted pre-evolution,
-and it holds regardless of Pokémon.**
+in-game, so this answers it with a **model**: a damage / time-to-kill engine built from
+*current, validated* unite-db data and the game's verified damage formula, run across the full
+94-Pokémon roster — base moves, Lv5/7 upgrades, enhanced forms, multi-hit, and execute included.
 
 ## TL;DR
 
-- 📉 **~48% faster kills.** Across 69 offensive Pokémon at Lv 4 (pre-evo), a maxed build deletes
-  an un-invested squishy in **22.4 → 11.1 actions** on average.
-- 🧪 **Validated data.** Move ratios and per-level stats come from [unite-db](https://unite-db.com)'s
-  raw JSON (the Mathcord-sourced data its own site uses), cross-checked *exactly* against an
-  open-source reference engine and Game8. **20 tests green.**
-- 🏆 **Per-role optimizer.** Brute-forces every item build per mon to find the best Pokémon +
-  build for each role (below).
+- 📉 **Maxed investment adds ~56% to pre-evo burst** (≈ a third less time-to-kill overall, and
+  closer to *half* for pure auto-attackers) — and it holds regardless of Pokémon.
+- 🔧 **Which lever?** Of that gain: **items ~54%, X Attack ~31%, emblems ~15%** — and **emblem
+  rarity barely matters** (no-emblems → gold is +6.5% burst; bronze → gold is ~1%).
+- 🧪 **Validated:** computed move damage matches **Game8 within 0.4%** across base moves *and*
+  upgrades (Cinderace Pyro Ball *exactly* 1774). **22 tests green.**
+- 🤔 **Honest limit:** raw combat power barely predicts the community tier (**Spearman +0.06**).
+  The model nails "who hits hardest pre-evo" — but "who's actually good in ranked" is range,
+  mobility, CC, objectives, and scaling, which it deliberately doesn't model.
 
 ## 🏆 Best Pokémon & build per role
 
-The optimizer searches every legal 3-item combo × emblem template per Pokémon (a maxed account)
-and ranks within each role — offense by **burst** and **sustained DPS**, tanks/supports by
-**effective HP**:
+Brute-forces every legal 3-item combo × emblem template per Pokémon (a maxed account), ranking
+offense by **burst** and **sustained DPS** (CDR-aware), tanks/supports by **effective HP with
+shields up**:
 
 ![Best Pokémon and build per role](figures/best_per_role.png)
 
@@ -36,12 +35,21 @@ and ranks within each role — offense by **burst** and **sustained DPS**, tanks
 
 </details>
 
-> "Best by **modeled combat metric**" — it doesn't credit range, mobility, CC, or objective
-> control. Modeled at Lv 5 (pre-evo), the window where unite-db's base-move data is exact.
+> "Best by **modeled combat metric**" — see the meta check below for how much that actually
+> predicts viability. Shields are counted "up" (situational).
 
-## 📉 Headline finding — investment ~halves pre-evo time-to-kill
+## 🔧 Which lever actually matters? (the original question)
 
-A **maxed attacker vs. an un-invested squishy**, basic attacks only, pre-evolution:
+![Lever decomposition](figures/lever_decomposition.png)
+
+Of the **+56%** burst that investment adds over base stats (Lv 4, averaged over 69 offensive mons):
+**items ~54%, X Attack ~31%, emblems ~15%.** The emblem-rarity sweep shows the jump is just
+*having* a page at all (none → bronze +5.2%); **bronze → gold is ~1%**. Practical takeaway:
+**upgrade your held items first**; emblems are a small edge and their rarity is close to noise.
+
+## 📉 Headline — investment ~halves pre-evo *auto-attack* time-to-kill
+
+Basic attacks only (the cleanest lever view), maxed attacker vs. an un-invested squishy:
 
 | @ Lv 3 | un-invested | maxed | reduction |
 |--------|------------:|------:|----------:|
@@ -51,79 +59,72 @@ A **maxed attacker vs. an un-invested squishy**, basic attacks only, pre-evoluti
 
 ![Hits to kill, maxed vs un-invested](figures/phase1_hits_to_kill.png)
 
-Fold in abilities (real move ratios) and the fastest maxed pre-evo deletes the model surfaces are
-**Mega-Gyarados, Gyarados, Zacian, Urshifu** — exactly the early-game bullies people complain about.
+(Autos are 100% stat-scaled, so investment helps them most; abilities carry a big flat/level
+base, so investment is diluted there — which is why the *combined* effect is ~+56%, not ×2.)
 
-## 🔬 What actually drives the "deleted in a few hits"
+## 🤔 Does the model agree with the meta?
 
-Moves carry a big flat/level base + a sub-1.0 stat ratio, so investment is **diluted on abilities
-but full on auto-attacks**:
+![Meta validation](figures/meta_validation.png)
 
-| damage source | un-invested → maxed |
-|---|---|
-| abilities | **+18–22%** |
-| auto-attacks | **+40–50%** |
-| off-stat (e.g. Attack on a Sp.Atk build) | **+0%** |
-
-So pre-evo "delete" pressure is **level + ability choice** *plus* — especially against
-auto-attackers — **item/emblem investment**.
+**No — Spearman +0.06.** Modeled combat power does *not* predict unite-db's community tier
+(best for Defenders **+0.51**, where bulk *is* the job; even slightly **negative** for Attackers).
+This is the most important guardrail in the project: the engine is *accurate* (validated vs Game8)
+but measures one narrow thing. "Who's actually good" depends on range, mobility, CC, objective
+control, and late-game scaling — none of which this models.
 
 ## Sources & verification
 
 - **Stats + move scaling — [unite-db](https://unite-db.com) raw JSON** (`/pokemon.json`,
-  `/stats.json`): the Mathcord-sourced data the site itself loads, for all 94 Pokémon (per-level
-  stats; per-move `base + slider×(Lv−1) + ratio×stat`). unite-db's *pages* are JS-rendered
-  (unreadable to a fetcher) — the `/*.json` endpoints are raw. Cached in `data/unite_db_*.json`.
-- **Held/battle items + emblems — [Game8](https://game8.co/games/Pokemon-UNITE/)** (Lv40 item
-  tables, emblem rarity + color sets), current to patch **v1.21.1.8 (2026-05-14)**.
-- **Damage formula — reference engine** [`Stephen-Choi/pokemon-unite-damage-calculator`](https://github.com/Stephen-Choi/pokemon-unite-damage-calculator):
-  mitigation `floor(atk × 600/(600+Def))` + attack-speed buckets, taken **verbatim**.
-- **Validated:** unite-db's Pikachu Thunder Shock `0.75×SpAtk + 21×(Lv−1) + 390` reproduces the
-  reference engine *exactly*; unite-db stats match Game8 (current Lv6 Def 80). `tests/` reproduce
-  the formula, Blastoise 35%, the attack-speed buckets, the Muscle Band cap, and the move formula —
-  **20 tests green**.
+  `/stats.json`): the Mathcord-sourced data its site loads, for all 94 mons. Its *pages* are
+  JS-rendered (unreadable to a fetcher); the `/*.json` endpoints are raw. The full kit
+  (base + `upgrades` + `enhanced_` + multi-hit + execute + per-level penetration/CDR) is parsed
+  from it. Cached in `data/unite_db_*.json`.
+- **Held/battle items + emblems — [Game8](https://game8.co/games/Pokemon-UNITE/)** (Lv40 tables,
+  emblem rarity + color sets), patch **v1.21.1.8 (2026-05-14)**.
+- **Damage formula — reference engine** [`Stephen-Choi/...`](https://github.com/Stephen-Choi/pokemon-unite-damage-calculator):
+  mitigation `floor(atk × 600/(600+Def))` + attack-speed buckets, taken verbatim. (It is *stale*
+  on rebalanced moves, e.g. Electro Ball — so unite-db, validated vs Game8, is the trusted source.)
+- **Validated:** `src/validate.py` reproduces Game8's published move totals within **0.4%**
+  (Pyro Ball = 1774 exactly) across base + upgrade moves and multiple levels. **22 tests** cover
+  the formula, Blastoise 35%, attack-speed buckets, Muscle Band cap, the move formula, and the
+  Game8 cross-check.
 
 ## Run
 
 ```bash
 pip install -r requirements.txt
-python -m pytest tests/ -q               # verify engine + move formulas (20 tests)
-python src/analysis.py                   # Phase 1: hits-to-kill chart (autos)
-python src/abilities.py                  # roster-wide pre-evo burst (moves + autos)
-python src/optimize.py                   # Phase 2: per-role optimizer + charts + data/phase2_offense.csv
+python -m pytest tests/ -q          # 22 tests
+python src/validate.py              # #1 move damage vs Game8
+python src/optimize.py              # Phase 2 per-role optimizer + charts + CSV
+python src/decomposition.py         # #2 lever decomposition + emblem-rarity sweep
+python src/meta_validation.py       # #5 model vs community tier
+python src/abilities.py             # pre/post-evo burst combos
+python src/analysis.py              # Phase 1 auto-attack hits-to-kill
 
 # Refresh data from unite-db (re-cache + regenerate the derived files):
-python src/fetch_unitedb.py              # -> data/unite_db_pokemon.json
-python src/parse_unitedb_moves.py        # -> data/moves.json   (roster move ratios)
-python src/build_pokemon_from_unitedb.py # -> data/pokemon.json (94 mons, per-level stats)
+python src/fetch_unitedb.py ; python src/parse_unitedb_moves.py ; python src/build_pokemon_from_unitedb.py
 ```
 
 ## Project layout
 
 ```
-data/
-  unite_db_pokemon.json / unite_db_stats.json   raw unite-db snapshot (source of truth)
-  pokemon.json / moves.json                      generated: 94-mon stats + move ratios
-  helditems.json / battleitems.json / emblems.json   Game8: items + emblems
-src/
-  stats.py       Stats algebra
-  damage.py      verified engine (mitigation, attack-speed, basic, move, TTK/DPS, EHP)
-  builds.py      build assembly (item pools + emblem templates + investment tiers)
-  abilities.py   move / burst-combo modelling (roster-wide)
-  analysis.py    Phase 1 charts
-  optimize.py    Phase 2 per-role optimizer + charts
-  fetch_unitedb.py · parse_unitedb_moves.py · build_pokemon_from_unitedb.py   data pipeline
-tests/    engine + move-formula verification
-figures/  exported charts
+data/   unite_db_*.json (source) · pokemon.json / moves.json (generated) ·
+        helditems / battleitems / emblems.json (Game8)
+src/    stats.py · damage.py (engine) · builds.py · abilities.py (full-kit combat) ·
+        optimize.py (Phase 2) · decomposition.py · meta_validation.py · validate.py ·
+        analysis.py · fetch_unitedb / parse_unitedb_moves / build_pokemon_from_unitedb (pipeline)
+tests/  engine, move-formula, and Game8-validation tests
+figures/ exported charts
 ```
 
 ## Status & caveats
 
-- ✅ **Phase 1** mechanism proof · ✅ **Phase 1b** abilities + X Attack (roster-wide) ·
-  ✅ **Phase 2** per-role optimizer (item pools: 8 physical / 5 special / 7 bulk) ·
-  ⬜ **Phase 3** personal match log (planned).
-- unite-db's static endpoint lists the **pre-evo kit** (passive + basic + 2 base moves + Unite
-  move); the **Lv5/7 upgrade moves aren't there**, so move metrics are exact pre-evo and a floor
-  post-evo. Melee boosted (every-3rd) basics aren't modeled roster-wide.
-- Crit base multiplier assumed 2.0 (+Scope Lens); X Attack move multiplier uses the 1.10 midpoint
-  of the documented 1.05–1.15 range.
+- ✅ Engine (full kit, CDR, penetration, shields) · ✅ validated vs Game8 · ✅ per-role optimizer ·
+  ✅ lever decomposition · ✅ meta validation.
+- **Modeled at Lv 5** by default (upgrades begin coming online); the engine handles any level.
+- **Not modeled:** melee **boosted** (every-3rd) basics, **crit-damage scaling** (Scope Lens with
+  high Attack), and **CC** (a stun lets the full combo land uncontested — often the real reason you
+  get deleted). Shields are counted "up" (situational). The burn-DoT ratio on a couple moves
+  differs ~2× from Game8 (a small secondary component).
+- **Biggest caveat (measured, not assumed):** combat power weakly predicts viability (Spearman
+  +0.06). Treat the per-role tables as "hardest-hitting pre-evo," not a tier list.

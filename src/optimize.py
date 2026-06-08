@@ -111,12 +111,29 @@ def rank_offensive(data, moves, target):
     return rows
 
 
+def shield_pct(data, items):
+    """Sum of self-shield % of max HP from equipped bulk items (situational, 'shields up')."""
+    pct = 0.0
+    for it in items:
+        p = data["items"][it].get("passive", {})
+        if "shield" in p.get("type", ""):
+            v = p.get("pct_max_hp")
+            if isinstance(v, list):
+                v = v[-1]
+            pct += v or 0.0
+    return pct
+
+
 def best_bulk_build(data, key) -> dict:
+    """Pick the 3 bulk items maximising effective HP with shields up (the realistic tank goal)."""
     best = None
     for items in itertools.combinations(BULK_POOL, 3):
-        s = survivability(make_build(data, key, LEVEL, list(items), "max_bulk"))
-        if best is None or s["ehp_avg"] > best["surv"]["ehp_avg"]:
-            best = {"items": list(items), "surv": s}
+        b = make_build(data, key, LEVEL, list(items), "max_bulk")
+        s = survivability(b)
+        shield = shield_pct(data, items) * b.total.hp
+        ehp_shield = s["ehp_avg"] + shield
+        if best is None or ehp_shield > best["ehp_shield"]:
+            best = {"items": list(items), "surv": s, "shield": shield, "ehp_shield": ehp_shield}
     return best
 
 
@@ -128,8 +145,8 @@ def rank_defensive(data):
         b = best_bulk_build(data, key)
         s = b["surv"]
         rows.append({"pokemon": p["display_name"], "role": p["role"],
-                     "ehp_phys": round(s["ehp_phys"]), "ehp_spec": round(s["ehp_spec"]),
-                     "ehp_avg": round(s["ehp_avg"]), "build": "+".join(b["items"])})
+                     "ehp_avg": round(s["ehp_avg"]), "shield": round(b["shield"]),
+                     "ehp_shield": round(b["ehp_shield"]), "build": "+".join(b["items"])})
     return rows
 
 
@@ -170,8 +187,8 @@ def make_charts(off, deff):
         paths.append(p)
 
     fig, ax = plt.subplots(figsize=(8, 5))
-    _barh(ax, sorted(deff, key=lambda r: -r["ehp_avg"])[:10], "ehp_avg", "#2ca02c")
-    ax.set_title("Phase 2 — Defender/Supporter survivability (effective HP, best bulk build)", fontsize=11)
+    _barh(ax, sorted(deff, key=lambda r: -r["ehp_shield"])[:10], "ehp_shield", "#2ca02c")
+    ax.set_title("Phase 2 — Defender/Supporter survivability (effective HP, shields up)", fontsize=11)
     fig.tight_layout()
     p = os.path.join(FIG_DIR, "phase2_survivability.png")
     fig.savefig(p, dpi=130)
@@ -210,9 +227,9 @@ def best_per_role(off, deff, data):
     for role in ("Defender", "Supporter"):
         rr = [r for r in deff if r["role"] == role]
         if rr:
-            t = max(rr, key=lambda r: r["ehp_avg"])
+            t = max(rr, key=lambda r: r["ehp_shield"])
             rows.append({"role": role, "metric": "Eff. HP", "pokemon": t["pokemon"],
-                         "score": f"{t['ehp_avg']:,}", "build": f"{_pretty_items(t['build'], data)}  ·  Bulk emblems"})
+                         "score": f"{t['ehp_shield']:,}", "build": f"{_pretty_items(t['build'], data)}  ·  Bulk emblems"})
     return rows
 
 
@@ -271,9 +288,9 @@ def main():
         print()
 
     deff = rank_defensive(data)
-    print("### Defender/Supporter — top by SURVIVABILITY (effective HP, best bulk build)")
-    _table(sorted(deff, key=lambda r: -r["ehp_avg"])[:10],
-           ["pokemon", "role", "ehp_avg", "build"], [14, 11, 9, 46])
+    print("### Defender/Supporter — top by SURVIVABILITY (effective HP incl. shields up)")
+    _table(sorted(deff, key=lambda r: -r["ehp_shield"])[:10],
+           ["pokemon", "role", "ehp_avg", "shield", "ehp_shield", "build"], [13, 11, 8, 7, 11, 42])
 
     out = os.path.join(DATA_DIR, "phase2_offense.csv")
     with open(out, "w", newline="", encoding="utf-8") as fh:
