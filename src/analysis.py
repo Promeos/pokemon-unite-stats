@@ -60,7 +60,7 @@ def plot_hits(df: pd.DataFrame) -> str:
     fig.suptitle("Pre-evolution: maxed vs un-invested — basic-attack hits to kill an un-invested target", fontsize=11)
     fig.tight_layout()
     os.makedirs(FIG_DIR, exist_ok=True)
-    path = os.path.join(FIG_DIR, "phase1_hits_to_kill.png")
+    path = os.path.join(FIG_DIR, "auto_attack_hits_to_kill.png")
     fig.savefig(path, dpi=130)
     plt.close(fig)
     return path
@@ -69,7 +69,7 @@ def plot_hits(df: pd.DataFrame) -> str:
 def main():
     data = load_data()
     df = investment_table(data)
-    out_csv = os.path.join(DATA_DIR, "phase1_results.csv")
+    out_csv = os.path.join(DATA_DIR, "auto_attack_results.csv")
     df.to_csv(out_csv, index=False)
     fig_path = plot_hits(df)
 

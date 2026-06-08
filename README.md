@@ -30,9 +30,9 @@ shields up**:
 <details>
 <summary>Per-role detail charts (burst · DPS · survivability)</summary>
 
-![Top burst by role](figures/phase2_burst.png)
-![Top DPS by role](figures/phase2_dps.png)
-![Survivability](figures/phase2_survivability.png)
+![Top burst by role](figures/best_burst_by_role.png)
+![Top DPS by role](figures/best_dps_by_role.png)
+![Survivability](figures/best_survivability_by_role.png)
 
 </details>
 
@@ -60,7 +60,7 @@ Basic attacks only (the cleanest lever view), maxed attacker vs. an un-invested 
 | Zeraora   | 18 hits / 17.0 s | 11 hits /  9.3 s | **39% / 45%** |
 | Pikachu   | 24 hits / 23.0 s | 13 hits / 11.2 s | **46% / 51%** |
 
-![Hits to kill, maxed vs un-invested](figures/phase1_hits_to_kill.png)
+![Hits to kill, maxed vs un-invested](figures/auto_attack_hits_to_kill.png)
 
 (Autos are 100% stat-scaled, so investment helps them most; abilities carry a big flat/level
 base, so investment is diluted there — which is why the *combined* effect is ~+56%, not ×2.)

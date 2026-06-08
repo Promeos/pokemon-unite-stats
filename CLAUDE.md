@@ -16,7 +16,7 @@ the **full move kit** (base + Lv5/7 upgrades + Lv11/13 enhanced + multi-hit + ex
 pip install -r requirements.txt
 python -m pytest tests/ -q     # 22 tests (run after ANY change to damage.py / parsing)
 python src/validate.py         # #1 cross-check computed move damage vs Game8 totals
-python src/optimize.py         # Phase 2 per-role optimizer -> charts + data/phase2_offense.csv
+python src/optimize.py         # per-role optimizer -> charts + data/offense_rankings.csv
 python src/decomposition.py    # #2 lever decomposition (items vs emblems vs X Attack) + rarity
 python src/meta_validation.py  # #5 model rating vs unite-db community tier
 python src/abilities.py        # pre/post-evo burst combos

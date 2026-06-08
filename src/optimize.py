@@ -171,15 +171,15 @@ def make_charts(off, deff):
     roles = ["Attacker", "Speedster", "All-Rounder"]
     paths = []
     for metric, color, fname, title in [
-        ("burst", "#d62728", "phase2_burst.png", "pre-evo BURST damage"),
-        ("dps", "#1f77b4", "phase2_dps.png", "sustained DPS"),
+        ("burst", "#d62728", "best_burst_by_role.png", "pre-evo BURST damage"),
+        ("dps", "#1f77b4", "best_dps_by_role.png", "sustained DPS"),
     ]:
         fig, axes = plt.subplots(1, 3, figsize=(14, 4))
         for ax, role in zip(axes, roles):
             rr = sorted((r for r in off if r["role"] == role), key=lambda r: -r[metric])[:6]
             _barh(ax, rr, metric, color)
             ax.set_title(role, fontsize=10)
-        fig.suptitle(f"Phase 2 — top {title} by role (Lv5 pre-evo, optimal maxed build)", fontsize=12)
+        fig.suptitle(f"Top {title} by role (Lv5 pre-evo, optimal maxed build)", fontsize=12)
         fig.tight_layout()
         p = os.path.join(FIG_DIR, fname)
         fig.savefig(p, dpi=130)
@@ -188,9 +188,9 @@ def make_charts(off, deff):
 
     fig, ax = plt.subplots(figsize=(8, 5))
     _barh(ax, sorted(deff, key=lambda r: -r["ehp_shield"])[:10], "ehp_shield", "#2ca02c")
-    ax.set_title("Phase 2 — Defender/Supporter survivability (effective HP, shields up)", fontsize=11)
+    ax.set_title("Defender/Supporter survivability (effective HP, shields up)", fontsize=11)
     fig.tight_layout()
-    p = os.path.join(FIG_DIR, "phase2_survivability.png")
+    p = os.path.join(FIG_DIR, "best_survivability_by_role.png")
     fig.savefig(p, dpi=130)
     plt.close(fig)
     paths.append(p)
@@ -292,7 +292,7 @@ def main():
     _table(sorted(deff, key=lambda r: -r["ehp_shield"])[:10],
            ["pokemon", "role", "ehp_avg", "shield", "ehp_shield", "build"], [13, 11, 8, 7, 11, 42])
 
-    out = os.path.join(DATA_DIR, "phase2_offense.csv")
+    out = os.path.join(DATA_DIR, "offense_rankings.csv")
     with open(out, "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(off[0].keys()))
         w.writeheader()
