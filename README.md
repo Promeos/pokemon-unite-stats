@@ -104,6 +104,7 @@ python src/validate.py              # #1 move damage vs Game8
 python src/optimize.py              # Phase 2 per-role optimizer + charts + CSV
 python src/decomposition.py         # #2 lever decomposition + emblem-rarity sweep
 python src/meta_validation.py       # #5 model vs community tier
+python src/emblems.py               # exact named emblem pages -> data/emblem_pages.txt
 python src/abilities.py             # pre/post-evo burst combos
 python src/analysis.py              # Phase 1 auto-attack hits-to-kill
 
