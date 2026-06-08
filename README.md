@@ -10,8 +10,9 @@ in-game, so this answers it with a **model**: a damage / time-to-kill engine bui
 
 - 📉 **Maxed investment adds ~56% to pre-evo burst** (≈ a third less time-to-kill overall, and
   closer to *half* for pure auto-attackers) — and it holds regardless of Pokémon.
-- 🔧 **Which lever?** Of that gain: **items ~54%, X Attack ~31%, emblems ~15%** — and **emblem
-  rarity barely matters** (no-emblems → gold is +6.5% burst; bronze → gold is ~1%).
+- 🔧 **Which lever?** Of that gain: **items ~53%, X Attack ~31%, emblems ~16%** — and **emblem
+  rarity barely matters** (no-emblems → gold is +6.8% burst; bronze → gold is ~2%). Emblems are
+  optimized over the **real 762-emblem set** (colors, grades, stat tradeoffs).
 - 🧪 **Validated:** computed move damage matches **Game8 within 0.4%** across base moves *and*
   upgrades (Cinderace Pyro Ball *exactly* 1774). **22 tests green.**
 - 🤔 **Honest limit:** raw combat power barely predicts the community tier (**Spearman +0.06**).
@@ -43,8 +44,10 @@ shields up**:
 ![Lever decomposition](figures/lever_decomposition.png)
 
 Of the **+56%** burst that investment adds over base stats (Lv 4, averaged over 69 offensive mons):
-**items ~54%, X Attack ~31%, emblems ~15%.** The emblem-rarity sweep shows the jump is just
-*having* a page at all (none → bronze +5.2%); **bronze → gold is ~1%**. Practical takeaway:
+**items ~53%, X Attack ~31%, emblems ~16%.** The emblem-rarity sweep shows the jump is just
+*having* a page at all (none → bronze +4.9%); **bronze → gold is ~2%**. (Emblem pages are a real
+optimization over unite-db's 762 emblems — colors, grades, and stat tradeoffs included — and the
+result matches the earlier template within ~1pt, so the conclusion is robust.) Practical takeaway:
 **upgrade your held items first**; emblems are a small edge and their rarity is close to noise.
 
 ## 📉 Headline — investment ~halves pre-evo *auto-attack* time-to-kill
@@ -74,11 +77,12 @@ control, and late-game scaling — none of which this models.
 
 ## Sources & verification
 
-- **Stats + move scaling — [unite-db](https://unite-db.com) raw JSON** (`/pokemon.json`,
-  `/stats.json`): the Mathcord-sourced data its site loads, for all 94 mons. Its *pages* are
-  JS-rendered (unreadable to a fetcher); the `/*.json` endpoints are raw. The full kit
-  (base + `upgrades` + `enhanced_` + multi-hit + execute + per-level penetration/CDR) is parsed
-  from it. Cached in `data/unite_db_*.json`.
+- **Stats, moves & emblems — [unite-db](https://unite-db.com) raw JSON** (`/pokemon.json`,
+  `/stats.json`, `/emblems.json`): the Mathcord-sourced data its site loads — 94 mons + **762
+  emblems**. Its *pages* are JS-rendered (unreadable to a fetcher); the `/*.json` endpoints are raw.
+  The full move kit (base + `upgrades` + `enhanced_` + multi-hit + execute + per-level
+  penetration/CDR) and real emblem pages (colors / grades / stat tradeoffs) are derived from it.
+  Cached in `data/unite_db_*.json`.
 - **Held/battle items + emblems — [Game8](https://game8.co/games/Pokemon-UNITE/)** (Lv40 tables,
   emblem rarity + color sets), patch **v1.21.1.8 (2026-05-14)**.
 - **Damage formula — reference engine** [`Stephen-Choi/...`](https://github.com/Stephen-Choi/pokemon-unite-damage-calculator):
@@ -110,9 +114,10 @@ python src/fetch_unitedb.py ; python src/parse_unitedb_moves.py ; python src/bui
 ```
 data/   unite_db_*.json (source) · pokemon.json / moves.json (generated) ·
         helditems / battleitems / emblems.json (Game8)
-src/    stats.py · damage.py (engine) · builds.py · abilities.py (full-kit combat) ·
-        optimize.py (Phase 2) · decomposition.py · meta_validation.py · validate.py ·
-        analysis.py · fetch_unitedb / parse_unitedb_moves / build_pokemon_from_unitedb (pipeline)
+src/    stats.py · damage.py (engine) · builds.py · emblems.py (emblem optimizer) ·
+        abilities.py (full-kit combat) · optimize.py (Phase 2) · decomposition.py ·
+        meta_validation.py · validate.py · analysis.py ·
+        fetch_unitedb / parse_unitedb_moves / build_pokemon_from_unitedb (pipeline)
 tests/  engine, move-formula, and Game8-validation tests
 figures/ exported charts
 ```

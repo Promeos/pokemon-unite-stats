@@ -12,6 +12,7 @@ import os
 from dataclasses import dataclass
 
 import damage
+import emblems
 from stats import Stats, base_stats, from_mapping
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), os.pardir, "data")
@@ -33,30 +34,18 @@ def load_data() -> dict:
 # A maxed page = 6 gold emblems of the target color (color bonus) + their flats;
 # the irrelevant tradeoff stat is chosen so it doesn't touch what we measure.
 # --------------------------------------------------------------------------- #
-# Per-emblem flat stat by rarity (Game8): the color-set % bonus is the SAME across rarity;
-# only the flat stat scales. A full page is 10 slots (the color bonus caps at 6).
-ATTACK_FLAT = {"bronze": 1.2, "silver": 1.4, "gold": 1.6}
-SPATK_FLAT = {"bronze": 1.8, "silver": 2.4, "gold": 3.0}
-RED_AS_BONUS = 8.0          # 7 red emblems: +8% attack speed (color bonus, rarity-independent)
+_EMBLEM_TARGET = {"max_attack": "attack", "max_sp_atk": "sp_atk",
+                  "max_bulk": "bulk", "max_attack_speed": "attack_speed"}
 
 
 def emblem_page(template: str | None, rarity: str = "gold") -> tuple[Stats, Stats]:
-    """Return (flat contribution, core-percent contribution) for a named 10-slot page."""
+    """Return (flat, core-percent) for a template — a REAL optimised 10-emblem page from
+    unite-db's 762 emblems (emblems.optimal_page), tradeoffs and color bonuses included."""
     if template in (None, "none"):
         return Stats(), Stats()
-    af, sf = ATTACK_FLAT[rarity], SPATK_FLAT[rarity]
-    if template == "max_attack":
-        # 10 Brown: 10x flat Attack, +4% Attack color bonus (capped at 6 emblems).
-        return Stats(attack=10 * af), Stats(attack=4.0)
-    if template == "max_attack_speed":
-        # 7 red (+8% AS color bonus) + 3 brown flat Attack.
-        return Stats(attack=3 * af, attack_speed=RED_AS_BONUS), Stats()
-    if template == "max_sp_atk":
-        return Stats(sp_atk=10 * sf), Stats(sp_atk=4.0)
-    if template == "max_bulk":
-        # blue/white/purple page: +8% Def, +4% HP color bonuses.
-        return Stats(), Stats(defense=8.0, hp=4.0)
-    raise ValueError(f"unknown emblem template: {template!r}")
+    if template not in _EMBLEM_TARGET:
+        raise ValueError(f"unknown emblem template: {template!r}")
+    return emblems.optimal_page(_EMBLEM_TARGET[template], rarity)
 
 
 # --------------------------------------------------------------------------- #

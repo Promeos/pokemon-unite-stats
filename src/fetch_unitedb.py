@@ -26,23 +26,7 @@ def fetch_json(name: str) -> object:
 
 
 if __name__ == "__main__":
-    data = fetch_json("pokemon")
-    items = list(data.values()) if isinstance(data, dict) else list(data)
-    print("top-level:", type(data).__name__, "count:", len(items))
-    sample = items[0]
-    print("sample keys:", list(sample.keys()))
-
-    def name_of(p):
-        for k in ("name", "display_name", "pokemon", "id", "pokemonId"):
-            if k in p:
-                return str(p[k]).lower()
-        return ""
-
-    for p in items:
-        if "pikachu" in name_of(p):
-            print("\n=== PIKACHU keys:", list(p.keys()))
-            for k in ("moves", "skills", "move", "skill"):
-                if k in p:
-                    print(f"\n--- '{k}' (truncated) ---")
-                    print(json.dumps(p[k], indent=1)[:2000])
-            break
+    # Cache the three raw unite-db datasets the rest of the pipeline derives from.
+    for name in ("pokemon", "stats", "emblems"):
+        d = fetch_json(name)
+        print(f"cached data/unite_db_{name}.json  ({len(d)} entries)")

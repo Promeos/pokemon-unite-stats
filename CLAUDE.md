@@ -39,9 +39,11 @@ raw unite-db JSON → `parse_unitedb_moves.py` / `build_pokemon_from_unitedb.py`
   `move_damage = floor((base + slider*(Lv-1) + ratio*stat) × mit)`; `effective_cooldown` (CDR, 30% cap).
 - **`stats.py`** — `Stats`: 5 core stats scaled by emblem % (`apply_core_pct`); `attack_speed`, `crit`,
   `penetration`, `cdr` are additive.
-- **`builds.py`** — `make_build()` folds item Lv40 flats + item % passives + emblem template (rarity-
-  aware, 10-slot) into total stats; flags `muscle_band`, `crit_multiplier`, `move_flat`. `maxed_tier_for`
-  picks physical vs special by `damage_type`. Pools: `PHYSICAL_POOL` (8), `SPECIAL_POOL` (5), `BULK_POOL` (7).
+- **`builds.py`** — `make_build()` folds item Lv40 flats + item % passives + emblem page into total
+  stats; flags `muscle_band`, `crit_multiplier`, `move_flat`. `maxed_tier_for` picks physical vs special
+  by `damage_type`. Pools: `PHYSICAL_POOL` (8), `SPECIAL_POOL` (5), `BULK_POOL` (7).
+- **`emblems.py`** — `optimal_page(target, rarity)` picks the best 10 of unite-db's 762 emblems for a
+  target stat (real colors / grades A,B,C / stat tradeoffs + color-set bonuses); replaces the old template.
 - **`abilities.py`** — `move_form(slot, level)` picks base/upgrade/enhanced by level; `form_damage` sums
   components × hits + execute true-damage + penetration; `burst_combo` returns actions + seconds.
 
@@ -49,7 +51,8 @@ raw unite-db JSON → `parse_unitedb_moves.py` / `build_pokemon_from_unitedb.py`
 
 - **unite-db raw JSON is the source.** `unite-db.com/pokemon.json` (moves incl. `upgrades` &
   `enhanced_*` fields, `ratio/base/slider/dmg_type`, `add1..5`, hit counts in `(Nx)` labels, execute in
-  add `true_desc`) and `/stats.json` (per-level stats incl. penetration/cdr). The unite-db *web pages
+  add `true_desc`), `/stats.json` (per-level stats incl. penetration/cdr), and `/emblems.json` (762
+  emblems: up to 2 colors, grade A/B/C = gold/silver/bronze, stat tradeoffs). The unite-db *web pages
   are JS-rendered and unreadable*; the `/*.json` endpoints are raw. There is no `/moves.json` (404).
 - **Move fields:** `ratio` is a PERCENT (75 → 0.75×); `slider` is the per-level term; `base` flat;
   `dmg_type` ∈ {Atk, SpAtk} picks the stat AND the mitigating defense. `parse_unitedb_moves.py` converts.
