@@ -20,15 +20,19 @@ import csv
 import itertools
 import os
 
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
 import damage
 from abilities import auto_damage, base_moves, load_moves, move_damage
-from builds import PHYSICAL_POOL, SPECIAL_POOL, load_data, make_build, tier_build
+from builds import BULK_POOL, PHYSICAL_POOL, SPECIAL_POOL, load_data, make_build, tier_build
 
 LEVEL = 5
 TARGET_KEY = "cinderace"          # un-invested squishy reference
 BURST_WINDOW_S = 2.0              # autos that land during the opening burst
-BULK_ITEMS = ["assault_vest"]     # only defensive item we have data for (flagged)
 DATA_DIR = os.path.join(os.path.dirname(__file__), os.pardir, "data")
+FIG_DIR = os.path.join(os.path.dirname(__file__), os.pardir, "figures")
 
 OFFENSIVE = {"Attacker", "Speedster", "All-Rounder"}
 DEFENSIVE = {"Defender", "Supporter"}
@@ -106,16 +110,25 @@ def rank_offensive(data, moves, target):
     return rows
 
 
+def best_bulk_build(data, key) -> dict:
+    best = None
+    for items in itertools.combinations(BULK_POOL, 3):
+        s = survivability(make_build(data, key, LEVEL, list(items), "max_bulk"))
+        if best is None or s["ehp_avg"] > best["surv"]["ehp_avg"]:
+            best = {"items": list(items), "surv": s}
+    return best
+
+
 def rank_defensive(data):
     rows = []
     for key, p in data["pokemon"].items():
         if key.startswith("_") or p.get("role") not in DEFENSIVE:
             continue
-        build = make_build(data, key, LEVEL, list(BULK_ITEMS), "max_bulk")
-        s = survivability(build)
+        b = best_bulk_build(data, key)
+        s = b["surv"]
         rows.append({"pokemon": p["display_name"], "role": p["role"],
                      "ehp_phys": round(s["ehp_phys"]), "ehp_spec": round(s["ehp_spec"]),
-                     "ehp_avg": round(s["ehp_avg"])})
+                     "ehp_avg": round(s["ehp_avg"]), "build": "+".join(b["items"])})
     return rows
 
 
@@ -123,6 +136,47 @@ def _table(rows, cols, widths):
     print("  " + "".join(f"{c:<{w}}" for c, w in zip(cols, widths)))
     for r in rows:
         print("  " + "".join(f"{str(r[c]):<{w}}" for c, w in zip(cols, widths)))
+
+
+def _barh(ax, rows, val_key, color):
+    rows = rows[::-1]  # highest at top
+    ax.barh([r["pokemon"] for r in rows], [r[val_key] for r in rows], color=color)
+    ax.tick_params(labelsize=8)
+    vmax = max((r[val_key] for r in rows), default=1)
+    for i, r in enumerate(rows):
+        ax.text(r[val_key] + vmax * 0.01, i, f"{r[val_key]:,}", va="center", fontsize=7)
+    ax.margins(x=0.18)
+
+
+def make_charts(off, deff):
+    os.makedirs(FIG_DIR, exist_ok=True)
+    roles = ["Attacker", "Speedster", "All-Rounder"]
+    paths = []
+    for metric, color, fname, title in [
+        ("burst", "#d62728", "phase2_burst.png", "pre-evo BURST damage"),
+        ("dps", "#1f77b4", "phase2_dps.png", "sustained DPS"),
+    ]:
+        fig, axes = plt.subplots(1, 3, figsize=(14, 4))
+        for ax, role in zip(axes, roles):
+            rr = sorted((r for r in off if r["role"] == role), key=lambda r: -r[metric])[:6]
+            _barh(ax, rr, metric, color)
+            ax.set_title(role, fontsize=10)
+        fig.suptitle(f"Phase 2 — top {title} by role (Lv5 pre-evo, optimal maxed build)", fontsize=12)
+        fig.tight_layout()
+        p = os.path.join(FIG_DIR, fname)
+        fig.savefig(p, dpi=130)
+        plt.close(fig)
+        paths.append(p)
+
+    fig, ax = plt.subplots(figsize=(8, 5))
+    _barh(ax, sorted(deff, key=lambda r: -r["ehp_avg"])[:10], "ehp_avg", "#2ca02c")
+    ax.set_title("Phase 2 — Defender/Supporter survivability (effective HP, best bulk build)", fontsize=11)
+    fig.tight_layout()
+    p = os.path.join(FIG_DIR, "phase2_survivability.png")
+    fig.savefig(p, dpi=130)
+    plt.close(fig)
+    paths.append(p)
+    return paths
 
 
 def main():
@@ -145,9 +199,9 @@ def main():
         print()
 
     deff = rank_defensive(data)
-    print("### Defender/Supporter — top by SURVIVABILITY (effective HP, bulk build)")
+    print("### Defender/Supporter — top by SURVIVABILITY (effective HP, best bulk build)")
     _table(sorted(deff, key=lambda r: -r["ehp_avg"])[:10],
-           ["pokemon", "role", "ehp_phys", "ehp_spec", "ehp_avg"], [14, 12, 10, 10, 9])
+           ["pokemon", "role", "ehp_avg", "build"], [14, 11, 9, 46])
 
     out = os.path.join(DATA_DIR, "phase2_offense.csv")
     with open(out, "w", newline="", encoding="utf-8") as fh:
@@ -155,6 +209,8 @@ def main():
         w.writeheader()
         w.writerows(off)
     print(f"\nSaved: {out}")
+    for p in make_charts(off, deff):
+        print(f"       {p}")
 
 
 if __name__ == "__main__":

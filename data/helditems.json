@@ -49,8 +49,63 @@
     "passive": {"type": "sp_atk_on_goal", "per_goal": 16, "max_stacks": 6, "situational": true}
   },
   "assault_vest": {
-    "display_name": "Assault Vest", "game8_archive": "337866", "category": "defensive",
+    "display_name": "Assault Vest", "game8_archive": "337866", "category": "bulk",
     "stats_lv40": {"hp": 315, "sp_def": 59.5},
     "passive": {"type": "special_shield", "pct_max_hp": [0.10, 0.15, 0.20], "no_spatk_damage_s": 15}
+  },
+  "weakness_policy": {
+    "display_name": "Weakness Policy", "game8_archive": "342987", "category": "physical",
+    "stats_lv40": {"hp": 235, "attack": 17.5},
+    "passive": {"type": "attack_on_hit_taken", "pct_per_stack": 2.5, "max_stacks": 4, "situational": true}
+  },
+  "rapid_fire_scarf": {
+    "display_name": "Rapid-Fire Scarf", "game8_archive": "398595", "category": "physical",
+    "stats_lv40": {"attack": 14, "attack_speed": 10.5},
+    "passive": {"type": "as_after_3_basics", "pct": 25, "duration_s": 5, "cooldown_s": 10}
+  },
+  "drain_crown": {
+    "display_name": "Drain Crown", "game8_archive": "398596", "category": "physical",
+    "stats_lv40": {"hp": 140, "attack": 21},
+    "passive": {"type": "lifesteal", "pct": 0.15}
+  },
+  "shell_bell": {
+    "display_name": "Shell Bell", "game8_archive": "337853", "category": "special",
+    "stats_lv40": {"sp_atk": 28},
+    "passive": {"type": "heal_on_move", "min_heal": 75, "cooldown_s": 8}
+  },
+  "energy_amplifier": {
+    "display_name": "Energy Amplifier", "game8_archive": "337857", "category": "special",
+    "stats_lv40": {},
+    "passive": {"type": "after_unite_dmg", "pct": 21, "duration_s": 4}
+  },
+  "focus_band": {
+    "display_name": "Focus Band", "game8_archive": "337856", "category": "bulk",
+    "stats_lv40": {"defense": 35, "sp_def": 35},
+    "passive": {"type": "heal_low_hp", "pct_lost_per_sec": 12}
+  },
+  "buddy_barrier": {
+    "display_name": "Buddy Barrier", "game8_archive": "337859", "category": "bulk",
+    "stats_lv40": {"hp": 525},
+    "passive": {"type": "shield_on_unite", "pct_max_hp": 0.25}
+  },
+  "rocky_helmet": {
+    "display_name": "Rocky Helmet", "game8_archive": "337867", "category": "bulk",
+    "stats_lv40": {"hp": 315, "defense": 59.5},
+    "passive": {"type": "reflect", "pct_target_max_hp": 6}
+  },
+  "resonant_guard": {
+    "display_name": "Resonant Guard", "game8_archive": "435777", "category": "bulk",
+    "stats_lv40": {"hp": 525},
+    "passive": {"type": "shield_on_damage", "cooldown_s": 10}
+  },
+  "score_shield": {
+    "display_name": "Score Shield", "game8_archive": "337860", "category": "bulk",
+    "stats_lv40": {"hp": 525},
+    "passive": {"type": "shield_on_score", "pct_max_hp": 0.10}
+  },
+  "aeos_cookie": {
+    "display_name": "Aeos Cookie", "game8_archive": "337861", "category": "bulk",
+    "stats_lv40": {"hp": 280},
+    "passive": {"type": "hp_on_score", "per_goal": 200, "max_stacks": 6, "situational": true}
   }
 }

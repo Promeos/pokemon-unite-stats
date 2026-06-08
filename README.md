@@ -82,7 +82,8 @@ figures/  exported charts
 - **Phase 1 — mechanism proof:** ✅ engine + headline chart (`src/analysis.py`).
 - **Phase 1b — abilities + X Attack, roster-wide:** ✅ real move ratios for 94 mons (`src/abilities.py`).
 - **Phase 2 — best build & Pokémon per role:** ✅ `src/optimize.py` — brute-forces item triples ×
-  emblem templates per mon; ranks offense by Burst & DPS, tanks/supports by effective HP (Lv5 pre-evo).
+  emblem templates (pools: 8 physical / 5 special / 7 bulk) per mon; ranks offense by Burst & DPS,
+  tanks/supports by effective HP (Lv5 pre-evo). Charts in `figures/phase2_{burst,dps,survivability}.png`.
 - **Phase 3 — personal match log:** planned.
 
 ## Caveats / to refine

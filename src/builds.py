@@ -59,11 +59,13 @@ def emblem_page(template: str | None) -> tuple[Stats, Stats]:
 # --------------------------------------------------------------------------- #
 # Item pools & named investment tiers
 # --------------------------------------------------------------------------- #
-PHYSICAL_POOL = ["muscle_band", "scope_lens", "attack_weight", "razor_claw", "float_stone"]
+PHYSICAL_POOL = ["muscle_band", "scope_lens", "attack_weight", "razor_claw", "float_stone",
+                 "weakness_policy", "rapid_fire_scarf", "drain_crown"]
+SPECIAL_POOL = ["wise_glasses", "choice_specs", "sp_atk_specs", "shell_bell", "energy_amplifier"]
+BULK_POOL = ["assault_vest", "focus_band", "buddy_barrier", "rocky_helmet",
+             "resonant_guard", "score_shield", "aeos_cookie"]
 
 # A classic max physical-attacker loadout vs. nothing equipped.
-SPECIAL_POOL = ["wise_glasses", "choice_specs", "sp_atk_specs"]
-
 INVESTMENT_TIERS = {
     "uninvested": dict(items=[], emblems="none"),
     "maxed_attacker": dict(items=["muscle_band", "scope_lens", "float_stone"], emblems="max_attack"),
