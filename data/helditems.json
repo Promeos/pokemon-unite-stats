@@ -47,5 +47,10 @@
     "display_name": "Sp. Atk. Specs", "game8_archive": "337863", "category": "special",
     "stats_lv40": {"sp_atk": 28},
     "passive": {"type": "sp_atk_on_goal", "per_goal": 16, "max_stacks": 6, "situational": true}
+  },
+  "assault_vest": {
+    "display_name": "Assault Vest", "game8_archive": "337866", "category": "defensive",
+    "stats_lv40": {"hp": 315, "sp_def": 59.5},
+    "passive": {"type": "special_shield", "pct_max_hp": [0.10, 0.15, 0.20], "no_spatk_damage_s": 15}
   }
 }

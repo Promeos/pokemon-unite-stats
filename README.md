@@ -51,6 +51,7 @@ pip install -r requirements.txt
 python -m pytest tests/ -q               # verify engine + move formulas (20 tests)
 python src/analysis.py                   # Phase 1: hits-to-kill chart (autos)
 python src/abilities.py                  # roster-wide pre-evo burst (moves + autos)
+python src/optimize.py                   # Phase 2: best build & Pokemon per role (+ data/phase2_offense.csv)
 
 # Refresh data from unite-db (re-cache + regenerate the derived files):
 python src/fetch_unitedb.py              # -> data/unite_db_pokemon.json
@@ -80,7 +81,8 @@ figures/  exported charts
 
 - **Phase 1 — mechanism proof:** ✅ engine + headline chart (`src/analysis.py`).
 - **Phase 1b — abilities + X Attack, roster-wide:** ✅ real move ratios for 94 mons (`src/abilities.py`).
-- **Phase 2 — best build & Pokémon per role:** in progress (Burst + DPS for offense, effective-HP for tanks/supports).
+- **Phase 2 — best build & Pokémon per role:** ✅ `src/optimize.py` — brute-forces item triples ×
+  emblem templates per mon; ranks offense by Burst & DPS, tanks/supports by effective HP (Lv5 pre-evo).
 - **Phase 3 — personal match log:** planned.
 
 ## Caveats / to refine
