@@ -34,18 +34,14 @@ def load_data() -> dict:
 # A maxed page = 6 gold emblems of the target color (color bonus) + their flats;
 # the irrelevant tradeoff stat is chosen so it doesn't touch what we measure.
 # --------------------------------------------------------------------------- #
-_EMBLEM_TARGET = {"max_attack": "attack", "max_sp_atk": "sp_atk",
-                  "max_bulk": "bulk", "max_attack_speed": "attack_speed"}
-
-
 def emblem_page(template: str | None, rarity: str = "gold") -> tuple[Stats, Stats]:
     """Return (flat, core-percent) for a template — a REAL optimised 10-emblem page from
     unite-db's 762 emblems (emblems.optimal_page), tradeoffs and color bonuses included."""
     if template in (None, "none"):
         return Stats(), Stats()
-    if template not in _EMBLEM_TARGET:
+    if template not in emblems.TEMPLATE_TARGET:
         raise ValueError(f"unknown emblem template: {template!r}")
-    return emblems.optimal_page(_EMBLEM_TARGET[template], rarity)
+    return emblems.optimal_page(emblems.TEMPLATE_TARGET[template], rarity)
 
 
 # --------------------------------------------------------------------------- #

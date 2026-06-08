@@ -25,6 +25,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 import damage
+import emblems
 from abilities import auto_damage, damaging_slots, form_damage, load_moves, move_form
 from builds import BULK_POOL, PHYSICAL_POOL, SPECIAL_POOL, load_data, make_build, tier_build
 
@@ -197,8 +198,6 @@ def make_charts(off, deff):
     return paths
 
 
-EMBLEM_NAMES = {"max_attack": "Attack emblems", "max_attack_speed": "Atk-Speed emblems",
-                "max_sp_atk": "Sp.Atk emblems", "max_bulk": "Bulk emblems", "none": "no emblems"}
 ROLE_COLORS = {"Attacker": "#d62728", "Speedster": "#9467bd", "All-Rounder": "#ff7f0e",
                "Defender": "#1f77b4", "Supporter": "#2ca02c"}
 
@@ -209,7 +208,7 @@ def _pretty_items(items_str, data):
 
 def _pretty_build(build_str, data):
     items_part, emb = build_str.split(" / ")
-    return f"{_pretty_items(items_part, data)}  ·  {EMBLEM_NAMES.get(emb, emb)}"
+    return f"{_pretty_items(items_part, data)}  ·  {emblems.page_summary(emb)} emblems"
 
 
 def best_per_role(off, deff, data):
@@ -229,7 +228,8 @@ def best_per_role(off, deff, data):
         if rr:
             t = max(rr, key=lambda r: r["ehp_shield"])
             rows.append({"role": role, "metric": "Eff. HP", "pokemon": t["pokemon"],
-                         "score": f"{t['ehp_shield']:,}", "build": f"{_pretty_items(t['build'], data)}  ·  Bulk emblems"})
+                         "score": f"{t['ehp_shield']:,}",
+                         "build": f"{_pretty_items(t['build'], data)}  ·  {emblems.page_summary('max_bulk')} emblems"})
     return rows
 
 

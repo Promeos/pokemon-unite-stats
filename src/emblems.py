@@ -80,52 +80,56 @@ def _color_bonuses(page) -> tuple[Stats, Stats]:
     return flat, pct
 
 
-def optimal_page(target: str, rarity: str = "gold") -> tuple[Stats, Stats]:
-    """Return (flat Stats, core-percent Stats) for the best 10-emblem page for `target`."""
-    cache_key = (target, rarity)
-    if cache_key in _CACHE:
-        return _CACHE[cache_key]
-    pool = [e for e in _emblems() if e.get("grade") == GRADE[rarity]]
+TEMPLATE_TARGET = {"max_attack": "attack", "max_sp_atk": "sp_atk",
+                   "max_bulk": "bulk", "max_attack_speed": "attack_speed"}
 
+
+def _select_page(target, rarity):
+    """The 10 emblems chosen for a target stat at a grade."""
+    pool = [e for e in _emblems() if e.get("grade") == GRADE[rarity]]
     if target == "attack_speed":            # 7 Red (for the +8% AS bonus) + 3 Brown (Attack)
         reds = sorted((e for e in pool if "Red" in colors_of(e)),
                       key=lambda e: _estats(e).get("attack", 0), reverse=True)
         browns = sorted((e for e in pool if "Brown" in colors_of(e)),
                         key=lambda e: _estats(e).get("attack", 0), reverse=True)
-        page = reds[:7] + browns[:3]
-    elif target == "bulk":                  # maximise an HP-equivalent bulk score
-        page = sorted(pool, key=lambda e: _estats(e).get("hp", 0)
-                      + 10 * (_estats(e).get("defense", 0) + _estats(e).get("sp_defense", 0)),
+        return reds[:7] + browns[:3]
+    if target == "bulk":                    # defensive colors first (for the Def/HP/Sp.Def
+        defensive = {"Blue", "White", "Purple"}   # set bonuses), then HP-equivalent bulk score
+        return sorted(pool, key=lambda e: (bool(defensive & set(colors_of(e))),
+                      _estats(e).get("hp", 0)
+                      + 10 * (_estats(e).get("defense", 0) + _estats(e).get("sp_defense", 0))),
                       reverse=True)[:10]
-    else:                                   # prioritise the target color, then the stat
-        tcolor, skey = TARGET_COLOR[target], STAT_KEY[target]
-        page = sorted(pool, key=lambda e: (tcolor in colors_of(e), _estats(e).get(skey, 0)),
-                      reverse=True)[:10]
+    tcolor, skey = TARGET_COLOR[target], STAT_KEY[target]   # target color first, then the stat
+    return sorted(pool, key=lambda e: (tcolor in colors_of(e), _estats(e).get(skey, 0)),
+                  reverse=True)[:10]
 
-    flat = Stats()
-    for e in page:
-        flat = flat + _flat_of(e)
-    cflat, pct = _color_bonuses(page)
-    result = (flat + cflat, pct)
-    _CACHE[cache_key] = result
-    return result
+
+def optimal_page(target: str, rarity: str = "gold") -> tuple[Stats, Stats]:
+    """(flat Stats, core-percent Stats) for the best 10-emblem page for `target`."""
+    cache_key = (target, rarity)
+    if cache_key not in _CACHE:
+        page = _select_page(target, rarity)
+        flat = Stats()
+        for e in page:
+            flat = flat + _flat_of(e)
+        cflat, pct = _color_bonuses(page)
+        _CACHE[cache_key] = (flat + cflat, pct)
+    return _CACHE[cache_key]
+
+
+def page_summary(template_or_target: str, rarity: str = "gold") -> str:
+    """Concise composition of the chosen page by primary color, e.g. '10x Brown' or
+    '7x Red 3x Brown'."""
+    target = TEMPLATE_TARGET.get(template_or_target, template_or_target)
+    primary = Counter(e.get("color1") for e in _select_page(target, rarity))
+    parts = [f"{n}x {c}" for c, n in primary.most_common(3)]
+    return " ".join(parts) + (" +.." if len(primary) > 3 else "")
 
 
 def describe(target: str, rarity: str = "gold") -> dict:
     """Human-readable summary of the optimal page (for inspection)."""
     flat, pct = optimal_page(target, rarity)
-    pool = [e for e in _emblems() if e.get("grade") == GRADE[rarity]]
-    # recompute page colors for display
-    if target == "attack_speed":
-        reds = sorted((e for e in pool if "Red" in colors_of(e)), key=lambda e: _estats(e).get("attack", 0), reverse=True)
-        browns = sorted((e for e in pool if "Brown" in colors_of(e)), key=lambda e: _estats(e).get("attack", 0), reverse=True)
-        page = reds[:7] + browns[:3]
-    elif target == "bulk":
-        page = sorted(pool, key=lambda e: _estats(e).get("hp", 0) + 10 * (_estats(e).get("defense", 0) + _estats(e).get("sp_defense", 0)), reverse=True)[:10]
-    else:
-        tcolor, skey = TARGET_COLOR[target], STAT_KEY[target]
-        page = sorted(pool, key=lambda e: (tcolor in colors_of(e), _estats(e).get(skey, 0)), reverse=True)[:10]
-    cc = Counter(c for e in page for c in colors_of(e))
+    cc = Counter(c for e in _select_page(target, rarity) for c in colors_of(e))
     return {"flat": flat.as_dict(), "pct": pct.as_dict(), "colors": dict(cc)}
 
 
