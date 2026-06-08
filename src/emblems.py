@@ -51,9 +51,12 @@ def _estats(e):
 
 
 def _flat_of(e) -> Stats:
+    # unite-db emblem stat keys: hp, attack, defense, sp_attack, sp_defense, crit, cdr, speed.
+    # ('speed' is movement speed -> not a combat stat, dropped.)
     s = _estats(e)
     return Stats(hp=s.get("hp", 0), attack=s.get("attack", 0), defense=s.get("defense", 0),
-                 sp_atk=s.get("sp_attack", 0), sp_def=s.get("sp_defense", 0), crit=s.get("crit", 0))
+                 sp_atk=s.get("sp_attack", 0), sp_def=s.get("sp_defense", 0),
+                 crit=s.get("crit", 0), cdr=s.get("cdr", 0))
 
 
 def _color_bonuses(page) -> tuple[Stats, Stats]:
