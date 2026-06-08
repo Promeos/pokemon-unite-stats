@@ -70,12 +70,12 @@
   },
   "shell_bell": {
     "display_name": "Shell Bell", "game8_archive": "337853", "category": "special",
-    "stats_lv40": {"sp_atk": 28},
+    "stats_lv40": {"sp_atk": 28, "cdr": 5.2},
     "passive": {"type": "heal_on_move", "min_heal": 75, "cooldown_s": 8}
   },
   "energy_amplifier": {
     "display_name": "Energy Amplifier", "game8_archive": "337857", "category": "special",
-    "stats_lv40": {},
+    "stats_lv40": {"cdr": 5.2},
     "passive": {"type": "after_unite_dmg", "pct": 21, "duration_s": 4}
   },
   "focus_band": {

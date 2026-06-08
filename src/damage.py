@@ -25,14 +25,23 @@ MITIGATION_CONSTANT = 600.0
 # --------------------------------------------------------------------------- #
 # Mitigation (verified verbatim)
 # --------------------------------------------------------------------------- #
-def mitigation_multiplier(defense: float) -> float:
-    """Fraction of pre-mitigation damage that gets through `defense` (Def or Sp.Def)."""
-    return MITIGATION_CONSTANT / (MITIGATION_CONSTANT + defense)
+def mitigation_multiplier(defense: float, penetration: float = 0.0) -> float:
+    """Fraction of pre-mitigation damage that gets through `defense` (Def or Sp.Def),
+    after the attacker's flat defense penetration."""
+    eff = max(0.0, defense - penetration)
+    return MITIGATION_CONSTANT / (MITIGATION_CONSTANT + eff)
 
 
-def mitigated_damage(attack_damage: float, defense: float) -> int:
+def mitigated_damage(attack_damage: float, defense: float, penetration: float = 0.0) -> int:
     """Single-hit post-mitigation damage, floored (matches the reference engine)."""
-    return math.floor(attack_damage * mitigation_multiplier(defense))
+    return math.floor(attack_damage * mitigation_multiplier(defense, penetration))
+
+
+CDR_CAP = 30.0  # in-game cooldown-reduction cap
+
+
+def effective_cooldown(base_cd: float, cdr: float) -> float:
+    return base_cd * (1.0 - min(max(cdr, 0.0), CDR_CAP) / 100.0)
 
 
 def effective_hp(hp: float, defense: float) -> float:
@@ -88,22 +97,23 @@ def basic_hit_damage(
     crit_multiplier: float = DEFAULT_CRIT_MULTIPLIER,
     muscle_band: bool = False,
     basic_multiplier: float = 1.0,
+    penetration: float = 0.0,
 ) -> float:
     """Expected damage of one basic attack.
 
     `attack` is the attacker's Attack stat (== Game8 'Attack Damage' column, which is
     the pre-mitigation basic value). Crit is folded in as an expected value. Muscle
-    Band adds min(3% * current HP, 360) as TRUE damage (not reduced by Defense).
+    Band adds min(3% * current HP, 360), reduced by the target's Defense (Game8).
     """
     pre = attack * basic_multiplier
-    base = pre * mitigation_multiplier(target_defense)
+    base = pre * mitigation_multiplier(target_defense, penetration)
     crit_rate = max(0.0, min(crit_rate, 1.0))
     base *= 1.0 + crit_rate * (crit_multiplier - 1.0)   # expected-value crit
     base = math.floor(base)
     bonus = 0.0
     if muscle_band and target_current_hp is not None:
         raw_bonus = min(MUSCLE_BAND_PCT * target_current_hp, MUSCLE_BAND_CAP)
-        bonus = math.floor(raw_bonus * mitigation_multiplier(target_defense))
+        bonus = math.floor(raw_bonus * mitigation_multiplier(target_defense, penetration))
     return base + bonus
 
 
@@ -115,14 +125,13 @@ X_ATTACK_MOVE_MULT = 1.10      # X Attack: ~x1.05-1.15 move damage (midpoint)
 
 
 def move_damage(stat_value, level, ratio, per_level, base,
-                target_mitigation, flat_bonus=0.0, mult=1.0):
+                target_mitigation, flat_bonus=0.0, mult=1.0, penetration=0.0):
     """One move hit. raw = ratio*stat + per_level*(level-1) + base (+ item flat),
-    then reduced by the target's relevant defense (Def or Sp.Def). Floored.
-
-    Formula shape taken verbatim from the reference engine's per-move Go files.
+    then reduced by the target's relevant defense (Def or Sp.Def), after penetration.
+    Floored. Formula shape taken verbatim from the reference engine's per-move files.
     """
     raw = (ratio * stat_value + per_level * (level - 1) + base + flat_bonus) * mult
-    return math.floor(raw * mitigation_multiplier(target_mitigation))
+    return math.floor(raw * mitigation_multiplier(target_mitigation, penetration))
 
 
 def execute_damage(current_hp, pct, cap):

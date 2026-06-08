@@ -43,6 +43,7 @@ def main():
                 "hp": lvl["hp"], "attack": lvl["attack"], "defense": lvl["defense"],
                 "sp_atk": lvl["sp_attack"], "sp_def": lvl["sp_defense"],
                 "attack_speed": lvl.get("attack_speed", 0), "crit": lvl.get("crit", 0),
+                "penetration": lvl.get("penetration", 0), "cdr": lvl.get("cdr", 0),
             }
         out[k] = {
             "display_name": p["name"],

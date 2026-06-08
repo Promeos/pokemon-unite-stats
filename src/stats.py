@@ -14,7 +14,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 CORE = ("hp", "attack", "defense", "sp_atk", "sp_def")
-ADDITIVE = ("attack_speed", "crit")
+ADDITIVE = ("attack_speed", "crit", "penetration", "cdr")
 ALL = CORE + ADDITIVE
 
 
@@ -27,6 +27,8 @@ class Stats:
     sp_def: float = 0.0
     attack_speed: float = 0.0  # percent points (sum of base + item + red-emblem bonuses)
     crit: float = 0.0          # percent crit rate
+    penetration: float = 0.0   # flat defense ignored (reduces target's effective Def/Sp.Def)
+    cdr: float = 0.0           # percent cooldown reduction (capped at 30 in-game)
 
     def __add__(self, other: "Stats") -> "Stats":
         return Stats(**{k: getattr(self, k) + getattr(other, k) for k in ALL})

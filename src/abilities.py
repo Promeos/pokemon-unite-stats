@@ -1,16 +1,17 @@
-"""Abilities + burst-combo modelling using unite-db move ratios (validated).
+"""Abilities + burst-combo modelling using unite-db move ratios (validated vs Game8).
 
-Per-component move damage = base + slider*(level-1) + ratio*stat, mitigated by the
-target's Def (Atk moves) or Sp.Def (SpAtk moves); multi-hit moves sum their components.
-Data: data/moves.json (roster-wide, parsed from unite-db; see parse_unitedb_moves.py).
-A "pre-evo burst" uses a mon's BASE (non-Unite) moves -- its kit before first evolution.
+Each move slot has a base form (Lv1-3), Lv5/7 upgrade options, and Lv11/13 enhanced forms.
+`move_form` picks the right form for a Pokemon level (best upgrade once unlocked). Per
+component: damage = (base + slider*(level-1) + ratio*stat) * hits, mitigated by Def/Sp.Def
+(after penetration); execute components add true damage as a % of the target's HP.
 
-Validated: Pikachu Thunder Shock 0.75*SpAtk + 21*(Lv-1) + 390 reproduces the reference
-engine exactly, so these ratios are trustworthy for every listed move.
+So this models the FULL kit at any level, not just pre-evo. Data: data/moves.json (parsed
+from unite-db; see parse_unitedb_moves.py).
 """
 from __future__ import annotations
 
 import json
+import math
 import os
 
 import damage
@@ -31,39 +32,87 @@ def _stat_mit(attacker: Build, defender: Build, dmg_type: str):
     return attacker.total.attack, defender.total.defense
 
 
-def move_damage(attacker: Build, defender: Build, move: dict, level: int, x_attack: bool = False) -> float:
-    mult = damage.X_ATTACK_MOVE_MULT if x_attack else 1.0
+def move_form(slot: dict, level: int) -> dict:
+    """The active form {name, cooldown, components, execute} of a move slot at `level`:
+    base pre-upgrade, then the highest-damage unlocked upgrade (enhanced once unlocked)."""
+    avail = [u for u in slot["upgrades"] if level >= u["min_level"]]
+    if not avail:
+        return {"name": slot["display_name"], **slot["base"]}
+
+    def form_of(u):
+        if u["enhanced"] and level >= u["enh_level"]:
+            f = u["enhanced"]
+            return {"name": u["name"] + "+", "cooldown": f["cooldown"],
+                    "components": f["components"], "execute": f["execute"]}
+        return {"name": u["name"], "cooldown": u["cooldown"],
+                "components": u["components"], "execute": u["execute"]}
+
+    def nominal(f):  # pick the better upgrade with a stand-in stat
+        return sum((c["base"] + c["slider"] * (level - 1) + c["ratio"] * 1200) * c["hits"]
+                   for c in f["components"])
+
+    return max((form_of(u) for u in avail), key=nominal)
+
+
+def execute_damage(execs, max_hp, current_hp) -> float:
     total = 0.0
-    for c in move["components"]:
-        stat, mit = _stat_mit(attacker, defender, c["dmg_type"])
-        total += damage.move_damage(stat, level, c["ratio"], c["slider"], c["base"], mit, mult=mult)
+    for e in execs:
+        if e["of"] == "missing":
+            total += e["pct"] * max(0.0, max_hp - current_hp)
+        elif e["of"] in ("remaining", "current"):
+            total += e["pct"] * current_hp
+        elif e["of"] == "max":
+            total += e["pct"] * max_hp
     return total
 
 
-def auto_damage(attacker: Build, defender: Build, pmoves: dict, current_hp: float, x_attack: bool = False) -> float:
+def form_damage(attacker, defender, form, level, x_attack=False, current_hp=None) -> float:
+    """Total damage of one cast of `form` (sums components × hits, + execute true damage)."""
+    mult = damage.X_ATTACK_MOVE_MULT if x_attack else 1.0
+    pen = attacker.total.penetration
+    total = 0.0
+    for c in form["components"]:
+        stat, mit = _stat_mit(attacker, defender, c["dmg_type"])
+        total += damage.move_damage(stat, level, c["ratio"], c["slider"], c["base"], mit,
+                                    mult=mult, penetration=pen) * c["hits"]
+    if attacker.move_flat and form["components"]:        # Choice Specs flat, once
+        _, mit = _stat_mit(attacker, defender, form["components"][0]["dmg_type"])
+        total += math.floor(attacker.move_flat * mult * damage.mitigation_multiplier(mit, pen))
+    if current_hp is not None and form["execute"]:
+        total += execute_damage(form["execute"], defender.total.hp, current_hp)
+    return total
+
+
+def auto_damage(attacker, defender, pmoves, current_hp, x_attack=False) -> float:
     b = pmoves.get("basic") or {"dmg_type": "Atk", "ratio": 1.0}
     stat, mit = _stat_mit(attacker, defender, b["dmg_type"])
     dmg = damage.basic_hit_damage(
         stat, mit, target_current_hp=current_hp, basic_multiplier=b.get("ratio", 1.0),
         crit_rate=attacker.crit_rate, crit_multiplier=attacker.crit_multiplier,
-        muscle_band=attacker.muscle_band,
+        muscle_band=attacker.muscle_band, penetration=attacker.total.penetration,
     )
     return dmg * (damage.X_ATTACK_BASIC_MULT if x_attack else 1.0)
 
 
-def base_moves(pmoves: dict) -> dict:
-    return {k: m for k, m in pmoves.get("moves", {}).items() if not m.get("is_unite")}
+def damaging_slots(pmoves, include_unite=False) -> dict:
+    out = {}
+    for k, m in pmoves.get("moves", {}).items():
+        if m["is_unite"] and not include_unite:
+            continue
+        if m["base"]["components"] or any(u["components"] for u in m["upgrades"]):
+            out[k] = m
+    return out
 
 
-def burst_combo(attacker: Build, defender: Build, pmoves: dict, level: int,
-                x_attack: bool = True, max_autos: int = 60) -> dict:
-    """Cast the mon's base (pre-evo) moves once each, then auto until the target dies."""
+def burst_combo(attacker, defender, pmoves, level, x_attack=True, include_unite=False, max_autos=60):
+    """Cast each kit move once (best form for the level), then auto until the target dies."""
     hp = defender.total.hp
     log = []
-    for mv in base_moves(pmoves).values():
-        d = move_damage(attacker, defender, mv, level, x_attack)
+    for slot in damaging_slots(pmoves, include_unite).values():
+        form = move_form(slot, level)
+        d = form_damage(attacker, defender, form, level, x_attack, current_hp=hp)
         hp -= d
-        log.append((mv["display_name"], round(d)))
+        log.append((form["name"], round(d)))
         if hp <= 0:
             break
     autos = 0
@@ -75,7 +124,7 @@ def burst_combo(attacker: Build, defender: Build, pmoves: dict, level: int,
     return dict(actions=len(log), autos=autos, killed=hp <= 0, log=log)
 
 
-def maxed_tier_for(data: dict, key: str) -> str:
+def maxed_tier_for(data, key):
     return "maxed_special" if data["pokemon"][key].get("damage_type") == "Special" else "maxed_attacker"
 
 
@@ -86,47 +135,19 @@ def _fmt(log):
 def main():
     data = load_data()
     moves = load_moves()
-    level = 4               # solidly pre-evolution (both base moves available)
-    target_key = "cinderace"  # un-invested squishy reference
+    target_key = "cinderace"
 
-    # --- showcase a few real pre-evo bursts ---
-    print(f"Pre-evo burst @ Lv{level} vs un-invested {target_key.title()} "
-          f"(maxed = role items+emblems + X Attack):\n")
-    target = tier_build(data, target_key, level, "uninvested")
-    show = ["cinderace", "zeraora", "buzzwole", "pikachu"]
-    for k in show:
-        if k not in moves or k not in data["pokemon"]:
-            continue
-        bare = tier_build(data, k, level, "uninvested")
-        maxed = tier_build(data, k, level, maxed_tier_for(data, k))
-        rb = burst_combo(bare, target, moves[k], level, x_attack=False)
-        rm = burst_combo(maxed, target, moves[k], level, x_attack=True)
-        print(f"{data['pokemon'][k]['display_name']:11} ({data['pokemon'][k]['role']}):")
-        print(f"   un-invested: {rb['actions']} actions  | {_fmt(rb['log'])}")
-        print(f"   MAXED+XAtk : {rm['actions']} actions  | {_fmt(rm['log'])}\n")
-
-    # --- roster-wide: does maxing cut pre-evo burst actions, regardless of mon? ---
-    rows = []
-    for k, p in data["pokemon"].items():
-        if k.startswith("_") or p.get("role") not in OFFENSIVE_ROLES or k not in moves:
-            continue
-        if not base_moves(moves[k]):
-            continue
-        bare = tier_build(data, k, level, "uninvested")
-        maxed = tier_build(data, k, level, maxed_tier_for(data, k))
-        a0 = burst_combo(bare, target, moves[k], level, x_attack=False)["actions"]
-        a1 = burst_combo(maxed, target, moves[k], level, x_attack=True)["actions"]
-        rows.append((k, a0, a1))
-
-    import statistics
-    saved = [(a0 - a1) / a0 * 100 for _, a0, a1 in rows if a0]
-    print("=" * 64)
-    print(f"Roster pre-evo burst (Lv{level}, {len(rows)} offensive mons vs un-invested squishy):")
-    print(f"  mean actions un-invested: {statistics.mean(a0 for _,a0,_ in rows):.1f}"
-          f"  ->  MAXED: {statistics.mean(a1 for _,_,a1 in rows):.1f}")
-    print(f"  mean reduction in actions-to-kill: {statistics.mean(saved):.1f}%")
-    fastest = sorted(rows, key=lambda r: r[2])[:5]
-    print("  fastest MAXED pre-evo deletes:", ", ".join(f"{data['pokemon'][k]['display_name']}({a1})" for k, _, a1 in fastest))
+    for level, label in [(4, "PRE-evo"), (9, "POST-evo (upgrades online)")]:
+        target = tier_build(data, target_key, level, "uninvested")
+        print(f"\n===== Burst @ Lv{level} ({label}) vs un-invested {target_key.title()} "
+              f"(HP {target.total.hp:.0f}) =====")
+        for k in ("cinderace", "buzzwole", "pikachu"):
+            bare = tier_build(data, k, level, "uninvested")
+            maxed = tier_build(data, k, level, maxed_tier_for(data, k))
+            rb = burst_combo(bare, target, moves[k], level, x_attack=False)
+            rm = burst_combo(maxed, target, moves[k], level, x_attack=True)
+            print(f"{data['pokemon'][k]['display_name']:11}: un-invested {rb['actions']:2d} | "
+                  f"MAXED {rm['actions']:2d}   ({_fmt(rm['log'][:3])} ...)")
 
 
 if __name__ == "__main__":

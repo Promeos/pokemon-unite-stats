@@ -25,7 +25,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 import damage
-from abilities import auto_damage, base_moves, load_moves, move_damage
+from abilities import auto_damage, damaging_slots, form_damage, load_moves, move_form
 from builds import BULK_POOL, PHYSICAL_POOL, SPECIAL_POOL, load_data, make_build, tier_build
 
 LEVEL = 5
@@ -50,21 +50,22 @@ def emblem_templates(dtype):
 # Metrics
 # --------------------------------------------------------------------------- #
 def sustained_dps(attacker, defender, pmoves, level) -> float:
-    """Auto-attack DPS + sum(move damage / cooldown) over the base (pre-evo) kit."""
+    """Auto-attack DPS + sum(move damage / cooldown) over the kit, with CDR applied."""
     aps = damage.attacks_per_second(attacker.total.attack_speed)
-    auto = auto_damage(attacker, defender, pmoves, defender.total.hp, x_attack=False)
-    dps = auto * aps
-    for mv in base_moves(pmoves).values():
-        cd = float(mv.get("cooldown") or 0)
+    dps = auto_damage(attacker, defender, pmoves, defender.total.hp, x_attack=False) * aps
+    cdr = attacker.total.cdr
+    for slot in damaging_slots(pmoves).values():
+        form = move_form(slot, level)
+        cd = damage.effective_cooldown(form["cooldown"], cdr)
         if cd > 0:
-            dps += move_damage(attacker, defender, mv, level) / cd
+            dps += form_damage(attacker, defender, form, level) / cd
     return dps
 
 
 def burst_damage(attacker, defender, pmoves, level) -> float:
-    """All base moves once (with X Attack) + autos landing in the opening window."""
-    total = sum(move_damage(attacker, defender, mv, level, x_attack=True)
-                for mv in base_moves(pmoves).values())
+    """Every kit move once (best form, with X Attack) + autos landing in the opening window."""
+    total = sum(form_damage(attacker, defender, move_form(slot, level), level, x_attack=True)
+                for slot in damaging_slots(pmoves).values())
     n_autos = max(1, int(BURST_WINDOW_S * damage.attacks_per_second(attacker.total.attack_speed)))
     for _ in range(n_autos):
         total += auto_damage(attacker, defender, pmoves, defender.total.hp, x_attack=True)
@@ -98,7 +99,7 @@ def rank_offensive(data, moves, target):
     for key, p in data["pokemon"].items():
         if key.startswith("_") or p.get("role") not in OFFENSIVE or key not in moves:
             continue
-        if not base_moves(moves[key]):
+        if not damaging_slots(moves[key]):
             continue
         burst = best_offensive_build(data, moves, key, target, "burst")
         dps = best_offensive_build(data, moves, key, target, "dps")
