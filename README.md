@@ -65,7 +65,7 @@ Basic attacks only (the cleanest lever view), maxed attacker vs. an un-invested 
 ![Hits to kill, maxed vs un-invested](figures/auto_attack_hits_to_kill.png)
 
 (Autos are 100% stat-scaled, so investment helps them most; abilities carry a big flat/level
-base, so investment is diluted there — which is why the *combined* effect is ~+56%, not ×2.)
+base, so investment is diluted there — which is why the *combined* effect is ~+53%, not ×2.)
 
 ## 🤔 Does the model agree with the meta?
 
