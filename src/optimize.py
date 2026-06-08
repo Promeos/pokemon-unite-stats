@@ -179,6 +179,77 @@ def make_charts(off, deff):
     return paths
 
 
+EMBLEM_NAMES = {"max_attack": "Attack emblems", "max_attack_speed": "Atk-Speed emblems",
+                "max_sp_atk": "Sp.Atk emblems", "max_bulk": "Bulk emblems", "none": "no emblems"}
+ROLE_COLORS = {"Attacker": "#d62728", "Speedster": "#9467bd", "All-Rounder": "#ff7f0e",
+               "Defender": "#1f77b4", "Supporter": "#2ca02c"}
+
+
+def _pretty_items(items_str, data):
+    return " + ".join(data["items"][k]["display_name"] for k in items_str.split("+"))
+
+
+def _pretty_build(build_str, data):
+    items_part, emb = build_str.split(" / ")
+    return f"{_pretty_items(items_part, data)}  ·  {EMBLEM_NAMES.get(emb, emb)}"
+
+
+def best_per_role(off, deff, data):
+    rows = []
+    for role in ("Attacker", "Speedster", "All-Rounder"):
+        rr = [r for r in off if r["role"] == role]
+        if not rr:
+            continue
+        b = max(rr, key=lambda r: r["burst"])
+        d = max(rr, key=lambda r: r["dps"])
+        rows.append({"role": role, "metric": "Burst", "pokemon": b["pokemon"],
+                     "score": f"{b['burst']:,}", "build": _pretty_build(b["burst_build"], data)})
+        rows.append({"role": role, "metric": "DPS", "pokemon": d["pokemon"],
+                     "score": f"{d['dps']:,}", "build": _pretty_build(d["dps_build"], data)})
+    for role in ("Defender", "Supporter"):
+        rr = [r for r in deff if r["role"] == role]
+        if rr:
+            t = max(rr, key=lambda r: r["ehp_avg"])
+            rows.append({"role": role, "metric": "Eff. HP", "pokemon": t["pokemon"],
+                         "score": f"{t['ehp_avg']:,}", "build": f"{_pretty_items(t['build'], data)}  ·  Bulk emblems"})
+    return rows
+
+
+def make_summary_chart(rows):
+    os.makedirs(FIG_DIR, exist_ok=True)
+    cols = ["Role", "Best by", "Pokémon", "Score", "Optimal build"]
+    widths = [0.13, 0.09, 0.15, 0.08, 0.55]
+    cells = [[r["role"], r["metric"], r["pokemon"], r["score"], r["build"]] for r in rows]
+    fig, ax = plt.subplots(figsize=(13, 0.46 * (len(rows) + 1) + 0.6))
+    ax.axis("off")
+    tbl = ax.table(cellText=cells, colLabels=cols, colWidths=widths, cellLoc="left",
+                   bbox=[0, 0, 1, 1])
+    tbl.auto_set_font_size(False)
+    tbl.set_fontsize(10)
+    for j in range(len(cols)):
+        h = tbl[0, j]
+        h.set_facecolor("#222222")
+        h.set_text_props(color="white", fontweight="bold")
+    for i, r in enumerate(rows, start=1):
+        base = ROLE_COLORS[r["role"]]
+        for j in range(len(cols)):
+            c = tbl[i, j]
+            c.set_edgecolor("white")
+            if j == 0:
+                c.set_facecolor(base + "dd")
+                c.set_text_props(color="white", fontweight="bold")
+            else:
+                c.set_facecolor(base + "16")
+        tbl[i, 2].set_text_props(fontweight="bold")
+    ax.set_title("Best Pokémon & build per role — Lv5 pre-evo, maxed account "
+                 "(Lv40 items + gold emblems + X Attack)", fontsize=12, pad=14)
+    fig.tight_layout()
+    p = os.path.join(FIG_DIR, "best_per_role.png")
+    fig.savefig(p, dpi=140, bbox_inches="tight")
+    plt.close(fig)
+    return p
+
+
 def main():
     data = load_data()
     moves = load_moves()
@@ -209,7 +280,7 @@ def main():
         w.writeheader()
         w.writerows(off)
     print(f"\nSaved: {out}")
-    for p in make_charts(off, deff):
+    for p in make_charts(off, deff) + [make_summary_chart(best_per_role(off, deff, data))]:
         print(f"       {p}")
 
 
