@@ -40,6 +40,36 @@ shields up**:
 > "Best by **modeled combat metric**" — see the meta check below for how much that actually
 > predicts viability. Shields are counted "up" (situational).
 
+### Same analysis at full build (Lv 15)
+
+The chart above is **Lv 5 (pre-evo)**, the level the offensive study uses (where unite-db's move
+data is Game8-validated). But survivability is pure stats available at *every* level, and tanks
+come online late — so Lv 5 under-rates them. Re-running the **same optimizer** at **Lv 15 (full
+build)** — `python src/optimize.py --level 15` — reshuffles the board, most dramatically for
+Defenders:
+
+![Best Pokémon and build per role — Lv 15 full build](figures/best_per_role_lv15.png)
+
+The **best Defender flips Articuno → Goodra** (Goodra is *last* at Lv 5 but *first* at Lv 15;
+Blastoise climbs #13 → #3), and the best Supporter swaps **Wigglytuff → Meganium**. Offense moves
+too (Speedster burst Leafeon → Darkrai; All-Rounder Pawmot → Feraligatr). The slope chart makes
+the defensive churn explicit — identical metric, only the level changes:
+
+![Defender / Supporter survivability rank — Lv 5 vs Lv 15](figures/defensive_ranking.png)
+
+<details>
+<summary>Per-role Lv 15 detail charts (burst · DPS · survivability)</summary>
+
+![Top burst by role — Lv 15](figures/best_burst_by_role_lv15.png)
+![Top DPS by role — Lv 15](figures/best_dps_by_role_lv15.png)
+![Survivability — Lv 15](figures/best_survivability_by_role_lv15.png)
+
+</details>
+
+> **Faithfulness:** Lv 15 uses the same validated engine — base + Lv 5/7 **upgrade** moves are
+> Game8-checked (e.g. Pyro Ball), while Lv 11/13 **enhanced** forms are modeled from unite-db (not
+> in the Game8 sample). The defensive ranking is pure stats, so it's unaffected by that caveat.
+
 ### What the **Score** column means
 
 It isn't one unit — it's whatever metric the *Best by* column names, computed against a fixed
@@ -130,7 +160,10 @@ python -m pytest tests/ -q          # 28 tests
 python src/validate.py              # #1 move damage vs Game8
 python src/validate_inputs.py       # #1b prove each score input (stats/cooldowns/items/emblems/X Attack) traces to source
 python src/optimize.py              # Phase 2 per-role optimizer + charts + CSV
+python src/optimize.py --level 15   # full-build (Lv 15) variant of the per-role charts
 python src/decomposition.py         # #2 lever decomposition + emblem-rarity sweep
+python src/defensive_items.py       # per-item HP/Def/Sp.Def -> effective-HP breakdown + chart
+python src/defensive_ranking.py     # best tank/support: Lv 5 vs Lv 15 rank shift (slope chart)
 python src/meta_validation.py       # #5 model vs community tier
 python src/emblems.py               # exact named emblem pages -> data/emblem_pages.txt
 python src/abilities.py             # pre/post-evo burst combos
@@ -157,7 +190,8 @@ figures/ exported charts
 
 - ✅ Engine (full kit, CDR, penetration, shields) · ✅ validated vs Game8 · ✅ per-role optimizer ·
   ✅ lever decomposition · ✅ meta validation.
-- **Modeled at Lv 5** by default (upgrades begin coming online); the engine handles any level.
+- **Modeled at Lv 5** by default (upgrades begin coming online); the engine handles any level —
+  `python src/optimize.py --level 15` renders the full-build variant (and the [board reshuffles](#same-analysis-at-full-build-lv-15)).
 - **Not modeled:** melee **boosted** (every-3rd) basics, **crit-damage scaling** (Scope Lens with
   high Attack), and **CC** (a stun lets the full combo land uncontested — often the real reason you
   get knocked out). Shields are counted "up" (situational). The burn-DoT ratio on a couple moves

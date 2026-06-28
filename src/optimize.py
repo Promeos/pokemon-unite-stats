@@ -9,13 +9,16 @@ Metrics (per your call):
     separately.
   * Defenders/Supporters: SURVIVABILITY = effective HP (raw damage needed to drop them).
 
-Modelled at Lv5 (pre-evolution): unite-db gives the base-move ratios (the pre-evo kit) and
-item levels are account-wide, so a maxed account already has Lv40 items at Lv5. This is the
-window where the data is fully faithful (Lv5/7 upgrade moves aren't in unite-db). Results are
-"best by modelled combat metric" -- they ignore range, mobility, CC, and objective control.
+Defaults to Lv5 (`--level` overrides). Item/emblem levels are account-wide (Lv40) at any
+in-game level. The engine models the full kit at the chosen level: base moves + Lv5/7
+upgrades (validated vs Game8, e.g. Pyro Ball) + Lv11/13 enhanced forms (modeled from
+unite-db). `--level 15` re-ranks at full build and writes _lv15-suffixed charts/CSV (e.g.
+best_per_role_lv15.png). Results are "best by modelled combat metric" -- they ignore range,
+mobility, CC, objective control, and (for the offensive enhanced forms) Game8 cross-checks.
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import itertools
 import os
@@ -87,7 +90,7 @@ def survivability(build) -> dict:
 # --------------------------------------------------------------------------- #
 # Optimisation
 # --------------------------------------------------------------------------- #
-def best_offensive_build(data, moves, key, target, metric: str) -> dict:
+def best_offensive_build(data, moves, key, target, metric: str, level: int = LEVEL) -> dict:
     """Brute-force every legal 3-item combo x emblem template for one Pokemon and return the
     build (items + emblems + score) that maximises `metric` ('burst' or 'dps')."""
     dtype = data["pokemon"][key].get("damage_type")
@@ -95,14 +98,14 @@ def best_offensive_build(data, moves, key, target, metric: str) -> dict:
     best = None
     for items in itertools.combinations(item_pool(dtype), 3):
         for emb in emblem_templates(dtype):
-            atk = make_build(data, key, LEVEL, list(items), emb)
-            score = scorer(atk, target, moves[key], LEVEL)
+            atk = make_build(data, key, level, list(items), emb)
+            score = scorer(atk, target, moves[key], level)
             if best is None or score > best["score"]:
                 best = {"score": score, "items": list(items), "emblems": emb}
     return best
 
 
-def rank_offensive(data, moves, target):
+def rank_offensive(data, moves, target, level: int = LEVEL):
     """One row per offensive-role Pokemon with its best burst and best DPS build vs `target`."""
     rows = []
     for key, p in data["pokemon"].items():
@@ -110,8 +113,8 @@ def rank_offensive(data, moves, target):
             continue
         if not damaging_slots(moves[key]):
             continue
-        burst = best_offensive_build(data, moves, key, target, "burst")
-        dps = best_offensive_build(data, moves, key, target, "dps")
+        burst = best_offensive_build(data, moves, key, target, "burst", level)
+        dps = best_offensive_build(data, moves, key, target, "dps", level)
         rows.append({
             "pokemon": p["display_name"], "role": p["role"], "dmg_type": p.get("damage_type"),
             "burst": round(burst["score"]), "burst_build": "+".join(burst["items"]) + " / " + burst["emblems"],
@@ -133,11 +136,11 @@ def shield_pct(data, items):
     return pct
 
 
-def best_bulk_build(data, key) -> dict:
+def best_bulk_build(data, key, level: int = LEVEL) -> dict:
     """Pick the 3 bulk items maximising effective HP with shields up (the realistic tank goal)."""
     best = None
     for items in itertools.combinations(BULK_POOL, 3):
-        b = make_build(data, key, LEVEL, list(items), "max_bulk")
+        b = make_build(data, key, level, list(items), "max_bulk")
         s = survivability(b)
         shield = shield_pct(data, items) * b.total.hp
         ehp_shield = s["ehp_avg"] + shield
@@ -146,13 +149,13 @@ def best_bulk_build(data, key) -> dict:
     return best
 
 
-def rank_defensive(data):
+def rank_defensive(data, level: int = LEVEL):
     """One row per Defender/Supporter with its best bulk build and effective-HP metrics."""
     rows = []
     for key, p in data["pokemon"].items():
         if key.startswith("_") or p.get("role") not in DEFENSIVE:
             continue
-        b = best_bulk_build(data, key)
+        b = best_bulk_build(data, key, level)
         s = b["surv"]
         rows.append({"pokemon": p["display_name"], "role": p["role"],
                      "ehp_avg": round(s["ehp_avg"]), "shield": round(b["shield"]),
@@ -176,31 +179,42 @@ def _barh(ax, rows, val_key, color):
     ax.margins(x=0.18)
 
 
-def make_charts(off, deff):
+def _lvl_suffix(level: int) -> str:
+    """'' for the default level (preserves existing filenames), else '_lv<level>'."""
+    return "" if level == LEVEL else f"_lv{level}"
+
+
+def _lvl_tag(level: int) -> str:
+    """Human level descriptor for chart titles ('Lv5 pre-evo' vs 'Lv15 full build')."""
+    return f"Lv{level} pre-evo" if level <= 5 else f"Lv{level} full build"
+
+
+def make_charts(off, deff, level: int = LEVEL):
     os.makedirs(FIG_DIR, exist_ok=True)
+    suffix, tag = _lvl_suffix(level), _lvl_tag(level)
     roles = ["Attacker", "Speedster", "All-Rounder"]
     paths = []
     for metric, color, fname, title in [
-        ("burst", "#d62728", "best_burst_by_role.png", "pre-evo BURST damage"),
-        ("dps", "#1f77b4", "best_dps_by_role.png", "sustained DPS"),
+        ("burst", "#d62728", "best_burst_by_role", "BURST damage"),
+        ("dps", "#1f77b4", "best_dps_by_role", "sustained DPS"),
     ]:
         fig, axes = plt.subplots(1, 3, figsize=(14, 4))
         for ax, role in zip(axes, roles):
             rr = sorted((r for r in off if r["role"] == role), key=lambda r: -r[metric])[:6]
             _barh(ax, rr, metric, color)
             ax.set_title(role, fontsize=10)
-        fig.suptitle(f"Top {title} by role (Lv5 pre-evo, optimal maxed build)", fontsize=12)
+        fig.suptitle(f"Top {title} by role ({tag}, optimal maxed build)", fontsize=12)
         fig.tight_layout()
-        p = os.path.join(FIG_DIR, fname)
+        p = os.path.join(FIG_DIR, f"{fname}{suffix}.png")
         fig.savefig(p, dpi=130)
         plt.close(fig)
         paths.append(p)
 
     fig, ax = plt.subplots(figsize=(8, 5))
     _barh(ax, sorted(deff, key=lambda r: -r["ehp_shield"])[:10], "ehp_shield", "#2ca02c")
-    ax.set_title("Defender/Supporter survivability (effective HP, shields up)", fontsize=11)
+    ax.set_title(f"Defender/Supporter survivability (effective HP, shields up) — {tag}", fontsize=11)
     fig.tight_layout()
-    p = os.path.join(FIG_DIR, "best_survivability_by_role.png")
+    p = os.path.join(FIG_DIR, f"best_survivability_by_role{suffix}.png")
     fig.savefig(p, dpi=130)
     plt.close(fig)
     paths.append(p)
@@ -242,7 +256,7 @@ def best_per_role(off, deff, data):
     return rows
 
 
-def make_summary_chart(rows):
+def make_summary_chart(rows, level: int = LEVEL):
     os.makedirs(FIG_DIR, exist_ok=True)
     cols = ["Role", "Best by", "Pokémon", "Score", "Optimal build"]
     widths = [0.13, 0.09, 0.15, 0.08, 0.55]
@@ -268,24 +282,31 @@ def make_summary_chart(rows):
             else:
                 c.set_facecolor(base + "16")
         tbl[i, 2].set_text_props(fontweight="bold")
-    ax.set_title("Best Pokémon & build per role — Lv5 pre-evo, maxed account "
+    ax.set_title(f"Best Pokémon & build per role — {_lvl_tag(level)}, maxed account "
                  "(Lv40 items + gold emblems + X Attack)", fontsize=12, pad=14)
     fig.tight_layout()
-    p = os.path.join(FIG_DIR, "best_per_role.png")
+    p = os.path.join(FIG_DIR, f"best_per_role{_lvl_suffix(level)}.png")
     fig.savefig(p, dpi=140, bbox_inches="tight")
     plt.close(fig)
     return p
 
 
 def main():
+    ap = argparse.ArgumentParser(description="Per-role best build & Pokemon optimizer.")
+    ap.add_argument("--level", type=int, default=LEVEL,
+                    help=f"In-game level 1-15 (default {LEVEL}). Lv15 = full-build variant; "
+                         "non-default levels write _lv<level>-suffixed charts/CSV.")
+    level = ap.parse_args().level
+
     data = load_data()
     moves = load_moves()
-    target = tier_build(data, TARGET_KEY, LEVEL, "uninvested")
-    print(f"Phase 2 — best build & Pokemon per role @ Lv{LEVEL} (pre-evo), "
+    suffix, tag = _lvl_suffix(level), _lvl_tag(level)
+    target = tier_build(data, TARGET_KEY, level, "uninvested")
+    print(f"Phase 2 — best build & Pokemon per role @ {tag}, "
           f"vs un-invested {TARGET_KEY.title()} (HP {target.total.hp:.0f}/Def {target.total.defense:.0f})")
     print("Maxed account = Lv40 items + gold emblems + X Attack. 'Best by modelled combat metric.'\n")
 
-    off = rank_offensive(data, moves, target)
+    off = rank_offensive(data, moves, target, level)
     for role in ("Attacker", "Speedster", "All-Rounder"):
         rr = [r for r in off if r["role"] == role]
         print(f"### {role} — top by BURST")
@@ -296,18 +317,18 @@ def main():
                ["pokemon", "dps", "dps_build"], [14, 8, 40])
         print()
 
-    deff = rank_defensive(data)
+    deff = rank_defensive(data, level)
     print("### Defender/Supporter — top by SURVIVABILITY (effective HP incl. shields up)")
     _table(sorted(deff, key=lambda r: -r["ehp_shield"])[:10],
            ["pokemon", "role", "ehp_avg", "shield", "ehp_shield", "build"], [13, 11, 8, 7, 11, 42])
 
-    out = os.path.join(DATA_DIR, "offense_rankings.csv")
+    out = os.path.join(DATA_DIR, f"offense_rankings{suffix}.csv")
     with open(out, "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(off[0].keys()))
         w.writeheader()
         w.writerows(off)
     print(f"\nSaved: {out}")
-    for p in make_charts(off, deff) + [make_summary_chart(best_per_role(off, deff, data))]:
+    for p in make_charts(off, deff, level) + [make_summary_chart(best_per_role(off, deff, data), level)]:
         print(f"       {p}")
 
 
