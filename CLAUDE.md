@@ -8,7 +8,7 @@ A data study testing whether maxed **held items** (Lv40) + **emblems** + **X Att
 opponent kill faster, *regardless of Pokémon*. Enemy builds are unobservable in-game, so it's a
 **model**: a damage/time-to-kill engine fed by current unite-db data for all 94 mons, modeling
 the **full move kit** (base + Lv5/7 upgrades + Lv11/13 enhanced + multi-hit + execute). See
-`README.md` and the plan at `C:\Users\chris\.claude\plans\steady-waddling-scone.md`.
+`README.md` for the full write-up.
 
 ## Commands
 
