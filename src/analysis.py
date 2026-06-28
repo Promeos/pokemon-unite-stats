@@ -1,8 +1,8 @@
-"""Phase 1 analysis: does a maxed build (Lv40 items + gold emblems) delete you
+"""Phase 1 analysis: does a maxed build (Lv40 items + gold emblems) knock you out
 faster pre-evolution, and by how much, regardless of Pokemon?
 
 Scenario: a MAXED attacker vs. an UN-INVESTED squishy target (models "a fed/maxed
-opponent deleting un-invested me"). Metric: basic-attack hits-to-KO and
+opponent knocking out un-invested me"). Metric: basic-attack hits-to-KO and
 seconds-to-KO. Basic-attacks only (ability/boosted-attack burst is additive and
 not modelled here) -- so absolute counts are an upper bound; the RELATIVE effect of
 investment is the result.

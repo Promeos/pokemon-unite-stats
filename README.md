@@ -1,6 +1,6 @@
 # Pokémon Unite — Stat Investment vs. Time-to-KO
 
-**Does maxing your account — Lv 40 held items, gold emblems, X Attack — let you delete people
+**Does maxing your account — Lv 40 held items, gold emblems, X Attack — let you knock people out
 *before they evolve*, regardless of which Pokémon you play?** Enemy builds are unobservable
 in-game, so this answers it with a **model**: a damage / time-to-KO engine built from
 *current, validated* unite-db data and the game's verified damage formula, run across the full
@@ -132,7 +132,7 @@ figures/ exported charts
 - **Modeled at Lv 5** by default (upgrades begin coming online); the engine handles any level.
 - **Not modeled:** melee **boosted** (every-3rd) basics, **crit-damage scaling** (Scope Lens with
   high Attack), and **CC** (a stun lets the full combo land uncontested — often the real reason you
-  get deleted). Shields are counted "up" (situational). The burn-DoT ratio on a couple moves
+  get knocked out). Shields are counted "up" (situational). The burn-DoT ratio on a couple moves
   differs ~2× from Game8 (a small secondary component).
 - **Biggest caveat (measured, not assumed):** combat power weakly predicts viability (Spearman
   +0.06). Treat the per-role tables as "hardest-hitting pre-evo," not a tier list.
