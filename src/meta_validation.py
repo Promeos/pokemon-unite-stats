@@ -25,6 +25,8 @@ TIER_ORDER = ["F", "D", "C", "B", "B+", "A", "A+", "S"]
 
 
 def spearman(xs, ys):
+    """Spearman rank correlation of two equal-length sequences (0 if either has no variance).
+    Self-contained so the project needs no scipy dependency."""
     def rank(v):
         order = sorted(range(len(v)), key=lambda i: v[i])
         r = [0.0] * len(v)
@@ -41,6 +43,7 @@ def spearman(xs, ys):
 
 
 def _pct(vals):
+    """Convert values to within-list percentiles 0-100 (smallest -> 0, largest -> 100)."""
     order = sorted(range(len(vals)), key=lambda i: vals[i])
     out = [50.0] * len(vals)
     for pos, i in enumerate(order):

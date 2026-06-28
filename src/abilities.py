@@ -22,11 +22,14 @@ OFFENSIVE_ROLES = {"Attacker", "Speedster", "All-Rounder"}
 
 
 def load_moves() -> dict:
+    """Load data/moves.json (the parsed full move kit keyed by Pokemon)."""
     with open(MOVES_PATH, encoding="utf-8") as fh:
         return json.load(fh)
 
 
 def _stat_mit(attacker: Build, defender: Build, dmg_type: str):
+    """(attacker offensive stat, defender mitigating defense) for a component's damage type:
+    Sp.Atk vs Sp.Def for 'SpAtk', else Attack vs Defense."""
     if dmg_type == "SpAtk":
         return attacker.total.sp_atk, defender.total.sp_def
     return attacker.total.attack, defender.total.defense
@@ -55,6 +58,8 @@ def move_form(slot: dict, level: int) -> dict:
 
 
 def execute_damage(execs, max_hp, current_hp) -> float:
+    """True-damage execute total: each component is a % of the target's missing, current, or
+    max HP (e.g. a 'deals 8% of missing HP' finisher). Ignores defense (true damage)."""
     total = 0.0
     for e in execs:
         if e["of"] == "missing":
@@ -84,6 +89,8 @@ def form_damage(attacker, defender, form, level, x_attack=False, current_hp=None
 
 
 def auto_damage(attacker, defender, pmoves, current_hp, x_attack=False) -> float:
+    """One basic attack's damage, using the Pokemon's basic-attack stat/ratio (Atk or Sp.Atk),
+    including crit, Muscle Band, penetration, and the optional X Attack basic multiplier."""
     b = pmoves.get("basic") or {"dmg_type": "Atk", "ratio": 1.0}
     stat, mit = _stat_mit(attacker, defender, b["dmg_type"])
     dmg = damage.basic_hit_damage(
@@ -95,6 +102,8 @@ def auto_damage(attacker, defender, pmoves, current_hp, x_attack=False) -> float
 
 
 def damaging_slots(pmoves, include_unite=False) -> dict:
+    """The move slots that deal damage (any form has components), optionally including the
+    Unite move. Skips pure-utility moves so the burst/DPS loops only see damage abilities."""
     out = {}
     for k, m in pmoves.get("moves", {}).items():
         if m["is_unite"] and not include_unite:
@@ -132,6 +141,7 @@ def burst_combo(attacker, defender, pmoves, level, x_attack=True, include_unite=
 
 
 def maxed_tier_for(data, key):
+    """The matching maxed INVESTMENT_TIER for a Pokemon — special vs physical by damage_type."""
     return "maxed_special" if data["pokemon"][key].get("damage_type") == "Special" else "maxed_attacker"
 
 

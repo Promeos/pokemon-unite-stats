@@ -19,6 +19,8 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), os.pardir, "data")
 
 
 def load_data() -> dict:
+    """Load the three data files the build assembler needs: per-Pokemon stats, held
+    items (Lv40 column + passives), and emblem color-set bonuses."""
     def _load(name):
         with open(os.path.join(DATA_DIR, name), encoding="utf-8") as fh:
             return json.load(fh)
@@ -109,6 +111,8 @@ def make_build(data: dict, pokemon: str, level: int,
 
 
 def tier_build(data: dict, pokemon: str, level: int, tier: str) -> Build:
+    """Build a Pokemon at one of the named INVESTMENT_TIERS (uninvested / maxed_attacker /
+    maxed_special) — a shortcut for the canonical loadouts used across the analyses."""
     spec = INVESTMENT_TIERS[tier]
     return make_build(data, pokemon, level, spec["items"], spec["emblems"])
 
@@ -117,6 +121,7 @@ def tier_build(data: dict, pokemon: str, level: int, tier: str) -> Build:
 # Combat between two builds
 # --------------------------------------------------------------------------- #
 def hits_between(attacker: Build, defender: Build) -> int:
+    """Basic attacks for `attacker` to kill `defender` (carries crit/Muscle Band flags)."""
     return damage.hits_to_kill(
         attacker.total.attack, defender.total.hp, defender.total.defense,
         crit_rate=attacker.crit_rate, crit_multiplier=attacker.crit_multiplier,
@@ -125,6 +130,7 @@ def hits_between(attacker: Build, defender: Build) -> int:
 
 
 def ttk_between(attacker: Build, defender: Build) -> float:
+    """Seconds for `attacker` to kill `defender` via basic attacks (attack-speed aware)."""
     return damage.time_to_kill(
         attacker.total.attack, defender.total.hp, defender.total.defense,
         attack_speed=attacker.total.attack_speed,

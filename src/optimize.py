@@ -40,10 +40,13 @@ DEFENSIVE = {"Defender", "Supporter"}
 
 
 def item_pool(dtype):
+    """The held-item pool to optimise over for a damage type (special vs physical)."""
     return SPECIAL_POOL if dtype == "Special" else PHYSICAL_POOL
 
 
 def emblem_templates(dtype):
+    """The emblem page templates to try for a damage type (Sp.Atk page for special; Attack and
+    attack-speed pages for physical)."""
     return ["max_sp_atk"] if dtype == "Special" else ["max_attack", "max_attack_speed"]
 
 
@@ -74,6 +77,8 @@ def burst_damage(attacker, defender, pmoves, level) -> float:
 
 
 def survivability(build) -> dict:
+    """Effective HP vs physical and special damage (and their average) — raw pre-mitigation
+    damage needed to drop the build. The tank/support metric."""
     phys = damage.effective_hp(build.total.hp, build.total.defense)
     spec = damage.effective_hp(build.total.hp, build.total.sp_def)
     return {"ehp_phys": phys, "ehp_spec": spec, "ehp_avg": (phys + spec) / 2}
@@ -83,6 +88,8 @@ def survivability(build) -> dict:
 # Optimisation
 # --------------------------------------------------------------------------- #
 def best_offensive_build(data, moves, key, target, metric: str) -> dict:
+    """Brute-force every legal 3-item combo x emblem template for one Pokemon and return the
+    build (items + emblems + score) that maximises `metric` ('burst' or 'dps')."""
     dtype = data["pokemon"][key].get("damage_type")
     scorer = burst_damage if metric == "burst" else sustained_dps
     best = None
@@ -96,6 +103,7 @@ def best_offensive_build(data, moves, key, target, metric: str) -> dict:
 
 
 def rank_offensive(data, moves, target):
+    """One row per offensive-role Pokemon with its best burst and best DPS build vs `target`."""
     rows = []
     for key, p in data["pokemon"].items():
         if key.startswith("_") or p.get("role") not in OFFENSIVE or key not in moves:
@@ -139,6 +147,7 @@ def best_bulk_build(data, key) -> dict:
 
 
 def rank_defensive(data):
+    """One row per Defender/Supporter with its best bulk build and effective-HP metrics."""
     rows = []
     for key, p in data["pokemon"].items():
         if key.startswith("_") or p.get("role") not in DEFENSIVE:

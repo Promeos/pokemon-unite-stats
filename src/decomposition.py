@@ -23,6 +23,8 @@ TARGET_KEY = "cinderace"
 
 
 def burst(attacker, defender, pmoves, level, x_attack):
+    """Opening-burst damage: every damaging move cast once (best form) plus the autos that land
+    in a ~2 s window. The single scalar this analysis decomposes across investment levers."""
     total = sum(form_damage(attacker, defender, move_form(s, level), level, x_attack=x_attack)
                 for s in damaging_slots(pmoves).values())
     aps = damage.attacks_per_second(attacker.total.attack_speed)
@@ -32,6 +34,7 @@ def burst(attacker, defender, pmoves, level, x_attack):
 
 
 def offensive_mons(data, moves):
+    """Keys of offensive-role Pokemon that have parsed damaging moves (the decomposition set)."""
     return [k for k, p in data["pokemon"].items()
             if not k.startswith("_") and p.get("role") in OFFENSIVE_ROLES
             and k in moves and damaging_slots(moves[k])]

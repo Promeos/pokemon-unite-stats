@@ -28,6 +28,8 @@ TARGET = "cinderace"
 
 
 def investment_table(data: dict) -> pd.DataFrame:
+    """Hits- and seconds-to-kill (un-invested vs maxed attacker) for each reference Pokemon
+    across the pre-evo levels, with the reductions investment buys."""
     rows = []
     for mon in OFFENSIVE:
         for lvl in PRE_EVO_LEVELS:
@@ -47,6 +49,8 @@ def investment_table(data: dict) -> pd.DataFrame:
 
 
 def plot_hits(df: pd.DataFrame) -> str:
+    """Chart hits-to-kill vs level, maxed against un-invested, per reference Pokemon; returns
+    the saved figure path."""
     fig, axes = plt.subplots(1, len(OFFENSIVE), figsize=(13, 4), sharey=True)
     for ax, mon in zip(axes, OFFENSIVE):
         d = df[df.pokemon == mon]

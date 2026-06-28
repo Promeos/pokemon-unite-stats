@@ -136,3 +136,10 @@ figures/ exported charts
   differs ~2× from Game8 (a small secondary component).
 - **Biggest caveat (measured, not assumed):** combat power weakly predicts viability (Spearman
   +0.06). Treat the per-role tables as "hardest-hitting pre-evo," not a tier list.
+
+## License
+
+[MIT](LICENSE). An unofficial fan project — not affiliated with or endorsed by The Pokémon
+Company, Nintendo, or TiMi Studios. Game data is sourced from [unite-db](https://unite-db.com)
+and [Game8](https://game8.co/games/Pokemon-UNITE/) for analysis; all trademarks belong to their
+respective owners.

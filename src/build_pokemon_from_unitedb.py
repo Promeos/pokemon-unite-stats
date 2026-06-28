@@ -13,10 +13,13 @@ DATA = os.path.join(os.path.dirname(__file__), os.pardir, "data")
 
 
 def key(name: str) -> str:
+    """Slugify a Pokemon name into a snake_case dict key (matches parse_unitedb_moves.key)."""
     return re.sub(r"[^a-z0-9]+", "_", str(name).lower()).strip("_")
 
 
 def role_of(meta: dict):
+    """Best-effort role lookup from a unite-db pokemon entry, whose `tags` is sometimes a dict
+    ({role/class/style}), sometimes a list, sometimes absent (falls back to meta['role'])."""
     tags = meta.get("tags")
     if isinstance(tags, dict):
         return tags.get("role") or tags.get("class") or tags.get("style")

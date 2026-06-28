@@ -39,10 +39,12 @@ def _color_bonus_table():
 
 
 def colors_of(e):
+    """The one or two colors an emblem belongs to (each counts toward both color-set bonuses)."""
     return [c for c in (e.get("color1"), e.get("color2")) if c]
 
 
 def _estats(e):
+    """Merge an emblem's `stats` list into a single {stat: signed total} dict (folds tradeoffs)."""
     d = {}
     for s in e.get("stats", []) or []:
         for k, v in s.items():
@@ -51,8 +53,11 @@ def _estats(e):
 
 
 def _flat_of(e) -> Stats:
-    # unite-db emblem stat keys: hp, attack, defense, sp_attack, sp_defense, crit, cdr, speed.
-    # ('speed' is movement speed -> not a combat stat, dropped.)
+    """One emblem's flat stat contribution as a Stats (net of its +/- tradeoffs).
+
+    unite-db emblem stat keys: hp, attack, defense, sp_attack, sp_defense, crit, cdr, speed.
+    ('speed' is movement speed -> not a combat stat, dropped.)
+    """
     s = _estats(e)
     return Stats(hp=s.get("hp", 0), attack=s.get("attack", 0), defense=s.get("defense", 0),
                  sp_atk=s.get("sp_attack", 0), sp_def=s.get("sp_defense", 0),
@@ -60,6 +65,9 @@ def _flat_of(e) -> Stats:
 
 
 def _color_bonuses(page) -> tuple[Stats, Stats]:
+    """The (flat, core-percent) color-set bonuses a 10-emblem page earns: count each color
+    across the page, look up the highest tier reached, and accumulate its stat bonus. Bonuses
+    that don't map to a combat Stats field (move speed, hindrance resist, etc.) are skipped."""
     table = _color_bonus_table()
     counts = Counter()
     for e in page:

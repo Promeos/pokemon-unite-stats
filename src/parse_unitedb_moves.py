@@ -29,10 +29,12 @@ DATA = os.path.join(os.path.dirname(__file__), os.pardir, "data")
 
 
 def key(name):
+    """Slugify a Pokemon/move name into a snake_case dict key (e.g. 'Mr. Mime' -> 'mr_mime')."""
     return re.sub(r"[^a-z0-9]+", "_", str(name).lower()).strip("_")
 
 
 def _num(x):
+    """Parse unite-db's string-typed numeric fields to float, defaulting blanks/junk to 0.0."""
     try:
         return float(x)
     except (TypeError, ValueError):
@@ -40,11 +42,14 @@ def _num(x):
 
 
 def _hits(label):
+    """Hit count encoded in a component label as '(Nx)' (e.g. 'Damage (3x)' -> 3); default 1."""
     m = re.search(r"\((\d+)\s*x\)", str(label or ""), re.I)
     return int(m.group(1)) if m else 1
 
 
 def _execute(true_desc):
+    """Parse a true-damage execute description ('8% of enemy missing HP') into
+    {pct, of: missing|remaining|current|max}, or None if it isn't an execute component."""
     m = re.search(r"(\d+(?:\.\d+)?)\s*%\s*of\s*(?:enemy\s*|target'?s?\s*)?"
                   r"(missing|remaining|current|max)\s*HP", str(true_desc or ""), re.I)
     return {"pct": float(m.group(1)) / 100.0, "of": m.group(2).lower()} if m else None
@@ -75,6 +80,8 @@ def extract_form(rsb, prefix, cooldown):
 
 
 def move_slot(skill):
+    """Parse one skill into (base form, [upgrade forms]); returns (None, None) for utility moves
+    that deal no damage at any form. Each upgrade carries its Lv5/7 form and Lv11/13 enhanced."""
     rsb = skill.get("rsb", {}) or {}
     base = extract_form(rsb, "", _num(skill.get("cd")))
     upgrades = []
@@ -96,11 +103,14 @@ def move_slot(skill):
 
 
 def is_unite(skill):
+    """Whether a skill is the Pokemon's Unite move (flagged so it can be excluded by default)."""
     blob = (str(skill.get("ability", "")) + str(skill.get("type", ""))).lower()
     return "unite" in blob
 
 
 def build():
+    """Parse the cached unite-db pokemon.json into our moves.json schema for all Pokemon
+    (basic + every damaging move slot with base/upgrade/enhanced forms). Returns the dict."""
     src = json.load(open(os.path.join(DATA, "unite_db_pokemon.json"), encoding="utf-8"))
     out = {"_meta": {
         "source": "unite-db.com/pokemon.json (Mathcord-sourced; the data its site uses)",

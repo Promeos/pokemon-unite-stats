@@ -15,6 +15,8 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), os.pardir, "data")
 
 
 def fetch_json(name: str) -> object:
+    """Download unite-db's raw /<name>.json (e.g. 'pokemon', 'stats', 'emblems'), cache it to
+    data/unite_db_<name>.json, and return the parsed object."""
     url = f"{BASE}/{name}.json"
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (research; pokemon-unite-stats)"})
     with urllib.request.urlopen(req, timeout=60) as resp:
