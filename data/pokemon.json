@@ -11768,6 +11768,179 @@
    }
   }
  },
+ "quaquaval": {
+  "display_name": "Quaquaval",
+  "role": "All-Rounder",
+  "damage_type": "Physical",
+  "basic_attack_multiplier": 1.0,
+  "stats_by_level": {
+   "1": {
+    "hp": 3460,
+    "attack": 160,
+    "defense": 94,
+    "sp_atk": 20,
+    "sp_def": 92,
+    "attack_speed": 10,
+    "crit": 0,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "2": {
+    "hp": 3528,
+    "attack": 165,
+    "defense": 100,
+    "sp_atk": 21,
+    "sp_def": 97,
+    "attack_speed": 10.29,
+    "crit": 0,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "3": {
+    "hp": 3610,
+    "attack": 172,
+    "defense": 106,
+    "sp_atk": 23,
+    "sp_def": 104,
+    "attack_speed": 10.63,
+    "crit": 0,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "4": {
+    "hp": 3708,
+    "attack": 179,
+    "defense": 114,
+    "sp_atk": 25,
+    "sp_def": 112,
+    "attack_speed": 11.05,
+    "crit": 0,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "5": {
+    "hp": 4062,
+    "attack": 207,
+    "defense": 143,
+    "sp_atk": 32,
+    "sp_def": 140,
+    "attack_speed": 12.54,
+    "crit": 10,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "6": {
+    "hp": 4203,
+    "attack": 218,
+    "defense": 155,
+    "sp_atk": 35,
+    "sp_def": 151,
+    "attack_speed": 13.14,
+    "crit": 10,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "7": {
+    "hp": 4847,
+    "attack": 268,
+    "defense": 207,
+    "sp_atk": 48,
+    "sp_def": 203,
+    "attack_speed": 15.85,
+    "crit": 10,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "8": {
+    "hp": 5050,
+    "attack": 284,
+    "defense": 223,
+    "sp_atk": 52,
+    "sp_def": 219,
+    "attack_speed": 16.71,
+    "crit": 10,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "9": {
+    "hp": 5294,
+    "attack": 303,
+    "defense": 243,
+    "sp_atk": 57,
+    "sp_def": 238,
+    "attack_speed": 17.74,
+    "crit": 20,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "10": {
+    "hp": 5587,
+    "attack": 326,
+    "defense": 267,
+    "sp_atk": 63,
+    "sp_def": 262,
+    "attack_speed": 18.97,
+    "crit": 20,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "11": {
+    "hp": 5938,
+    "attack": 353,
+    "defense": 296,
+    "sp_atk": 70,
+    "sp_def": 290,
+    "attack_speed": 20.45,
+    "crit": 20,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "12": {
+    "hp": 6359,
+    "attack": 386,
+    "defense": 330,
+    "sp_atk": 79,
+    "sp_def": 323,
+    "attack_speed": 22.23,
+    "crit": 20,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "13": {
+    "hp": 6865,
+    "attack": 426,
+    "defense": 371,
+    "sp_atk": 89,
+    "sp_def": 364,
+    "attack_speed": 24.37,
+    "crit": 20,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "14": {
+    "hp": 7472,
+    "attack": 473,
+    "defense": 421,
+    "sp_atk": 101,
+    "sp_def": 412,
+    "attack_speed": 26.93,
+    "crit": 20,
+    "penetration": 0,
+    "cdr": 0
+   },
+   "15": {
+    "hp": 8200,
+    "attack": 530,
+    "defense": 480,
+    "sp_atk": 116,
+    "sp_def": 470,
+    "attack_speed": 30,
+    "crit": 20,
+    "penetration": 0,
+    "cdr": 0
+   }
+  }
+ },
  "raichu": {
   "display_name": "Raichu",
   "role": "Attacker",

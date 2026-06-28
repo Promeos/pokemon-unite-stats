@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A data study testing whether maxed **held items** (Lv40) + **emblems** + **X Attack** let an
 opponent knock out enemies faster, *regardless of Pokémon*. Enemy builds are unobservable in-game, so it's a
-**model**: a damage/time-to-KO engine fed by current unite-db data for all 94 mons, modeling
+**model**: a damage/time-to-KO engine fed by current unite-db data for all 95 mons, modeling
 the **full move kit** (base + Lv5/7 upgrades + Lv11/13 enhanced + multi-hit + execute). See
 `README.md` for the full write-up.
 
@@ -14,8 +14,9 @@ the **full move kit** (base + Lv5/7 upgrades + Lv11/13 enhanced + multi-hit + ex
 
 ```bash
 pip install -r requirements.txt
-python -m pytest tests/ -q     # 22 tests (run after ANY change to damage.py / parsing)
+python -m pytest tests/ -q     # 28 tests (run after ANY change to damage.py / parsing)
 python src/validate.py         # #1 cross-check computed move damage vs Game8 totals
+python src/validate_inputs.py  # #1b prove score inputs (stats/cooldowns/items/emblems/X Attack) trace to source
 python src/optimize.py         # per-role optimizer -> charts + data/offense_rankings.csv
 python src/decomposition.py    # #2 lever decomposition (items vs emblems vs X Attack) + rarity
 python src/meta_validation.py  # #5 model rating vs unite-db community tier
@@ -34,6 +35,8 @@ raw unite-db JSON → `parse_unitedb_moves.py` / `build_pokemon_from_unitedb.py`
 + `data/pokemon.json` → `stats.py` (Stats algebra) → `builds.py` (Build = total Stats + flags) →
 `damage.py` (mitigation, attack-speed, basic, move, TTKO/DPS, EHP) → `abilities.py` (full-kit combat) /
 `optimize.py` / `decomposition.py` / `meta_validation.py` / `analysis.py`. Engine is pure + tested.
+`validate_inputs.py` proves each score input (stats/cooldowns via raw-unite-db reproducibility;
+items/emblems/X Attack via Game8 snapshot + applied-in-build) — complements `validate.py` (move totals).
 
 - **`damage.py`** — verified core. `floor(atk × 600/(600+max(0,Def−pen)))`; attack-speed buckets;
   `move_damage = floor((base + slider*(Lv-1) + ratio*stat) × mit)`; `effective_cooldown` (CDR, 30% cap).

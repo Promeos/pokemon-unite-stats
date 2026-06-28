@@ -1,7 +1,7 @@
 pokemon,role,dmg_type,burst,burst_build,dps,dps_build
-Absol,Speedster,Physical,3025,muscle_band+attack_weight+float_stone / max_attack,896,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
+Absol,Speedster,Physical,3155,muscle_band+attack_weight+float_stone / max_attack,919,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Aegislash,All-Rounder,Physical,2008,muscle_band+attack_weight+float_stone / max_attack,659,muscle_band+razor_claw+float_stone / max_attack_speed
-Armarouge,Attacker,Special,3748,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,545,wise_glasses+choice_specs+shell_bell / max_sp_atk
+Armarouge,Attacker,Special,3867,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,562,wise_glasses+choice_specs+shell_bell / max_sp_atk
 Azumarill,All-Rounder,Physical,3747,muscle_band+attack_weight+float_stone / max_attack,848,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Blaziken,All-Rounder,Physical,2731,muscle_band+attack_weight+float_stone / max_attack,684,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Buzzwole,All-Rounder,Physical,3640,muscle_band+attack_weight+float_stone / max_attack,1001,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
@@ -10,7 +10,7 @@ Charizard,All-Rounder,Physical,2007,muscle_band+attack_weight+float_stone / max_
 Mega-Charizard-X,All-Rounder,Physical,2350,muscle_band+attack_weight+float_stone / max_attack,454,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Mega-Charizard-Y,All-Rounder,Physical,1610,muscle_band+attack_weight+float_stone / max_attack,364,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Chandelure,Attacker,Special,3914,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,625,wise_glasses+choice_specs+shell_bell / max_sp_atk
-Cinderace,Attacker,Physical,1680,muscle_band+attack_weight+float_stone / max_attack_speed,641,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
+Cinderace,Attacker,Physical,1933,muscle_band+attack_weight+float_stone / max_attack_speed,641,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Cramorant,Attacker,Special,2172,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,453,wise_glasses+choice_specs+shell_bell / max_sp_atk
 Darkrai,Speedster,Special,8003,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,1493,wise_glasses+choice_specs+shell_bell / max_sp_atk
 Decidueye,Attacker,Physical,1581,muscle_band+attack_weight+float_stone / max_attack_speed,560,muscle_band+razor_claw+float_stone / max_attack_speed
@@ -20,7 +20,7 @@ Dodrio,Speedster,Physical,2648,muscle_band+attack_weight+float_stone / max_attac
 Dragapult,Attacker,Physical,2116,muscle_band+attack_weight+float_stone / max_attack_speed,608,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Dragonite,All-Rounder,Physical,2458,muscle_band+attack_weight+float_stone / max_attack,664,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Duraludon,Attacker,Physical,2341,muscle_band+attack_weight+float_stone / max_attack,761,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
-Empoleon,All-Rounder,Special,4733,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,995,wise_glasses+choice_specs+shell_bell / max_sp_atk
+Empoleon,All-Rounder,Special,4839,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,1014,wise_glasses+choice_specs+shell_bell / max_sp_atk
 Espeon,Attacker,Special,2594,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,450,wise_glasses+choice_specs+shell_bell / max_sp_atk
 Falinks,All-Rounder,Physical,3683,muscle_band+attack_weight+float_stone / max_attack,803,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Feraligatr,All-Rounder,Physical,4678,muscle_band+attack_weight+float_stone / max_attack,1300,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
@@ -36,7 +36,7 @@ Latios,Attacker,Special,2036,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk
 Leafeon,Speedster,Physical,8200,muscle_band+attack_weight+float_stone / max_attack,1427,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Lucario,All-Rounder,Physical,4504,muscle_band+attack_weight+float_stone / max_attack,837,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Mega-Lucario,All-Rounder,Physical,3546,muscle_band+attack_weight+float_stone / max_attack,837,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
-Machamp,All-Rounder,Physical,2994,muscle_band+attack_weight+float_stone / max_attack,772,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
+Machamp,All-Rounder,Physical,2994,muscle_band+attack_weight+float_stone / max_attack,753,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Meowscarada,Speedster,Physical,1464,muscle_band+razor_claw+float_stone / max_attack,591,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Meowth,Speedster,Physical,2865,muscle_band+attack_weight+float_stone / max_attack,850,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Metagross,All-Rounder,Physical,5962,muscle_band+attack_weight+float_stone / max_attack,1136,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
@@ -45,10 +45,11 @@ MewtwoX,All-Rounder,Physical,2747,muscle_band+attack_weight+float_stone / max_at
 MewtwoY,Attacker,Special,2675,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,478,wise_glasses+choice_specs+shell_bell / max_sp_atk
 Mimikyu,All-Rounder,Physical,2357,muscle_band+attack_weight+float_stone / max_attack,771,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Miraidon,Attacker,Special,5182,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,553,wise_glasses+choice_specs+shell_bell / max_sp_atk
-Moltres,All-Rounder,Special,3164,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,561,wise_glasses+choice_specs+shell_bell / max_sp_atk
+Moltres,All-Rounder,Special,2930,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,549,wise_glasses+choice_specs+shell_bell / max_sp_atk
 Ninetales,Attacker,Special,2080,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,331,wise_glasses+choice_specs+shell_bell / max_sp_atk
 Pawmot,All-Rounder,Physical,6965,muscle_band+attack_weight+float_stone / max_attack,1122,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Pikachu,Attacker,Special,2553,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,452,choice_specs+shell_bell+energy_amplifier / max_sp_atk
+Quaquaval,All-Rounder,Physical,2819,muscle_band+attack_weight+float_stone / max_attack,777,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Raichu,Attacker,Special,3624,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,509,wise_glasses+choice_specs+shell_bell / max_sp_atk
 Rapidash,Speedster,Special,3859,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,643,wise_glasses+choice_specs+shell_bell / max_sp_atk
 Scizor,All-Rounder,Physical,2202,muscle_band+attack_weight+float_stone / max_attack,713,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
@@ -56,7 +57,7 @@ Scyther,All-Rounder,Physical,3886,muscle_band+attack_weight+float_stone / max_at
 Sirfetchd,All-Rounder,Physical,4422,muscle_band+attack_weight+float_stone / max_attack,1081,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Skeledirge,Attacker,Special,4024,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,906,wise_glasses+choice_specs+shell_bell / max_sp_atk
 Suicune,All-Rounder,Special,2103,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,366,wise_glasses+choice_specs+shell_bell / max_sp_atk
-Sylveon,Attacker,Special,5028,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,1002,wise_glasses+choice_specs+shell_bell / max_sp_atk
+Sylveon,Attacker,Special,5370,wise_glasses+choice_specs+sp_atk_specs / max_sp_atk,1065,wise_glasses+choice_specs+shell_bell / max_sp_atk
 Talonflame,Speedster,Physical,3572,muscle_band+attack_weight+float_stone / max_attack,971,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Tinkaton,All-Rounder,Physical,2091,muscle_band+attack_weight+float_stone / max_attack_speed,576,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed
 Tsareena,All-Rounder,Physical,3578,muscle_band+attack_weight+float_stone / max_attack,825,muscle_band+float_stone+rapid_fire_scarf / max_attack_speed

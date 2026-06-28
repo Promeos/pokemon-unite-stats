@@ -4,7 +4,7 @@
 *before they evolve*, regardless of which Pokémon you play?** Enemy builds are unobservable
 in-game, so this answers it with a **model**: a damage / time-to-KO engine built from
 *current, validated* unite-db data and the game's verified damage formula, run across the full
-94-Pokémon roster — base moves, Lv5/7 upgrades, enhanced forms, multi-hit, and execute included.
+95-Pokémon roster — base moves, Lv5/7 upgrades, enhanced forms, multi-hit, and execute included.
 
 ## TL;DR
 
@@ -15,7 +15,7 @@ in-game, so this answers it with a **model**: a damage / time-to-KO engine built
   optimized over the **real 762-emblem set** as realistic 6-damage + 4-bulk pages (colors, grades,
   tradeoffs).
 - 🧪 **Validated:** computed move damage matches **Game8 within 0.4%** across base moves *and*
-  upgrades (Cinderace Pyro Ball *exactly* 1774). **22 tests green.**
+  upgrades (Cinderace Pyro Ball *exactly* 1774). **28 tests green.**
 - 🤔 **Honest limit:** raw combat power barely predicts the community tier (**Spearman +0.06**).
   The model nails "who hits hardest pre-evo" — but "who's actually good in ranked" is range,
   mobility, CC, objectives, and scaling, which it deliberately doesn't model.
@@ -39,6 +39,22 @@ shields up**:
 
 > "Best by **modeled combat metric**" — see the meta check below for how much that actually
 > predicts viability. Shields are counted "up" (situational).
+
+### What the **Score** column means
+
+It isn't one unit — it's whatever metric the *Best by* column names, computed against a fixed
+reference dummy (an un-invested Cinderace at Lv 5) and reported for the build that **maximizes**
+it (brute-forced over every legal 3-item combo × emblem page):
+
+| Best by | Score = | computed in |
+|---|---|---|
+| **Burst** | post-mitigation damage of casting every kit move once (best Lv 5 form, with X Attack) **+** autos landing in a 2.0 s window | `optimize.burst_damage` |
+| **DPS** | auto-attack DPS **+** Σ(move damage ÷ effective cooldown), CDR-aware | `optimize.sustained_dps` |
+| **Eff. HP** | raw damage needed to drop the build (avg of physical/special) **+** shield HP | `optimize.survivability` |
+
+It's an **argmax, not a stat**: burst and DPS are optimized *independently*, so a Pokémon's two
+rows can list different builds. Scores are **not comparable across rows** (damage over ~2 s vs
+damage-per-second vs hit points). And it's a *modeled* score — the [meta check](#-does-the-model-agree-with-the-meta) shows it barely tracks real viability (Spearman +0.06).
 
 ## 🔧 Which lever actually matters? (the original question)
 
@@ -80,7 +96,7 @@ control, and late-game scaling — none of which this models.
 ## Sources & verification
 
 - **Stats, moves & emblems — [unite-db](https://unite-db.com) raw JSON** (`/pokemon.json`,
-  `/stats.json`, `/emblems.json`): the Mathcord-sourced data its site loads — 94 mons + **762
+  `/stats.json`, `/emblems.json`): the Mathcord-sourced data its site loads — 95 mons + **762
   emblems**. Its *pages* are JS-rendered (unreadable to a fetcher); the `/*.json` endpoints are raw.
   The full move kit (base + `upgrades` + `enhanced_` + multi-hit + execute + per-level
   penetration/CDR) and real emblem pages (colors / grades / stat tradeoffs) are derived from it.
@@ -91,16 +107,28 @@ control, and late-game scaling — none of which this models.
   mitigation `floor(atk × 600/(600+Def))` + attack-speed buckets, taken verbatim. (It is *stale*
   on rebalanced moves, e.g. Electro Ball — so unite-db, validated vs Game8, is the trusted source.)
 - **Validated:** `src/validate.py` reproduces Game8's published move totals within **0.4%**
-  (Pyro Ball = 1774 exactly) across base + upgrade moves and multiple levels. **22 tests** cover
-  the formula, Blastoise 35%, attack-speed buckets, Muscle Band cap, the move formula, and the
-  Game8 cross-check.
+  (Pyro Ball = 1774 exactly) across base + upgrade moves and multiple levels. **28 tests** cover
+  the formula, Blastoise 35%, attack-speed buckets, Muscle Band cap, the move formula, the
+  Game8 cross-check, and the input-provenance proofs below.
+- **Inputs are provable — `src/validate_inputs.py`** proves every value that feeds a score traces
+  to its source, in two ways. **Provenance** (strong, 100% coverage): `data/pokemon.json` (every
+  mon's **attack** + per-level stats — 95 mons × levels) and `data/moves.json` (every **cooldown** —
+  750 base/upgrade/enhanced forms) are *exactly reproducible* from the cached raw unite-db JSON, so
+  each value equals its source, not a hand-edited copy. **Cross-check / snapshot:** **held items**
+  match a Game8 Lv 40 snapshot (each tagged with its Game8 archive id) and are verified to be
+  applied in `make_build`; **emblems** use the intact 762-emblem set with color bonuses that cap
+  correctly and page stats that re-sum from the named emblems; the **X Attack** multipliers in the
+  pure engine equal `data/battleitems.json`. (Magnitude cross-checks of raw numbers live in
+  `validate.py`; item/emblem/X-Attack values are locked to patch **v1.21.1.8** — re-run the
+  pipeline to refresh from source.)
 
 ## Run
 
 ```bash
 pip install -r requirements.txt
-python -m pytest tests/ -q          # 22 tests
+python -m pytest tests/ -q          # 28 tests
 python src/validate.py              # #1 move damage vs Game8
+python src/validate_inputs.py       # #1b prove each score input (stats/cooldowns/items/emblems/X Attack) traces to source
 python src/optimize.py              # Phase 2 per-role optimizer + charts + CSV
 python src/decomposition.py         # #2 lever decomposition + emblem-rarity sweep
 python src/meta_validation.py       # #5 model vs community tier
@@ -119,7 +147,7 @@ data/   unite_db_*.json (source) · pokemon.json / moves.json (generated) ·
         helditems / battleitems / emblems.json (Game8)
 src/    stats.py · damage.py (engine) · builds.py · emblems.py (emblem optimizer) ·
         abilities.py (full-kit combat) · optimize.py (Phase 2) · decomposition.py ·
-        meta_validation.py · validate.py · analysis.py ·
+        meta_validation.py · validate.py · validate_inputs.py · analysis.py ·
         fetch_unitedb / parse_unitedb_moves / build_pokemon_from_unitedb (pipeline)
 tests/  engine, move-formula, and Game8-validation tests
 figures/ exported charts
