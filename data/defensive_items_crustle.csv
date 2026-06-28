@@ -1,0 +1,10 @@
+pokemon,level,emblems,rarity,key,item,hp,defense,sp_def,d_ehp_phys,d_ehp_spec,d_ehp_avg,shield_hp,passive
+crustle,15,max_bulk,gold,rocky_helmet,Rocky Helmet,315.0,59.5,0.0,1817,575,1196,0,Reflect 6% of the ATTACKER's max HP back when hit
+crustle,15,max_bulk,gold,assault_vest,Assault Vest,315.0,0.0,59.5,696,1634,1165,2094,Special-damage shield 10%/15%/20% of max HP after 15s without taking special damage
+crustle,15,max_bulk,gold,buddy_barrier,Buddy Barrier,525.0,0.0,0.0,1160,958,1059,2670,Shield 25% of max HP to self + nearest ally on Unite Move
+crustle,15,max_bulk,gold,resonant_guard,Resonant Guard,525.0,0.0,0.0,1160,958,1059,0,Shield to self + nearby ally when dealing damage (10s CD; % not pinned)
+crustle,15,max_bulk,gold,score_shield,Score Shield,525.0,0.0,0.0,1160,958,1059,1068,Shield 10% of max HP while scoring a goal
+crustle,15,max_bulk,gold,focus_band,Focus Band,0.0,35.0,35.0,639,604,622,0,Recover 12% of lost HP per second for 3s when low
+crustle,15,max_bulk,gold,aeos_cookie,Aeos Cookie,280.0,0.0,0.0,619,511,565,0,"+200 max HP per goal, up to 6 stacks (flat, not %)"
+crustle,15,max_bulk,gold,weakness_policy,Weakness Policy,235.0,0.0,0.0,519,429,474,0,"+2.5% Attack per hit taken, up to 4 stacks (+10%)"
+crustle,15,max_bulk,gold,drain_crown,Drain Crown,140.0,0.0,0.0,309,256,282,0,15% lifesteal of damage dealt

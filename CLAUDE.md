@@ -18,6 +18,7 @@ python -m pytest tests/ -q     # 28 tests (run after ANY change to damage.py / p
 python src/validate.py         # #1 cross-check computed move damage vs Game8 totals
 python src/validate_inputs.py  # #1b prove score inputs (stats/cooldowns/items/emblems/X Attack) trace to source
 python src/optimize.py         # per-role optimizer -> charts + data/offense_rankings.csv
+python src/defensive_items.py  # held-item HP/Def/Sp.Def -> EHP breakdown + chart, any mon (--emblems)
 python src/decomposition.py    # #2 lever decomposition (items vs emblems vs X Attack) + rarity
 python src/meta_validation.py  # #5 model rating vs unite-db community tier
 python src/abilities.py        # pre/post-evo burst combos
