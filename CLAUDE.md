@@ -5,8 +5,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## What this is
 
 A data study testing whether maxed **held items** (Lv40) + **emblems** + **X Attack** let an
-opponent kill faster, *regardless of Pokémon*. Enemy builds are unobservable in-game, so it's a
-**model**: a damage/time-to-kill engine fed by current unite-db data for all 94 mons, modeling
+opponent knock out enemies faster, *regardless of Pokémon*. Enemy builds are unobservable in-game, so it's a
+**model**: a damage/time-to-KO engine fed by current unite-db data for all 94 mons, modeling
 the **full move kit** (base + Lv5/7 upgrades + Lv11/13 enhanced + multi-hit + execute). See
 `README.md` for the full write-up.
 
@@ -32,7 +32,7 @@ are expected.
 
 raw unite-db JSON → `parse_unitedb_moves.py` / `build_pokemon_from_unitedb.py` → `data/moves.json`
 + `data/pokemon.json` → `stats.py` (Stats algebra) → `builds.py` (Build = total Stats + flags) →
-`damage.py` (mitigation, attack-speed, basic, move, TTK/DPS, EHP) → `abilities.py` (full-kit combat) /
+`damage.py` (mitigation, attack-speed, basic, move, TTKO/DPS, EHP) → `abilities.py` (full-kit combat) /
 `optimize.py` / `decomposition.py` / `meta_validation.py` / `analysis.py`. Engine is pure + tested.
 
 - **`damage.py`** — verified core. `floor(atk × 600/(600+max(0,Def−pen)))`; attack-speed buckets;

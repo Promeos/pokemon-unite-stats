@@ -85,19 +85,19 @@ def test_crit_expected_value():
     assert hit == math.floor(base * 1.5)
 
 
-# --------------------------- hits / time to kill --------------------------- #
-def test_hits_to_kill_basic_case():
+# --------------------------- hits / time to KO --------------------------- #
+def test_hits_to_ko_basic_case():
     # No defense: ceil(hp / attack).
-    assert d.hits_to_kill(100, 1000, 0) == 10
-    assert d.hits_to_kill(150, 1000, 0) == 7   # 150*6=900, 7th kills
+    assert d.hits_to_ko(100, 1000, 0) == 10
+    assert d.hits_to_ko(150, 1000, 0) == 7   # 150*6=900, 7th knocks out
 
 
-def test_muscle_band_reduces_hits_to_kill():
-    plain = d.hits_to_kill(150, 4000, 50)
-    with_mb = d.hits_to_kill(150, 4000, 50, muscle_band=True)
+def test_muscle_band_reduces_hits_to_ko():
+    plain = d.hits_to_ko(150, 4000, 50)
+    with_mb = d.hits_to_ko(150, 4000, 50, muscle_band=True)
     assert with_mb <= plain
 
 
-def test_time_to_kill_uses_intervals():
+def test_time_to_ko_uses_intervals():
     # 10 hits at 0 AS (1.0 s interval) -> 9 intervals -> ~9.0 s.
-    assert abs(d.time_to_kill(100, 1000, 0, attack_speed=0.0) - 9.0) < 0.05
+    assert abs(d.time_to_ko(100, 1000, 0, attack_speed=0.0) - 9.0) < 0.05

@@ -121,17 +121,17 @@ def tier_build(data: dict, pokemon: str, level: int, tier: str) -> Build:
 # Combat between two builds
 # --------------------------------------------------------------------------- #
 def hits_between(attacker: Build, defender: Build) -> int:
-    """Basic attacks for `attacker` to kill `defender` (carries crit/Muscle Band flags)."""
-    return damage.hits_to_kill(
+    """Basic attacks for `attacker` to knock out `defender` (carries crit/Muscle Band flags)."""
+    return damage.hits_to_ko(
         attacker.total.attack, defender.total.hp, defender.total.defense,
         crit_rate=attacker.crit_rate, crit_multiplier=attacker.crit_multiplier,
         muscle_band=attacker.muscle_band,
     )
 
 
-def ttk_between(attacker: Build, defender: Build) -> float:
-    """Seconds for `attacker` to kill `defender` via basic attacks (attack-speed aware)."""
-    return damage.time_to_kill(
+def ttko_between(attacker: Build, defender: Build) -> float:
+    """Seconds for `attacker` to knock out `defender` via basic attacks (attack-speed aware)."""
+    return damage.time_to_ko(
         attacker.total.attack, defender.total.hp, defender.total.defense,
         attack_speed=attacker.total.attack_speed,
         crit_rate=attacker.crit_rate, crit_multiplier=attacker.crit_multiplier,
@@ -149,5 +149,5 @@ if __name__ == "__main__":
     print(f"Pikachu mirror @ Lv{lvl}  (target: un-invested, HP {target.total.hp:.0f}, Def {target.total.defense:.0f})")
     for name, atk in [("un-invested attacker", bare), ("MAXED attacker", maxed)]:
         h = hits_between(atk, target)
-        t = ttk_between(atk, target)
+        t = ttko_between(atk, target)
         print(f"  {name:22s} Atk {atk.total.attack:6.1f} | {h:2d} hits | {t:4.2f}s")

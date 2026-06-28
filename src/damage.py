@@ -140,9 +140,9 @@ def execute_damage(current_hp, pct, cap):
 
 
 # --------------------------------------------------------------------------- #
-# Time / hits to kill, DPS
+# Time / hits to knock out, DPS
 # --------------------------------------------------------------------------- #
-def hits_to_kill(
+def hits_to_ko(
     attack: float,
     target_hp: float,
     target_defense: float,
@@ -152,7 +152,7 @@ def hits_to_kill(
     basic_multiplier: float = 1.0,
     max_hits: int = 100_000,
 ) -> int:
-    """Number of basic attacks to drop a target. Simulated hit-by-hit because the
+    """Number of basic attacks to knock out a target. Simulated hit-by-hit because the
     Muscle Band passive depends on the target's *current* HP."""
     hp = target_hp
     for n in range(1, max_hits + 1):
@@ -166,16 +166,16 @@ def hits_to_kill(
     return max_hits
 
 
-def time_to_kill(
+def time_to_ko(
     attack: float,
     target_hp: float,
     target_defense: float,
     attack_speed: float = 0.0,
     **kwargs,
 ) -> float:
-    """Seconds to kill via basic attacks. First hit lands at t=0, so n hits span
+    """Seconds to knock out via basic attacks. First hit lands at t=0, so n hits span
     (n-1) attack intervals."""
-    n = hits_to_kill(attack, target_hp, target_defense, **kwargs)
+    n = hits_to_ko(attack, target_hp, target_defense, **kwargs)
     return (n - 1) * attack_interval_seconds(attack_speed)
 
 
@@ -190,7 +190,7 @@ def dps(
     """Sustained basic-attack DPS vs a target of given Defense.
 
     Excludes Muscle Band's %-current-HP bonus (target-dependent, not a steady-state
-    quantity); pass it through hits_to_kill / time_to_kill when modelling a specific
+    quantity); pass it through hits_to_ko / time_to_ko when modelling a specific
     target instead.
     """
     per_hit = basic_hit_damage(

@@ -1,14 +1,14 @@
-# Pokémon Unite — Stat Investment vs. Time-to-Kill
+# Pokémon Unite — Stat Investment vs. Time-to-KO
 
 **Does maxing your account — Lv 40 held items, gold emblems, X Attack — let you delete people
 *before they evolve*, regardless of which Pokémon you play?** Enemy builds are unobservable
-in-game, so this answers it with a **model**: a damage / time-to-kill engine built from
+in-game, so this answers it with a **model**: a damage / time-to-KO engine built from
 *current, validated* unite-db data and the game's verified damage formula, run across the full
 94-Pokémon roster — base moves, Lv5/7 upgrades, enhanced forms, multi-hit, and execute included.
 
 ## TL;DR
 
-- 📉 **Maxed investment adds ~53% to pre-evo burst** (≈ a third less time-to-kill overall, and
+- 📉 **Maxed investment adds ~53% to pre-evo burst** (≈ a third less time-to-KO overall, and
   closer to *half* for pure auto-attackers) — and it holds regardless of Pokémon.
 - 🔧 **Which lever?** Of that gain: **items ~57%, X Attack ~32%, emblems ~11%** — and **emblem
   rarity barely matters** (no-emblems → gold is +4.6% burst; bronze → gold is ~1%). Emblems are
@@ -52,7 +52,7 @@ optimization over unite-db's 762 emblems — colors, grades, and stat tradeoffs 
 way, so the conclusion is robust.) Practical takeaway: **upgrade your held items first**; emblems are
 a small edge and their rarity is close to noise.
 
-## 📉 Headline — investment ~halves pre-evo *auto-attack* time-to-kill
+## 📉 Headline — investment ~halves pre-evo *auto-attack* time-to-KO
 
 Basic attacks only (the cleanest lever view), maxed attacker vs. an un-invested squishy:
 
@@ -62,7 +62,7 @@ Basic attacks only (the cleanest lever view), maxed attacker vs. an un-invested 
 | Zeraora   | 18 hits / 15.9 s | 11 hits /  8.7 s | **39% / 45%** |
 | Pikachu   | 24 hits / 21.5 s | 13 hits / 10.4 s | **46% / 52%** |
 
-![Hits to kill, maxed vs un-invested](figures/auto_attack_hits_to_kill.png)
+![Hits to knock out, maxed vs un-invested](figures/auto_attack_hits_to_ko.png)
 
 (Autos are 100% stat-scaled, so investment helps them most; abilities carry a big flat/level
 base, so investment is diluted there — which is why the *combined* effect is ~+53%, not ×2.)
@@ -106,7 +106,7 @@ python src/decomposition.py         # #2 lever decomposition + emblem-rarity swe
 python src/meta_validation.py       # #5 model vs community tier
 python src/emblems.py               # exact named emblem pages -> data/emblem_pages.txt
 python src/abilities.py             # pre/post-evo burst combos
-python src/analysis.py              # Phase 1 auto-attack hits-to-kill
+python src/analysis.py              # Phase 1 auto-attack hits-to-KO
 
 # Refresh data from unite-db (re-cache + regenerate the derived files):
 python src/fetch_unitedb.py ; python src/parse_unitedb_moves.py ; python src/build_pokemon_from_unitedb.py

@@ -118,7 +118,7 @@ MOVE_CAST_S = 0.8   # nominal animation/cast time per move (approx)
 
 def burst_combo(attacker, defender, pmoves, level, x_attack=True, include_unite=False, max_autos=60):
     """Cast each kit move once (best form for the level), then auto until the target dies.
-    Returns actions, autos, and an approximate seconds-to-kill (move casts + auto intervals)."""
+    Returns actions, autos, and an approximate seconds-to-KO (move casts + auto intervals)."""
     hp = defender.total.hp
     log = []
     moves_cast = 0
@@ -137,7 +137,7 @@ def burst_combo(attacker, defender, pmoves, level, x_attack=True, include_unite=
         hp -= d
         log.append(("auto", round(d)))
     seconds = moves_cast * MOVE_CAST_S + autos * damage.attack_interval_seconds(attacker.total.attack_speed)
-    return dict(actions=len(log), autos=autos, killed=hp <= 0, seconds=round(seconds, 1), log=log)
+    return dict(actions=len(log), autos=autos, knocked_out=hp <= 0, seconds=round(seconds, 1), log=log)
 
 
 def maxed_tier_for(data, key):

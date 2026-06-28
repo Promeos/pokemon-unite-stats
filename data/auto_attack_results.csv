@@ -1,4 +1,4 @@
-pokemon,level,hits_uninvested,hits_maxed,hits_saved,hits_reduction_pct,ttk_uninvested,ttk_maxed,ttk_reduction_pct
+pokemon,level,hits_uninvested,hits_maxed,hits_saved,hits_reduction_pct,ttko_uninvested,ttko_maxed,ttko_reduction_pct
 cinderace,1,25,13,12,48.0,22.4,10.4,53.6
 cinderace,2,24,13,11,45.8,21.47,10.4,51.6
 cinderace,3,24,13,11,45.8,21.47,10.4,51.6
